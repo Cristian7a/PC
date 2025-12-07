@@ -1,0 +1,9 @@
+{
+  "helloWorld": "Hola Mundo!",
+  "errorPage": {
+    "goBack": "Volver atrás",
+    "401": "No tienes permiso para acceder a esta página.",
+    "404": "Página no encontrada.",
+    "default": "Error desconocido."
+  }
+}

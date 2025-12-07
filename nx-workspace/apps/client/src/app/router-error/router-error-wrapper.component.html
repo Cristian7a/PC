@@ -1,0 +1,14 @@
+@let data = errorCode$ | async;
+@switch (data?.['errorCode']) {
+  @case ('401') {
+    <p>{{ 'errorPage.401' | translate }}</p>
+  }
+  @case ('404') {
+    <p>{{ 'errorPage.404' | translate }}</p>
+  }
+  @default {
+    <p>{{ 'errorPage.default' | translate }}</p>
+  }
+}
+
+<a routerLink="/">{{ 'errorPage.goBack' | translate }}</a>

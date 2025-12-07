@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  "compilerOptions": {
+    "esModuleInterop": true,
+
+    // Allows running TS files natively with Node.js
+    "noEmit": true,
+    "allowImportingTsExtensions": true
+  }
+}

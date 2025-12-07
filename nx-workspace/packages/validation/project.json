@@ -1,0 +1,24 @@
+{
+  "name": "validation",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/validation/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/validation",
+        "main": "packages/validation/src/index.ts",
+        "tsConfig": "packages/validation/tsconfig.lib.json",
+        "assets": ["packages/validation/*.md"],
+        "format": ["esm"],
+        "target": "es2024",
+        "esbuildOptions": {
+          "sourcemap": true
+        }
+      }
+    }
+  }
+}
