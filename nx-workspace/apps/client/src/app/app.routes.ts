@@ -2,12 +2,21 @@ import { Route } from '@angular/router';
 import { authenticatedGuard, unauthenticatedGuard } from './guards/authenticated.guard';
 
 export const APP_ROUTES = {
+  landingPage: {
+    root: '',
+  },
   login: 'login',
   home: 'home',
   errorPage: 'error',
 };
 
 export const appRoutes: Route[] = [
+  {
+    path: APP_ROUTES.landingPage.root,
+    loadComponent: () =>
+      import('./landing-page/landing-page.component').then((c) => c.LandingPageComponent),
+  },
+  /*
   {
     path: APP_ROUTES.login,
     loadComponent: () => import('./login/login.component').then((c) => c.LoginComponent),
@@ -24,7 +33,7 @@ export const appRoutes: Route[] = [
       import('./router-error/router-error-wrapper.component').then(
         (c) => c.RouterErrorWrapperComponent,
       ),
-  },
+  },*/
   { path: '', redirectTo: APP_ROUTES.home, pathMatch: 'full' },
   { path: '**', redirectTo: `${APP_ROUTES.errorPage}/404` },
 ];
