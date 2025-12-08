@@ -5,5 +5,22 @@
     "401": "No tienes permiso para acceder a esta página.",
     "404": "Página no encontrada.",
     "default": "Error desconocido."
+  },
+  "general":{
+    "quotationBtn":"Cotizar",
+    "logo":{
+      "alt":"Logo"
+    }
+  },
+  "pages":{
+    "home":"Inicio",
+    "services":"Servicios",
+    "reviews":"Reseñas",
+    "gallery":"Galería",
+    "about":"Nosotros",
+    "contact":"Contacto",
+    "quoation":"Cotizar"
+  },
+  "home":{
   }
 }

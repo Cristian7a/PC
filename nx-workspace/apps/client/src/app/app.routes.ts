@@ -15,6 +15,15 @@ export const appRoutes: Route[] = [
     path: APP_ROUTES.landingPage.root,
     loadComponent: () =>
       import('./landing-page/landing-page.component').then((c) => c.LandingPageComponent),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./home-landing-page/home-landing-page.component').then(
+            (c) => c.HomeLandingPageComponent,
+          ),
+      },
+    ],
   },
   /*
   {
