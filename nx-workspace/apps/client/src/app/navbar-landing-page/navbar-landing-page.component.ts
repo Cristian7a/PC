@@ -5,10 +5,19 @@ import { ButtonModule } from 'primeng/button';
 import { NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-navbar-landing-page',
-  imports: [ToolbarModule, TabsModule, ButtonModule, NgOptimizedImage, RouterModule, TranslatePipe],
+  imports: [
+    ToolbarModule,
+    TabsModule,
+    ButtonModule,
+    NgOptimizedImage,
+    RouterModule,
+    TranslatePipe,
+    TooltipModule,
+  ],
   templateUrl: './navbar-landing-page.component.html',
   styleUrl: './navbar-landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

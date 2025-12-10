@@ -1,0 +1,123 @@
+<p-drawer position="right" styleClass="!w-full sm:!w-100" closeable="true" [(visible)]="visible">
+  <ng-template #header>
+    <div class="flex items-center justify-between px-6 pt-4 shrink-0">
+      <span class="inline-flex items-center gap-2">
+        <img
+          alt="{{ 'general.logo.alt' | translate }}"
+          src="/assets/Logo.jpg"
+          class="h-10 w-10 rounded-full object-cover mr-2"
+        />
+        <div class="flex md:hidden flex-col items-center">
+          <h4 class="text-[#e5c76b] text-sm">Plato y Copa</h4>
+          <span class="text-xs text-black dark:text-white">Servicio de meseros</span>
+        </div>
+      </span>
+    </div>
+  </ng-template>
+  <p-divider class="!p-0 !m-0" />
+  <div class="h-full">
+    <div class="py-4">
+      <div class="mb-4">
+        <h3 class="text-sm uppercase">{{ 'menu.sections.navigation' | translate }}</h3>
+      </div>
+      <ul>
+        @for (option of options; track option) {
+          <li>
+            <a
+              pRipple
+              enterFromClass="hidden"
+              enterActiveClass="animate-slidedown"
+              leaveToClass="hidden"
+              leaveActiveClass="animate-slideup"
+              toggleClass="hidden"
+              class="p-4 flex items-center justify-between text-surface-600 dark:text-surface-200 cursor-pointer p-ripple"
+              [routerLink]="option.route === 'services' ? null : option.route"
+              [pStyleClass]="option.route === 'services' ? '@next' : undefined"
+            >
+              <span class="text-sm font-bold flex gap-3">
+                <i class="text-lg" style="color: #e5c76b !important" [class]="option.icon"></i>
+                {{ option.label }}
+              </span>
+              @if (option.route === 'services') {
+                <i class="pi pi-chevron-down"></i>
+              }
+            </a>
+
+            <ul
+              class="list-none py-0 pl-4 pr-0 m-0 hidden overflow-y-hidden transition-all duration-[400ms] ease-in-out"
+            >
+              @for (sv of services; track sv) {
+                <li>
+                  <a
+                    pRipple
+                    class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                  >
+                    <i class="mr-2" style="color: #e5c76b !important" [class]="sv.icon"></i>
+                    <span class="font-medium">{{ sv.name }}</span>
+                  </a>
+                </li>
+              }
+            </ul>
+          </li>
+        }
+      </ul>
+    </div>
+    <div>
+      <div class="mb-4">
+        <h3 class="text-sm uppercase">{{ 'menu.sections.contact' | translate }}</h3>
+      </div>
+      @for (co of contactOptions; track co) {
+        @if (co.route.startsWith('/')) {
+          <a [routerLink]="co.route">
+            <ng-container
+              *ngTemplateOutlet="contactCardTemplate; context: { $implicit: co }"
+            ></ng-container>
+          </a>
+        } @else {
+          <a [href]="co.route">
+            <ng-container
+              *ngTemplateOutlet="contactCardTemplate; context: { $implicit: co }"
+            ></ng-container>
+          </a>
+        }
+      }
+
+      <ng-template #contactCardTemplate let-co>
+        <p-card class="block mb-2">
+          <div class="flex gap-4 items-center justify-center py-2">
+            <div>
+              <p-avatar shape="circle" [icon]="co.icon" />
+            </div>
+            <div
+              pRipple
+              class="box rounded p-4 grid grid-cols-1 w-full"
+              style="border: 1px solid #e5c76b; --p-ripple-background: #e5c76b"
+            >
+              <h4 class="text-bold">{{ co.title }}</h4>
+              <span class="text-sm">{{ co.content }}</span>
+            </div>
+          </div>
+        </p-card>
+      </ng-template>
+    </div>
+  </div>
+  <ng-template #footer>
+    <p-divider class="!p-0 !m-0" />
+    <span class="text-xs flex justify-center pt-2">{{ 'menu.visit' | translate }}</span>
+    <div class="flex items-center justify-center gap-4 px-6 py-4 w-full">
+      @for (sm of socials; track sm) {
+        <p-button
+          severity="secondary"
+          rounded="true"
+          tooltipPosition="bottom"
+          [icon]="sm.icon"
+          [routerLink]="sm.link"
+          [pTooltip]="sm.label"
+        />
+      }
+    </div>
+    <span class="text-xs flex justify-center"
+      >© 2025 Plato y Copa. {{ 'general.rightsReserved' | translate }}</span
+    >
+  </ng-template>
+</p-drawer>

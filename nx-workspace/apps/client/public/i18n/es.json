@@ -8,9 +8,12 @@
   },
   "general":{
     "quotationBtn":"Cotizar",
+    "searchBtn":"Buscar",
+    "themeChangeBtn":"Cambiar tema",
     "logo":{
       "alt":"Logo"
-    }
+    },
+    "rightsReserved":"Todos los derechos reservados."
   },
   "pages":{
     "home":"Inicio",
@@ -19,8 +22,31 @@
     "gallery":"Galería",
     "about":"Nosotros",
     "contact":"Contacto",
-    "quoation":"Cotizar"
+    "quoation":"Cotizar",
+    "call":"Llamar",
+    "menu":"Menú"
   },
   "home":{
+  },
+  "menu":{
+    "sections":{
+      "navigation":"Navegación",
+      "contact": "Contacto rápido"
+    },
+    "contact":{
+      "fastActions":{
+        "email":{
+          "title":"Correo"
+        },
+        "phone":{
+          "title":"Teléfono"
+        },
+        "quoation":{
+          "title":"Cotización",
+          "content":"Atención personaliza de primer nivel"
+        }
+      }
+    },
+    "visit":"Visita nuestras redes sociales:"
   }
 }

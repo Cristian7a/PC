@@ -1,1 +1,44 @@
-<p>downbar-landing-page works!</p>
+<div class="fixed md:hidden bottom-0 left-0 w-full z-50">
+  <app-downbar-landing-page-menu
+    [visible]="isMenuVisible"
+    (visibleChange)="onMenuVisibilityChange($event)"
+  />
+
+  <p-tabs [value]="activeTab()">
+    <p-tablist>
+      <div class="grid grid-cols-5 w-full">
+        @for (option of options; track option.route) {
+          @if (option.route === 'call') {
+            <p-tab class="flex justify-center w-full" [value]="option.route">
+              <div class="flex justify-center items-center pb-1">
+                <p-button
+                  severity="warn"
+                  outlined="true"
+                  class="!w-10 !h-10 sm:!w-12 sm:!h-12"
+                  rounded="true"
+                  tooltipPosition="top"
+                  [pTooltip]="option.label"
+                  [icon]="option.icon"
+                />
+              </div>
+            </p-tab>
+          } @else {
+            <p-tab
+              class="flex justify-center w-full cursor-pointer"
+              [value]="option.route"
+              [routerLink]="option.route === 'menu' ? null : option.route"
+              (click)="onTabClick(option.route)"
+            >
+              <div class="flex flex-col justify-center items-center gap-1 py-1">
+                <i class="text-lg" [class]="option.icon"></i>
+                <span class="text-[10px] sm:text-xs leading-none">
+                  {{ option.label }}
+                </span>
+              </div>
+            </p-tab>
+          }
+        }
+      </div>
+    </p-tablist>
+  </p-tabs>
+</div>
