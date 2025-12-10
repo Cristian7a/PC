@@ -1,13 +1,15 @@
 <p-toolbar class="!py-2 md:!py-0">
   <ng-template #start>
-    <p-button variant="text" severity="warn" routerLink="/">
+    <p-button variant="text" routerLink="/">
       <img
         alt="{{ 'general.logo.alt' | translate }}"
-        src="/assets/Logo.jpg"
-        class="h-10 w-10 rounded-full object-cover mr-2"
+        ngSrc="/assets/Logo.jpg"
+        width="40"
+        height="40"
+        class="rounded-full object-cover mr-2"
       />
       <div class="hidden md:flex flex-col items-center">
-        <h4 class="text-[#e5c76b] text-sm">Plato y Copa</h4>
+        <h4 class="text-primary text-sm">Plato y Copa</h4>
         <span class="text-xs text-black dark:text-white">Servicio de meseros</span>
       </div>
     </p-button>
@@ -35,7 +37,6 @@
       <p-button
         icon="pi pi-search"
         variant="text"
-        severity="warn"
         rounded="true"
         routerLink="/"
         tooltipPosition="bottom"
@@ -44,13 +45,11 @@
       <p-button
         label="{{ 'general.quotationBtn' | translate }}"
         icon="pi pi-calculator"
-        severity="warn"
         rounded="true"
         class="hidden md:block"
       />
       <p-button
         icon="pi pi-calculator"
-        severity="warn"
         rounded="true"
         class="block md:hidden"
         tooltipPosition="bottom"
@@ -59,7 +58,6 @@
       <p-button
         icon="pi pi-sun"
         variant="text"
-        severity="warn"
         rounded="true"
         tooltipPosition="bottom"
         [pTooltip]="'general.themeChangeBtn' | translate"

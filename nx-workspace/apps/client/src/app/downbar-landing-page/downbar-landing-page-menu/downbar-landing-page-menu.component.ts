@@ -10,6 +10,7 @@ import { RippleModule } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
 import { StyleClassModule } from 'primeng/styleclass';
 import { TooltipModule } from 'primeng/tooltip';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-downbar-landing-page-menu',
@@ -25,6 +26,7 @@ import { TooltipModule } from 'primeng/tooltip';
     AvatarModule,
     StyleClassModule,
     TooltipModule,
+    NgOptimizedImage,
   ],
   templateUrl: './downbar-landing-page-menu.component.html',
   styleUrl: './downbar-landing-page-menu.component.scss',
