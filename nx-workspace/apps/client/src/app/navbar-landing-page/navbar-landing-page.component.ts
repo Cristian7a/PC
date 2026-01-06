@@ -13,7 +13,7 @@ import { DOCUMENT, NgOptimizedImage } from '@angular/common';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { TooltipModule } from 'primeng/tooltip';
-import { filter } from 'rxjs';
+import { filter, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-navbar-landing-page',
@@ -67,7 +67,14 @@ export class NavbarLandingPageComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
-    this.isDarkMode.set(this.document.documentElement.classList.contains('dark'));
+    const html = this.document.documentElement;
+
+    this.isDarkMode.set(html.classList.contains('dark'));
+
+    const observer = new MutationObserver(() => {
+      this.isDarkMode.set(html.classList.contains('dark'));
+    });
+    observer.observe(html, { attributes: true, attributeFilter: ['class'] });
 
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
       const fragment = this.router.parseUrl(this.router.url).fragment;
@@ -77,7 +84,9 @@ export class NavbarLandingPageComponent implements OnInit, OnDestroy {
 
   toggleTheme(): void {
     const html = this.document.documentElement;
+    // toggle devuelve true si añadió la clase, false si la quitó
     const isDark = html.classList.toggle('dark');
+
     this.isDarkMode.set(isDark);
     localStorage.setItem('user-theme', isDark ? 'dark' : 'light');
   }
