@@ -1,4 +1,4 @@
-<p-toolbar class="!py-2 md:!py-0">
+<p-toolbar class="!py-2 md:!py-0 fixed z-50 w-full">
   <ng-template #start>
     <p-button variant="text" routerLink="/">
       <img
@@ -6,23 +6,35 @@
         ngSrc="/assets/Logo.jpg"
         width="40"
         height="40"
-        class="rounded-full object-cover mr-2"
+        class="rounded-full object-cover mr-2 block dark:hidden"
+      />
+      <img
+        alt="{{ 'general.logo.alt' | translate }}"
+        ngSrc="/assets/Logo.jpg"
+        width="40"
+        height="40"
+        class="rounded-full object-cover mr-2 hidden dark:block"
       />
       <div class="hidden md:flex flex-col items-center">
         <h4 class="text-primary text-sm">Plato y Copa</h4>
-        <span class="text-xs text-black dark:text-white">Servicio de meseros</span>
+        <span
+          class="text-xs"
+          [style.color]="isDarkMode() ? 'var(--p-surface-0)' : 'var(--p-surface-900)'"
+          >Servicio de meseros
+        </span>
       </div>
     </p-button>
   </ng-template>
   <ng-template #center>
     <div class="hidden md:block">
-      <p-tabs value="/">
+      <p-tabs [value]="activeTab()">
         <p-tablist>
-          @for (tab of tabs; track tab.route) {
+          @for (tab of tabs; track tab.fragment) {
             <p-tab
               class="flex items-center !gap-2 text-inherit"
-              [value]="tab.route"
-              [routerLink]="tab.route"
+              [value]="tab.fragment"
+              [routerLink]="['/']"
+              [fragment]="tab.fragment"
             >
               <i [class]="tab.icon"></i>
               <span>{{ tab.label }}</span>
@@ -32,6 +44,7 @@
       </p-tabs>
     </div>
   </ng-template>
+
   <ng-template #end>
     <div class="flex gap-2">
       <p-button
@@ -56,7 +69,8 @@
         [pTooltip]="'general.quotationBtn' | translate"
       />
       <p-button
-        icon="pi pi-sun"
+        [icon]="isDarkMode() ? 'pi pi-moon' : 'pi pi-sun'"
+        (click)="toggleTheme()"
         variant="text"
         rounded="true"
         tooltipPosition="bottom"

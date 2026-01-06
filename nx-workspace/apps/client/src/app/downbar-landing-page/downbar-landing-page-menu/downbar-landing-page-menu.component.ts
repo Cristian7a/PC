@@ -39,32 +39,32 @@ export class DownbarLandingPageMenuComponent {
 
   options = [
     {
-      route: '/',
+      fragment: '/',
       label: this.translateService.instant('pages.home'),
       icon: 'pi pi-home',
     },
     {
-      route: 'services',
+      fragment: 'servicios',
       label: this.translateService.instant('pages.services'),
       icon: 'pi pi-briefcase',
     },
     {
-      route: 'reviews',
+      fragment: 'reseñas',
       label: this.translateService.instant('pages.reviews'),
       icon: 'pi pi-star',
     },
     {
-      route: 'gallery',
+      fragment: 'galería',
       label: this.translateService.instant('pages.gallery'),
       icon: 'pi pi-images',
     },
     {
-      route: 'about',
+      fragment: 'nosotros',
       label: this.translateService.instant('pages.about'),
       icon: 'pi pi-info-circle',
     },
     {
-      route: 'contact',
+      fragment: 'contacto',
       label: this.translateService.instant('pages.contact'),
       icon: 'pi pi-envelope',
     },

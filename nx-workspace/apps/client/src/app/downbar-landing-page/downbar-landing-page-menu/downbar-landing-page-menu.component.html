@@ -7,7 +7,14 @@
           ngSrc="/assets/Logo.jpg"
           width="40"
           height="40"
-          class="rounded-full object-cover mr-2"
+          class="rounded-full object-cover mr-2 block dark:hidden"
+        />
+        <img
+          alt="{{ 'general.logo.alt' | translate }}"
+          ngSrc="/assets/Logo.jpg"
+          width="40"
+          height="40"
+          class="rounded-full object-cover mr-2 hidden dark:block"
         />
         <div class="flex md:hidden flex-col items-center">
           <h4 class="text-sm">Plato y Copa</h4>
@@ -33,8 +40,10 @@
               leaveActiveClass="animate-slideup"
               toggleClass="hidden"
               class="p-4 flex items-center justify-between text-surface-600 dark:text-surface-200 cursor-pointer p-ripple"
-              [routerLink]="option.route === 'services' ? null : option.route"
-              [pStyleClass]="option.route === 'services' ? '@next' : undefined"
+              [routerLink]="['/']"
+              [pStyleClass]="option.fragment === 'services' ? '@next' : undefined"
+              [fragment]="option.fragment"
+              (click)="closeMenu()"
             >
               <span class="text-sm flex gap-3">
                 <i
@@ -44,9 +53,8 @@
                 ></i>
                 {{ option.label }}
               </span>
-              @if (option.route === 'services') {
+              @if (option.fragment === 'services') {
                 <i class="pi pi-chevron-down"></i>
-                <p class="text-primary">Services</p>
               }
             </a>
 
@@ -58,6 +66,9 @@
                   <a
                     pRipple
                     class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                    [routerLink]="['/']"
+                    [fragment]="sv.name"
+                    (click)="closeMenu()"
                   >
                     <i
                       class="mr-2"
@@ -130,8 +141,8 @@
         />
       }
     </div>
-    <span class="text-xs flex justify-center"
-      >© 2025 Plato y Copa. {{ 'general.rightsReserved' | translate }}</span
-    >
+    <span class="text-xs flex justify-center">
+      © 2025 Plato y Copa. {{ 'general.rightsReserved' | translate }}
+    </span>
   </ng-template>
 </p-drawer>
