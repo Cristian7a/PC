@@ -1,17 +1,17 @@
-<p-drawer position="right" styleClass="!w-full sm:!w-100" closeable="true" [(visible)]="visible">
+<p-drawer position="right" styleClass="!w-full sm:!w-80" closeable="true" [(visible)]="visible">
   <ng-template #header>
-    <div class="flex items-center justify-between px-6 pt-4 shrink-0">
+    <div class="flex items-center justify-between shrink-0">
       <p-button variant="text" routerLink="/">
         <img
           alt="{{ 'general.logo.alt' | translate }}"
-          ngSrc="/assets/Logo.jpg"
+          ngSrc="/assets/logo.png"
           width="40"
           height="40"
           class="rounded-full object-cover mr-2 block dark:hidden"
         />
         <img
           alt="{{ 'general.logo.alt' | translate }}"
-          ngSrc="/assets/Logo.jpg"
+          ngSrc="/assets/logo_dark.png"
           width="40"
           height="40"
           class="rounded-full object-cover mr-2 hidden dark:block"
@@ -23,38 +23,71 @@
       </p-button>
     </div>
   </ng-template>
-  <p-divider class="!p-0 !m-0" />
   <div class="h-full">
-    <div class="py-4">
+    <div class="pb-4">
       <div class="mb-4">
-        <h3 class="text-sm uppercase">{{ 'menu.sections.navigation' | translate }}</h3>
+        <p-divider align="left">
+          <h3 class="text-sm uppercase !text-[var(--p-primary-color)] font-bold">
+            {{ 'menu.sections.navigation' | translate }}
+          </h3>
+        </p-divider>
       </div>
       <ul>
         @for (option of options; track option) {
           <li>
             <a
               pRipple
-              enterFromClass="hidden"
-              enterActiveClass="animate-slidedown"
-              leaveToClass="hidden"
-              leaveActiveClass="animate-slideup"
-              toggleClass="hidden"
-              class="p-4 flex items-center justify-between text-surface-600 dark:text-surface-200 cursor-pointer p-ripple"
+              class="relative mx-3 my-1.5 px-4 py-3.5 flex items-center justify-between transition-all duration-300 ease-in-out rounded-xl group cursor-pointer overflow-hidden"
               [routerLink]="['/']"
               [pStyleClass]="option.fragment === 'services' ? '@next' : undefined"
               [fragment]="option.fragment"
               (click)="closeMenu()"
+              [ngClass]="{
+                'bg-[var(--p-primary-color)]/20 shadow-sm': activeFragment() === option.fragment,
+                'text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800/50':
+                  activeFragment() !== option.fragment,
+              }"
             >
-              <span class="text-sm flex gap-3">
+              <div
+                class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-7 rounded-r-full transition-all duration-500 ease-out"
+                [ngClass]="
+                  activeFragment() === option.fragment
+                    ? 'bg-primary opacity-100 scale-y-100'
+                    : 'bg-transparent opacity-0 scale-y-0'
+                "
+              ></div>
+
+              <span class="flex items-center gap-4 z-10">
                 <i
-                  class="text-lg"
-                  style="color: var(--p-primary-500) !important"
+                  class="text-xl transition-all duration-300 group-hover:scale-110"
+                  [style.color]="
+                    activeFragment() === option.fragment ? 'var(--p-primary-500)' : 'inherit'
+                  "
                   [class]="option.icon"
+                  [ngClass]="{
+                    'drop-shadow-[0_0_8px_rgba(229,199,107,0.4)]':
+                      activeFragment() === option.fragment,
+                  }"
                 ></i>
-                {{ option.label }}
+                <span
+                  class="text-sm transition-colors duration-300"
+                  [ngClass]="{
+                    'text-primary-700 dark:text-primary-400 font-bold tracking-wide':
+                      activeFragment() === option.fragment,
+                    'font-medium': activeFragment() !== option.fragment,
+                  }"
+                >
+                  {{ option.label }}
+                </span>
               </span>
+
               @if (option.fragment === 'services') {
-                <i class="pi pi-chevron-down"></i>
+                <i
+                  class="pi pi-chevron-down text-xs transition-transform duration-300 opacity-50"
+                  [ngClass]="{
+                    'rotate-180 text-primary opacity-100': activeFragment() === option.fragment,
+                  }"
+                ></i>
               }
             </a>
 
@@ -84,9 +117,13 @@
         }
       </ul>
     </div>
-    <div>
+    <div class="mb-10">
       <div class="mb-4">
-        <h3 class="text-sm uppercase">{{ 'menu.sections.contact' | translate }}</h3>
+        <p-divider align="left">
+          <h3 class="text-sm uppercase font-bold !text-[var(--p-primary-color)]">
+            {{ 'menu.sections.contact' | translate }}
+          </h3>
+        </p-divider>
       </div>
       @for (co of contactOptions; track co) {
         @if (co.route.startsWith('/')) {
@@ -106,17 +143,13 @@
 
       <ng-template #contactCardTemplate let-co>
         <p-card class="block mb-2">
-          <div class="flex gap-4 items-center justify-center py-2">
+          <div class="flex gap-4 items-center justify-center py-0">
             <div>
-              <p-avatar shape="circle" [icon]="co.icon" />
+              <p-avatar shape="circle" [icon]="co.icon" [styleClass]="co.avatarClass" />
             </div>
             <div
               pRipple
-              class="box rounded p-4 grid grid-cols-1 w-full"
-              style="
-                border: 1px solid var(--p-primary-500);
-                --p-ripple-background: var(--p-primary-500);
-              "
+              class="box rounded p-4 grid grid-cols-1 w-full border border-[var(--p-primary-400)] dark:border-[var(--p-primary-800)]"
             >
               <h4 class="text-bold">{{ co.title }}</h4>
               <span class="text-sm">{{ co.content }}</span>

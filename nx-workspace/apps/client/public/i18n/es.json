@@ -27,6 +27,23 @@
     "menu":"Menú"
   },
   "home":{
+    "button": {
+      "book":"Reservar",
+      "contact":"Contactar"
+    },
+    "description":"Elevamos la experiencia de tus eventos con un servicio excepcional y atención al detalle impecable.",
+    "service":{
+      "title":"Servicio premium",
+      "description":"Atención personaliza de primer nivel"
+    },
+    "experience":{
+      "title":"Experiencia",
+      "description":"Años de excelencia en eventos"
+      },
+    "avaliable":{ 
+      "title":"Disponibilidad",
+      "description":"24/7 para tus necesidades"
+    }
   },
   "menu":{
     "sections":{
@@ -43,7 +60,7 @@
         },
         "quoation":{
           "title":"Cotización",
-          "content":"Atención personaliza de primer nivel"
+          "content":"Atención de primer nivel"
         }
       }
     },

@@ -1,19 +1,20 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  OnInit,
-  OnDestroy,
   inject,
   signal,
+  AfterViewInit,
+  OnDestroy,
+  PLATFORM_ID,
 } from '@angular/core';
 import { ToolbarModule } from 'primeng/toolbar';
 import { TabsModule } from 'primeng/tabs';
 import { ButtonModule } from 'primeng/button';
-import { DOCUMENT, NgOptimizedImage } from '@angular/common';
-import { Router, NavigationEnd, RouterModule } from '@angular/router';
+import { isPlatformBrowser, DOCUMENT, NgOptimizedImage } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { TooltipModule } from 'primeng/tooltip';
-import { filter, fromEvent } from 'rxjs';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-navbar-landing-page',
@@ -30,12 +31,13 @@ import { filter, fromEvent } from 'rxjs';
   styleUrl: './navbar-landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarLandingPageComponent implements OnInit, OnDestroy {
+export class NavbarLandingPageComponent implements AfterViewInit, OnDestroy {
   readonly activeTab = signal<string>('inicio');
-  readonly isDarkMode = signal<boolean>(false);
-  private readonly router = inject(Router);
+  private observer?: IntersectionObserver;
+  private themeService = inject(ThemeService);
   private readonly document = inject(DOCUMENT);
   private readonly translateService = inject(TranslateService);
+  private readonly platformId = inject(PLATFORM_ID);
 
   tabs = [
     { fragment: 'inicio', label: this.translateService.instant('pages.home'), icon: 'pi pi-home' },
@@ -50,7 +52,7 @@ export class NavbarLandingPageComponent implements OnInit, OnDestroy {
       icon: 'pi pi-star',
     },
     {
-      fragment: 'galería',
+      fragment: 'galeria',
       label: this.translateService.instant('pages.gallery'),
       icon: 'pi pi-images',
     },
@@ -66,33 +68,42 @@ export class NavbarLandingPageComponent implements OnInit, OnDestroy {
     },
   ];
 
-  ngOnInit(): void {
-    const html = this.document.documentElement;
-
-    this.isDarkMode.set(html.classList.contains('dark'));
-
-    const observer = new MutationObserver(() => {
-      this.isDarkMode.set(html.classList.contains('dark'));
-    });
-    observer.observe(html, { attributes: true, attributeFilter: ['class'] });
-
-    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
-      const fragment = this.router.parseUrl(this.router.url).fragment;
-      this.activeTab.set(fragment || 'inicio');
-    });
-  }
+  isDarkMode = this.themeService.isDarkMode;
 
   toggleTheme(): void {
-    const html = this.document.documentElement;
-    // toggle devuelve true si añadió la clase, false si la quitó
-    const isDark = html.classList.toggle('dark');
+    this.themeService.toggleTheme();
+  }
 
-    this.isDarkMode.set(isDark);
-    localStorage.setItem('user-theme', isDark ? 'dark' : 'light');
+  ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.setupScrollSpy();
+    }
   }
 
   ngOnDestroy(): void {
-    // Limpieza si es necesaria
-    console.log('componente destruido');
+    this.observer?.disconnect();
+  }
+
+  private setupScrollSpy(): void {
+    const options = {
+      root: null,
+      rootMargin: '-25% 0px -70% 0px',
+      threshold: 0,
+    };
+
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          this.activeTab.set(entry.target.id);
+        }
+      });
+    }, options);
+
+    this.tabs.forEach((tab) => {
+      const element = this.document.getElementById(tab.fragment);
+      if (element) {
+        this.observer?.observe(element);
+      }
+    });
   }
 }

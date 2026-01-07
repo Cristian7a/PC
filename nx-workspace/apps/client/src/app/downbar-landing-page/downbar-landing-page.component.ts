@@ -5,7 +5,10 @@ import {
   inject,
   OnDestroy,
   signal,
+  AfterViewInit,
+  PLATFORM_ID,
 } from '@angular/core';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterModule, NavigationEnd, Event } from '@angular/router';
@@ -40,12 +43,15 @@ export interface DownbarOption {
   styleUrl: './downbar-landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DownbarLandingPageComponent implements OnInit, OnDestroy {
+export class DownbarLandingPageComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly translateService = inject(TranslateService);
   private readonly router = inject(Router);
   private routerSubscription!: Subscription;
+  private readonly document = inject(DOCUMENT);
+  private readonly platformId = inject(PLATFORM_ID);
+  private observer?: IntersectionObserver;
 
-  readonly activeTab = signal<string>('/');
+  readonly activeTab = signal<string>('inicio');
   options: DownbarOption[] = [
     {
       type: 'link',
@@ -96,10 +102,38 @@ export class DownbarLandingPageComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.setupScrollSpy();
+    }
+  }
+
   ngOnDestroy(): void {
+    this.observer?.disconnect();
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe();
     }
+  }
+
+  private setupScrollSpy(): void {
+    const options = {
+      root: null,
+      rootMargin: '-25% 0px -70% 0px',
+      threshold: 0,
+    };
+
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          this.activeTab.set(entry.target.id);
+        }
+      });
+    }, options);
+
+    ['inicio', 'servicios', 'reseñas', 'galeria', 'contacto', 'nosotros'].forEach((id) => {
+      const el = this.document.getElementById(id);
+      if (el) this.observer?.observe(el);
+    });
   }
 
   onTabClick(option: DownbarOption): void {

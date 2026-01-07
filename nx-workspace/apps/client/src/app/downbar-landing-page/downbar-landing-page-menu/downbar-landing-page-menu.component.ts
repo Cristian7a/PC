@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, inject, model } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, model, input } from '@angular/core';
 import { DrawerModule } from 'primeng/drawer';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
@@ -36,10 +36,11 @@ export class DownbarLandingPageMenuComponent {
   private readonly translateService = inject(TranslateService);
 
   readonly visible = model<boolean>(false);
+  readonly activeFragment = input<string>('inicio');
 
   options = [
     {
-      fragment: '/',
+      fragment: 'inicio',
       label: this.translateService.instant('pages.home'),
       icon: 'pi pi-home',
     },
@@ -54,7 +55,7 @@ export class DownbarLandingPageMenuComponent {
       icon: 'pi pi-star',
     },
     {
-      fragment: 'galería',
+      fragment: 'galeria',
       label: this.translateService.instant('pages.gallery'),
       icon: 'pi pi-images',
     },
@@ -76,18 +77,21 @@ export class DownbarLandingPageMenuComponent {
       content: 'platoycopa.oficial@gmail.com',
       icon: 'pi pi-envelope',
       route: 'mailto:platoycopa.oficial@gmail.com',
+      avatarClass: '!bg-blue-500 !text-white',
     },
     {
       title: this.translateService.instant('menu.contact.fastActions.phone.title'),
       content: '2223780903',
       icon: 'pi pi-phone',
       route: 'tel:2223780903',
+      avatarClass: '!bg-green-500 !text-white',
     },
     {
       title: this.translateService.instant('menu.contact.fastActions.quoation.title'),
       content: this.translateService.instant('menu.contact.fastActions.quoation.content'),
       icon: 'pi pi-calculator',
       route: '/quotation',
+      avatarClass: '!bg-yellow-500 !text-white',
     },
   ];
 

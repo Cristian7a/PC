@@ -3,26 +3,26 @@
     <p-button variant="text" routerLink="/">
       <img
         alt="{{ 'general.logo.alt' | translate }}"
-        ngSrc="/assets/Logo.jpg"
+        ngSrc="/assets/logo.png"
         width="40"
         height="40"
-        class="rounded-full object-cover mr-2 block dark:hidden"
+        class="rounded-full object-cover mr-2 block dark:hidden drop-shadow-lg/25"
       />
       <img
         alt="{{ 'general.logo.alt' | translate }}"
-        ngSrc="/assets/Logo.jpg"
+        ngSrc="/assets/logo_dark.png"
         width="40"
         height="40"
         class="rounded-full object-cover mr-2 hidden dark:block"
       />
       <div class="hidden md:flex flex-col items-center">
-        <h4 class="text-primary text-sm">Plato y Copa</h4>
+        <h4 class="text-sm">Plato y Copa</h4>
         <span class="text-xs !text-[var(--p-text-color)]">Servicio de meseros</span>
       </div>
     </p-button>
   </ng-template>
   <ng-template #center>
-    <div class="hidden md:block">
+    <div class="hidden lg:block">
       <p-tabs [value]="activeTab()">
         <p-tablist>
           @for (tab of tabs; track tab.fragment) {
@@ -65,7 +65,7 @@
         [pTooltip]="'general.quotationBtn' | translate"
       />
       <p-button
-        [icon]="isDarkMode() ? 'pi pi-moon' : 'pi pi-sun'"
+        [icon]="isDarkMode() ? 'pi pi-sun' : 'pi pi-moon'"
         (click)="toggleTheme()"
         variant="text"
         rounded="true"

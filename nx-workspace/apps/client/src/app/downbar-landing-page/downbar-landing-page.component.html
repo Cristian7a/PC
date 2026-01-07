@@ -1,6 +1,7 @@
 <div class="fixed md:hidden bottom-0 left-0 w-full z-50">
   <app-downbar-landing-page-menu
     [visible]="isMenuVisible"
+    [activeFragment]="activeTab()"
     (visibleChange)="onMenuVisibilityChange($event)"
   />
 
@@ -24,7 +25,6 @@
                 />
               </a>
             </p-tab>
-
           } @else {
             <p-tab
               class="flex justify-center w-full cursor-pointer"
