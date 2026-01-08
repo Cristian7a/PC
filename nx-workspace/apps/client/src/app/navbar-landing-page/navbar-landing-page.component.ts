@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { TooltipModule } from 'primeng/tooltip';
 import { ThemeService } from '../services/theme.service';
+import { NAV_SECTIONS } from '../shared/constants/navigation.constants';
 
 @Component({
   selector: 'app-navbar-landing-page',
@@ -39,34 +40,7 @@ export class NavbarLandingPageComponent implements AfterViewInit, OnDestroy {
   private readonly translateService = inject(TranslateService);
   private readonly platformId = inject(PLATFORM_ID);
 
-  tabs = [
-    { fragment: 'inicio', label: this.translateService.instant('pages.home'), icon: 'pi pi-home' },
-    {
-      fragment: 'servicios',
-      label: this.translateService.instant('pages.services'),
-      icon: 'pi pi-briefcase',
-    },
-    {
-      fragment: 'reseñas',
-      label: this.translateService.instant('pages.reviews'),
-      icon: 'pi pi-star',
-    },
-    {
-      fragment: 'galeria',
-      label: this.translateService.instant('pages.gallery'),
-      icon: 'pi pi-images',
-    },
-    {
-      fragment: 'nosotros',
-      label: this.translateService.instant('pages.about'),
-      icon: 'pi pi-info-circle',
-    },
-    {
-      fragment: 'contacto',
-      label: this.translateService.instant('pages.contact'),
-      icon: 'pi pi-envelope',
-    },
-  ];
+  readonly tabs = NAV_SECTIONS;
 
   isDarkMode = this.themeService.isDarkMode;
 

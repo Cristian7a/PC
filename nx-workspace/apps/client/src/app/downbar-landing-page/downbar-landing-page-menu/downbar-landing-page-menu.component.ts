@@ -11,6 +11,9 @@ import { AvatarModule } from 'primeng/avatar';
 import { StyleClassModule } from 'primeng/styleclass';
 import { TooltipModule } from 'primeng/tooltip';
 import { NgOptimizedImage } from '@angular/common';
+import { NAV_SECTIONS } from '../../shared/constants/navigation.constants';
+import { SOCIAL_LINKS } from '../../shared/constants/socials.constants';
+import { CONTACT_CHANNELS } from '../../shared/constants/contact.constants';
 
 @Component({
   selector: 'app-downbar-landing-page-menu',
@@ -37,86 +40,9 @@ export class DownbarLandingPageMenuComponent {
 
   readonly visible = model<boolean>(false);
   readonly activeFragment = input<string>('inicio');
-
-  options = [
-    {
-      fragment: 'inicio',
-      label: this.translateService.instant('pages.home'),
-      icon: 'pi pi-home',
-    },
-    {
-      fragment: 'servicios',
-      label: this.translateService.instant('pages.services'),
-      icon: 'pi pi-briefcase',
-    },
-    {
-      fragment: 'reseñas',
-      label: this.translateService.instant('pages.reviews'),
-      icon: 'pi pi-star',
-    },
-    {
-      fragment: 'galeria',
-      label: this.translateService.instant('pages.gallery'),
-      icon: 'pi pi-images',
-    },
-    {
-      fragment: 'nosotros',
-      label: this.translateService.instant('pages.about'),
-      icon: 'pi pi-info-circle',
-    },
-    {
-      fragment: 'contacto',
-      label: this.translateService.instant('pages.contact'),
-      icon: 'pi pi-envelope',
-    },
-  ];
-
-  contactOptions = [
-    {
-      title: this.translateService.instant('menu.contact.fastActions.email.title'),
-      content: 'platoycopa.oficial@gmail.com',
-      icon: 'pi pi-envelope',
-      route: 'mailto:platoycopa.oficial@gmail.com',
-      avatarClass: '!bg-blue-500 !text-white',
-    },
-    {
-      title: this.translateService.instant('menu.contact.fastActions.phone.title'),
-      content: '2223780903',
-      icon: 'pi pi-phone',
-      route: 'tel:2223780903',
-      avatarClass: '!bg-green-500 !text-white',
-    },
-    {
-      title: this.translateService.instant('menu.contact.fastActions.quoation.title'),
-      content: this.translateService.instant('menu.contact.fastActions.quoation.content'),
-      icon: 'pi pi-calculator',
-      route: '/quotation',
-      avatarClass: '!bg-yellow-500 !text-white',
-    },
-  ];
-
-  socials = [
-    {
-      label: 'Facebook',
-      icon: 'pi pi-facebook',
-      link: 'https://www.facebook.com/platoycopa',
-    },
-    {
-      label: 'Instagram',
-      icon: 'pi pi-instagram',
-      link: 'https://www.instagram.com/platoycopa',
-    },
-    {
-      label: 'Whatsapp',
-      icon: 'pi pi-whatsapp',
-      link: 'https://twitter.com/platoycopa',
-    },
-    {
-      label: 'Tiktok',
-      icon: 'pi pi-tiktok',
-      link: 'https://www.tiktok.com/@platoycopa',
-    },
-  ];
+  readonly options = NAV_SECTIONS;
+  readonly socials = SOCIAL_LINKS;
+  readonly contactChannels = CONTACT_CHANNELS;
 
   services = [
     {

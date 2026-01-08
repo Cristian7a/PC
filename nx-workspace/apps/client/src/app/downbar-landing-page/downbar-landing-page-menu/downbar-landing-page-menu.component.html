@@ -77,7 +77,7 @@
                     'font-medium': activeFragment() !== option.fragment,
                   }"
                 >
-                  {{ option.label }}
+                  {{ option.labelKey | translate }}
                 </span>
               </span>
 
@@ -125,34 +125,41 @@
           </h3>
         </p-divider>
       </div>
-      @for (co of contactOptions; track co) {
-        @if (co.route.startsWith('/')) {
-          <a [routerLink]="co.route">
+      @for (channel of contactChannels; track channel.id) {
+        @if (channel.id === 'quotation') {
+          <a [routerLink]="[channel.value]" (click)="closeMenu()">
             <ng-container
-              *ngTemplateOutlet="contactCardTemplate; context: { $implicit: co }"
+              *ngTemplateOutlet="contactCardTemplate; context: { $implicit: channel }"
             ></ng-container>
           </a>
         } @else {
-          <a [href]="co.route">
+          <a [href]="channel.action + channel.value">
             <ng-container
-              *ngTemplateOutlet="contactCardTemplate; context: { $implicit: co }"
+              *ngTemplateOutlet="contactCardTemplate; context: { $implicit: channel }"
             ></ng-container>
           </a>
         }
       }
 
-      <ng-template #contactCardTemplate let-co>
+      <ng-template #contactCardTemplate let-channel>
         <p-card class="block mb-2">
           <div class="flex gap-4 items-center justify-center py-0">
             <div>
-              <p-avatar shape="circle" [icon]="co.icon" [styleClass]="co.avatarClass" />
+              <p-button
+                rounded="true"
+                styleClass="text-white!"
+                [icon]="channel.icon"
+                [severity]="channel.severity"
+              />
             </div>
             <div
               pRipple
               class="box rounded p-4 grid grid-cols-1 w-full border border-[var(--p-primary-400)] dark:border-[var(--p-primary-800)]"
             >
-              <h4 class="text-bold">{{ co.title }}</h4>
-              <span class="text-sm">{{ co.content }}</span>
+              <h4 class="text-bold">{{ channel.labelKey | translate }}</h4>
+              <span class="text-sm">
+                {{ channel.descriptionKey ? (channel.descriptionKey | translate) : channel.value }}
+              </span>
             </div>
           </div>
         </p-card>
@@ -161,21 +168,24 @@
   </div>
   <ng-template #footer>
     <p-divider class="!p-0 !m-0" />
-    <span class="text-xs flex justify-center pt-2">{{ 'menu.visit' | translate }}</span>
+    <div class="text-xs text-center pt-2">{{ 'menu.visit' | translate }}</div>
+
     <div class="flex items-center justify-center gap-4 px-6 py-4 w-full">
       @for (sm of socials; track sm) {
-        <p-button
-          severity="secondary"
-          rounded="true"
-          tooltipPosition="bottom"
-          [icon]="sm.icon"
-          [routerLink]="sm.link"
-          [pTooltip]="sm.label"
-        />
+        <a [href]="sm.link" target="_blank" rel="noopener noreferrer" class="no-underline">
+          <p-button
+            severity="secondary"
+            rounded="true"
+            tooltipPosition="bottom"
+            [icon]="sm.icon"
+            [pTooltip]="sm.label"
+          />
+        </a>
       }
     </div>
-    <span class="text-xs flex justify-center">
+
+    <div class="text-xs text-center pb-4 w-full">
       © 2025 Plato y Copa. {{ 'general.rightsReserved' | translate }}
-    </span>
+    </div>
   </ng-template>
 </p-drawer>
