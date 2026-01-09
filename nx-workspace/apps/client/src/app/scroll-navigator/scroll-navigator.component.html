@@ -8,8 +8,8 @@
   <p-button
     severity="primary"
     [styleClass]="
-      '!w-10 !h-10 md:!w-12 md:!h-12 transition-all duration-300 hover:scale-110 active:scale-95 ' +
-      (!isPastHero() ? 'bg-black!' : '')
+      '!w-10 !h-10 md:!w-12 md:!h-12 2xl:!w-20 2xl:!h-20 transition-all duration-300 hover:scale-110 active:scale-95 ' +
+      (!isPastHero() ? 'bg-white! dark:bg-black!' : '')
     "
     [rounded]="true"
     [raised]="true"
@@ -18,7 +18,10 @@
   >
     <ng-template #icon>
       <i
-        [class]="(isPastHero() ? 'pi pi-arrow-up' : 'pi pi-arrow-down') + ' !text-sm md:!text-lg'"
+        [class]="
+          (isPastHero() ? 'pi pi-arrow-up' : 'pi pi-arrow-down') +
+          ' !text-sm md:!text-lg 2xl:!text-3xl'
+        "
       ></i>
     </ng-template>
   </p-button>

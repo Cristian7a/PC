@@ -1,14 +1,14 @@
 <div
-  class="relative overflow-hidden min-h-screen flex items-center transition-colors duration-500 bg-[var(--p-surface-0)] dark:bg-[var(--p-surface-950)]"
+  class="relative overflow-hidden flex items-center transition-colors min-h-screen duration-500 bg-[var(--p-surface-0)] dark:bg-[var(--p-surface-950)]"
 >
   <div class="hidden dark:block absolute inset-0 pointer-events-none">
-    <div class="absolute -left-12 top-1/2 -translate-y-1/2 flex flex-col gap-0 opacity-80">
+    <div class="absolute diamond-pos-left top-1/2 -translate-y-1/2 flex flex-col gap-0 opacity-80">
       <div class="diamond anim-float"></div>
       <div class="diamond -mt-16 anim-float-delayed"></div>
       <div class="diamond -mt-16 anim-float"></div>
       <div class="diamond -mt-16 anim-float-delayed"></div>
     </div>
-    <div class="absolute -right-8 -top-8 flex gap-4 opacity-80">
+    <div class="absolute diamond-pos-right diamond-pos-top flex gap-4 opacity-80">
       <div class="diamond anim-float-delayed"></div>
       <div class="diamond mt-20 anim-float"></div>
       <div class="diamond anim-float-delayed"></div>
@@ -16,89 +16,107 @@
   </div>
 
   <div class="block dark:hidden absolute inset-0 pointer-events-none">
-    <div class="absolute -left-8 -top-8 flex gap-4 opacity-80">
+    <div class="absolute diamond-pos-left diamond-pos-top flex gap-4 opacity-80">
       <div class="diamond anim-float"></div>
       <div class="diamond mt-20 anim-float-delayed"></div>
       <div class="diamond anim-float"></div>
     </div>
-    <div class="absolute -right-12 top-1/2 -translate-y-1/2 flex flex-col gap-0 opacity-80">
+    <div class="absolute diamond-pos-right top-1/2 -translate-y-1/2 flex flex-col gap-0 opacity-80">
       <div class="diamond anim-float-delayed"></div>
       <div class="diamond -mt-16 anim-float"></div>
       <div class="diamond -mt-16 anim-float-delayed"></div>
       <div class="diamond -mt-16 anim-float"></div>
     </div>
   </div>
-  <div class="relative z-10 p-4 md:p-6 mx-auto max-w-7xl w-full">
+  <div class="relative z-10 p-0 md:p-0 mx-auto max-w-7xl w-full">
     <div class="flex flex-col items-center justify-center gap-4">
-      <div class="flex flex-col items-center justify-center">
+      <div class="flex flex-col items-center justify-center mt-30! md:mt-0!">
         <img
           alt="{{ 'general.logo.alt' | translate }}"
           src="/assets/logo.png"
           width="150"
           height="150"
-          class="rounded-full object-cover mr-2 block dark:hidden w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 mt-30 md:mt-0 drop-shadow-lg/25"
+          class="rounded-full object-cover mr-2 block dark:hidden w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 2xl:w-60 2xl:h-60 drop-shadow-lg/25"
         />
         <img
           alt="{{ 'general.logo.alt' | translate }}"
           src="/assets/logo_dark.png"
           width="150"
           height="150"
-          class="rounded-full object-cover mr-2 hidden dark:block w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-50 lg:h-50 mt-30 md:mt-0"
+          class="rounded-full object-cover mr-2 hidden dark:block w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 2xl:w-60 2xl:h-60"
         />
-        <h1 class="text-4xl sm:text-5xl md:text-6xl !text-[var(--p-primary-color)] md:pt-0">
+        <h1
+          class="text-4xl md:text-5xl 2xl:text-8xl !text-[var(--p-primary-color)] md:pt-0 text-gold-shine"
+        >
           Plato y Copa
         </h1>
-        <span class="text-xs sm:text-sm md:text-base uppercase tracking-widest mt-4"
-          >Servicio de meseros</span
+        <span
+          class="text-xs sm:text-sm md:text-base 2xl:text-3xl uppercase tracking-widest mt-2 2xl:mt-6 text-silver-shine"
         >
-        <p class="text-center text-xs sm:text-sm md:text-base mt-8">
+          Servicio de meseros</span
+        >
+        <p class="text-center text-xs sm:text-sm 2xl:text-xl mt-5 2xl:mt-16">
           {{ 'home.description' | translate }}
         </p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 2xl:gap-6 max-w-6xl shrink-0 2xl:mt-8">
         @for (card of heroCards; track card) {
           <p-card
-            styleClass="hero-card border border-[var(--p-primary-200)] dark:border-[var(--p-primary-900)] bg-transparent!"
+            styleClass="hero-card border border-[var(--p-primary-200)] dark:border-[var(--p-primary-900)] bg-transparent! 2xl:p-6!"
           >
             <ng-template #header>
-              <div class="flex justify-center pt-6 pb-0">
+              <div class="flex justify-center pt-3 2xl:pt-10">
                 <p-avatar
-                  size="normal"
-                  [icon]="card.icon"
                   shape="circle"
-                  styleClass="!bg-[var(--p-primary-color)] !text-[var(--p-primary-contrast-color)]"
-                />
+                  styleClass="!bg-[var(--p-primary-color)] !text-[var(--p-primary-contrast-color)] !w-8 !h-8 md:!w-10 md:!h-10 2xl:!w-20 2xl:!h-20"
+                >
+                  <i [class]="card.icon" class="!text-base md:!text-xl 2xl:!text-4xl"> </i>
+                </p-avatar>
               </div>
             </ng-template>
             <div class="text-center p-0">
-              <h5 class="text-sm md:text-base mb-4 font-bold">{{ card.title }}</h5>
-              <p class="text-xs md:text-sm">{{ card.description }}</p>
+              <h5 class="text-xs md:text-sm 2xl:text-2xl mb-1 font-bold 2xl:mb-4">
+                {{ card.title }}
+              </h5>
+              <p class="text-[10px] md:text-xs 2xl:text-xl opacity-80 2xl:mb-2">
+                {{ card.description }}
+              </p>
             </div>
             <ng-template #footer>
-              <div class="flex justify-end">
-                <p-button icon="pi pi-arrow-right" link />
+              <div class="flex justify-end pt-0">
+                <p-button [link]="true" styleClass="!p-0">
+                  <ng-template #icon>
+                    <i class="text-sm! md:text-lg! xl:text-xl 2xl:text-3xl! pi pi-arrow-right"></i>
+                  </ng-template>
+                </p-button>
               </div>
             </ng-template>
           </p-card>
         }
       </div>
-      <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+      <div class="flex flex-col sm:flex-row justify-center gap-4 pt-2 2xl:pt-8">
         <p-button
-          icon="pi pi-calendar-clock"
           variant="outlined"
           [rounded]="true"
           [label]="'home.button.book' | translate"
           class="w-full sm:w-auto"
-          styleClass="!text-sm md:!text-base !px-4 md:!px-6 !py-2 md:!py-3"
-        />
+          styleClass="!text-sm md:!text-base 2xl:!text-3xl !px-4 md:!px-6 !py-2 md:!py-3 2xl:!py-6 2xl:!px-10"
+        >
+          <ng-template #icon>
+            <i class="text-sm! md:text-lg! xl:text-xl 2xl:text-3xl! pi pi-calendar-clock"></i>
+          </ng-template>
+        </p-button>
 
         <p-button
-          icon="pi pi-envelope"
           [rounded]="true"
           [label]="'home.button.contact' | translate"
           class="w-full sm:w-auto"
-          styleClass="!text-sm md:!text-base !px-4 md:!px-6 !py-2 md:!py-3"
-        />
+          styleClass="!text-sm md:!text-base 2xl:!text-3xl !px-4 md:!px-6 !py-2 md:!py-3 2xl:!p-6"
+        >
+          <ng-template #icon>
+            <i class="text-sm! md:text-lg! xl:text-xl 2xl:text-3xl! pi pi-envelope"></i>
+          </ng-template>
+        </p-button>
       </div>
     </div>
   </div>
