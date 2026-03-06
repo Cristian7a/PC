@@ -1,1 +1,48 @@
-<p>downbar-landing-page works!</p>
+<div class="fixed lg:hidden bottom-0 left-0 w-full z-50">
+  <app-downbar-landing-page-menu
+    [visible]="isMenuVisible"
+    [activeFragment]="activeTab()"
+    (visibleChange)="onMenuVisibilityChange($event)"
+  />
+
+  <p-tabs [value]="activeTab()">
+    <p-tablist>
+      <div class="grid grid-cols-5 w-full">
+        @for (option of options; track option.id) {
+          @if (option.type === 'action' && option.action === 'call') {
+            <p-tab class="flex justify-center w-full" [value]="option.id">
+              <a
+                href="tel:2223780903"
+                class="flex justify-center items-center pb-1 text-inherit no-underline w-full h-full"
+              >
+                <p-button
+                  outlined="true"
+                  styleClass="!w-10 !h-10 sm:!w-12 sm:!h-12"
+                  rounded="true"
+                  tooltipPosition="top"
+                  [pTooltip]="option.label"
+                  [icon]="option.icon"
+                />
+              </a>
+            </p-tab>
+          } @else {
+            <p-tab
+              class="flex justify-center w-full cursor-pointer"
+              [value]="option.fragment || option.id"
+              [routerLink]="option.type === 'link' ? ['/'] : null"
+              [fragment]="option.fragment"
+              (click)="onTabClick(option)"
+            >
+              <div class="flex flex-col justify-center items-center gap-1 py-1">
+                <i class="text-lg" [class]="option.icon"></i>
+                <span class="text-[10px] sm:text-xs leading-none">
+                  {{ option.label }}
+                </span>
+              </div>
+            </p-tab>
+          }
+        }
+      </div>
+    </p-tablist>
+  </p-tabs>
+</div>

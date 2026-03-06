@@ -4,7 +4,7 @@ import {
   isDevMode,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
@@ -18,7 +18,7 @@ import { GlobalEffects } from './store/global.effects';
 import { globalReducer } from './store/global.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { authenticationInterceptor } from './interceptors/authentication-interceptor';
-
+import MyPreset from './mypreset';
 /**
  * The API path. What comes after the host. E.g. in http://localhost:8080/api/v1, the API path is /api/v1.
  */
@@ -35,7 +35,13 @@ export const appConfig: ApplicationConfig = {
     }),
     provideEffects(GlobalEffects),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(appRoutes),
+    provideRouter(
+      appRoutes,
+      withInMemoryScrolling({
+        anchorScrolling: 'enabled',
+        scrollPositionRestoration: 'enabled',
+      }),
+    ),
     provideHttpClient(withInterceptors([authenticationInterceptor])),
     {
       provide: ANGULAR_TEMPLATE_API,
@@ -44,7 +50,10 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura,
+        preset: MyPreset,
+        options: {
+          darkModeSelector: '.dark',
+        },
       },
       ripple: true,
     }),

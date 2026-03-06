@@ -8,9 +8,12 @@
   },
   "general":{
     "quotationBtn":"Cotizar",
+    "searchBtn":"Buscar",
+    "themeChangeBtn":"Cambiar tema",
     "logo":{
       "alt":"Logo"
-    }
+    },
+    "rightsReserved":"Todos los derechos reservados."
   },
   "pages":{
     "home":"Inicio",
@@ -19,8 +22,48 @@
     "gallery":"Galería",
     "about":"Nosotros",
     "contact":"Contacto",
-    "quoation":"Cotizar"
+    "quoation":"Cotizar",
+    "call":"Llamar",
+    "menu":"Menú"
   },
   "home":{
+    "button": {
+      "book":"Reservar",
+      "contact":"Contactar"
+    },
+    "description":"Elevamos la experiencia de tus eventos con un servicio excepcional y atención al detalle impecable.",
+    "service":{
+      "title":"Servicio premium",
+      "description":"Atención de primer nivel"
+    },
+    "experience":{
+      "title":"Experiencia",
+      "description":"Años de excelencia en eventos"
+      },
+    "avaliable":{ 
+      "title":"Disponibilidad",
+      "description":"24/7 para tus necesidades"
+    }
+  },
+  "menu":{
+    "sections":{
+      "navigation":"Navegación",
+      "contact": "Contacto rápido"
+    },
+    "contact":{
+      "fastActions":{
+        "email":{
+          "title":"Correo"
+        },
+        "phone":{
+          "title":"Teléfono"
+        },
+        "quoation":{
+          "title":"Cotización",
+          "content":"Atención de primer nivel"
+        }
+      }
+    },
+    "visit":"Visita nuestras redes sociales:"
   }
 }

@@ -1,58 +1,102 @@
-<p-toolbar class="!py-2 md:!py-0">
+<p-toolbar class="fixed z-50 w-full py-2! px-0! lg:px-2! lg:py-0! 2xl:px-4!">
   <ng-template #start>
-    <p-button variant="text" severity="warn" routerLink="/">
+    <p-button variant="text" routerLink="/" styleClass="py-1! 2xl:py-4!">
       <img
-        src="/assets/Logo.jpg"
         alt="{{ 'general.logo.alt' | translate }}"
-        class="h-10 w-10 rounded-full object-cover mr-2"
+        ngSrc="/assets/logo.png"
+        width="30"
+        height="30"
+        class="rounded-full object-cover block dark:hidden drop-shadow-lg/25 w-12 h-12 sm:w-13 sm:h-13 lg:w-12 lg:h-12 2xl:w-15 2xl:h-15"
+      />
+      <img
+        alt="{{ 'general.logo.alt' | translate }}"
+        ngSrc="/assets/logo_dark.png"
+        width="30"
+        height="30"
+        class="rounded-full object-cover hidden dark:block w-12 h-12 sm:w-13 sm:h-13 lg:w-12 lg:h-12 2xl:w-15 2xl:h-15"
       />
       <div class="hidden md:flex flex-col items-center">
-        <h4 class="text-[#e5c76b] text-sm">Plato y Copa</h4>
-        <span class="text-xs text-white dark:text-black">Servicio de meseros</span>
+        <h4 class="text-sm lg:text-lg 2xl:text-4xl">Plato y Copa</h4>
+        <span
+          class="text-[0.45rem] lg:text-[0.4rem] text-black dark:text-white 2xl:text-[0.7rem] !text-[var(--p-text-color)] uppercase tracking-widest text-silver-shine"
+          >Servicio de meseros</span
+        >
       </div>
     </p-button>
   </ng-template>
   <ng-template #center>
-    <div class="hidden md:block">
-      <p-tabs value="/">
+    <div class="hidden lg:block">
+      <p-tabs [value]="activeTab()">
         <p-tablist>
-          @for (tab of tabs; track tab.route) {
+          @for (tab of tabs; track tab.fragment) {
             <p-tab
-              [value]="tab.route"
-              [routerLink]="tab.route"
-              class="flex items-center !gap-2 text-inherit"
+              class="flex !gap-2 text-inherit text-xs lg:text-sm 2xl:text-xl min-[1600px]:!text-2xl min-[2000px]:!text-3xl items-center p-3! py-7! 2xl:py-11! 2xl:p-2 2xl:gap-4!"
+              [value]="tab.fragment"
+              [routerLink]="['/']"
+              [fragment]="tab.fragment"
             >
-              <i [class]="tab.icon"></i>
-              <span>{{ tab.label }}</span>
+              <i
+                [class]="tab.icon"
+                class="text-xs! lg:text-sm! 2xl:text-xl! min-[1600px]:text-2xl! min-[2000px]:text-5xl!"
+              ></i>
+              <span>{{ tab.labelKey | translate }}</span>
             </p-tab>
           }
         </p-tablist>
       </p-tabs>
     </div>
   </ng-template>
+
   <ng-template #end>
-    <div class="flex gap-2">
+    <div class="flex gap-2 2xl:gap-4 items-center">
       <p-button
+        styleClass="!text-sm 2xl:!text-2xl 2xl:p-8!"
         icon="pi pi-search"
         variant="text"
-        severity="warn"
         rounded="true"
         routerLink="/"
-      ></p-button>
+        tooltipPosition="bottom"
+        tooltipStyleClass="!text-xs md:!text-base 2xl:!text-4xl 2xl:p-1!"
+        [pTooltip]="'general.searchBtn' | translate"
+      >
+        <ng-template #icon>
+          <i class="text-lg! 2xl:text-3xl! pi pi-search"></i>
+        </ng-template>
+      </p-button>
       <p-button
+        styleClass="!text-sm 2xl:!text-3xl 2xl:p-4!"
         label="{{ 'general.quotationBtn' | translate }}"
-        icon="pi pi-calculator"
-        severity="warn"
         rounded="true"
         class="hidden md:block"
-      ></p-button>
+      >
+        <ng-template #icon>
+          <i class="text-lg! 2xl:text-3xl! pi pi-calculator"></i>
+        </ng-template>
+      </p-button>
       <p-button
         icon="pi pi-calculator"
-        severity="warn"
         rounded="true"
         class="block md:hidden"
-      ></p-button>
-      <p-button icon="pi pi-sun" variant="text" severity="warn" rounded="true"></p-button>
+        tooltipPosition="bottom"
+        tooltipStyleClass="!text-xs md:!text-base 2xl:!text-4xl 2xl:p-1!"
+        [pTooltip]="'general.quotationBtn' | translate"
+      />
+      <p-button
+        styleClass="!text-sm 2xl:!text-3xl 2xl:p-8!"
+        (click)="toggleTheme()"
+        variant="text"
+        rounded="true"
+        tooltipPosition="bottom"
+        tooltipStyleClass="!text-xs md:!text-base 2xl:!text-4xl 2xl:p-1!"
+        [pTooltip]="'general.themeChangeBtn' | translate"
+      >
+        <ng-template #icon>
+          <i
+            class="text-lg! 2xl:text-3xl! pi pi-calculator"
+            [class]="isDarkMode() ? 'pi-sun' : 'pi-moon'"
+          ></i>
+        </ng-template>
+      </p-button>
     </div>
   </ng-template>
 </p-toolbar>

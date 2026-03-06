@@ -1,5 +1,6 @@
 //@tailwind base;
 @use 'tailwindcss';
+@variant dark (&:where(.dark, .dark *));
 
 /* You can add global styles to this file, and also import other style files */
 @import 'primeicons/primeicons.css';
@@ -11,4 +12,34 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.text-silver-shine {
+  background: linear-gradient(
+    to right,
+    #707070 10%,
+    #e0e0e0 40%,
+    #808080 50%,
+    #ffffff 60%,
+    #707070 90%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: metal-shine 4s linear infinite;
+  display: inline-block;
+
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes metal-shine {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 220% center;
+  }
 }
