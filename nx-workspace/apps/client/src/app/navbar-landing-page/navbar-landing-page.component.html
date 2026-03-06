@@ -16,7 +16,7 @@
         class="rounded-full object-cover hidden dark:block w-12 h-12 sm:w-13 sm:h-13 lg:w-12 lg:h-12 2xl:w-15 2xl:h-15"
       />
       <div class="hidden md:flex flex-col items-center">
-        <h4 class="text-sm lg:text-lg 2xl:text-4xl">Plato y Copa</h4>
+        <h4 class="text-sm lg:text-lg 2xl:text-4xl text-gold-shine">Plato y Copa</h4>
         <span
           class="text-[0.45rem] lg:text-[0.4rem] text-black dark:text-white 2xl:text-[0.7rem] !text-[var(--p-text-color)] uppercase tracking-widest text-silver-shine"
           >Servicio de meseros</span
@@ -36,8 +36,8 @@
               [fragment]="tab.fragment"
             >
               <i
-                [class]="tab.icon"
                 class="text-xs! lg:text-sm! 2xl:text-xl! min-[1600px]:text-2xl! min-[2000px]:text-5xl!"
+                [class]="tab.icon"
               ></i>
               <span>{{ tab.labelKey | translate }}</span>
             </p-tab>
@@ -64,8 +64,8 @@
         </ng-template>
       </p-button>
       <p-button
-        styleClass="!text-sm 2xl:!text-3xl 2xl:p-4!"
         label="{{ 'general.quotationBtn' | translate }}"
+        styleClass="!text-sm 2xl:!text-3xl 2xl:p-4!"
         rounded="true"
         class="hidden md:block"
       >
@@ -83,12 +83,12 @@
       />
       <p-button
         styleClass="!text-sm 2xl:!text-3xl 2xl:p-8!"
-        (click)="toggleTheme()"
         variant="text"
         rounded="true"
         tooltipPosition="bottom"
         tooltipStyleClass="!text-xs md:!text-base 2xl:!text-4xl 2xl:p-1!"
         [pTooltip]="'general.themeChangeBtn' | translate"
+        (click)="toggleTheme()"
       >
         <ng-template #icon>
           <i

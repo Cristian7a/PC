@@ -2,7 +2,7 @@
 @use 'tailwindcss';
 @variant dark (&:where(.dark, .dark *));
 
-/* You can add global styles to this file, and also import other style files */
+/* Global styles and imports */
 @import 'primeicons/primeicons.css';
 
 html,
@@ -14,22 +14,61 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
+.text-gold-shine {
+  background: linear-gradient(
+    110deg,
+    #7a672f 10%,
+    #e2c87d 40%,
+    #f5efd3 50%,
+    #e2c87d 60%,
+    #7a672f 90%
+  );
+
+  .dark .text-gold-shine {
+    background: linear-gradient(
+      110deg,
+      #6f5b2b 10%,
+      #ffffff 40%,
+      #e5c76b 50%,
+      #ffffff 60%,
+      #6f5b2b 90%
+    );
+  }
+
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: metal-shine 4.5s linear infinite;
+}
+
 .text-silver-shine {
   background: linear-gradient(
     to right,
-    #707070 10%,
+    #4a4a4a 10%,
     #e0e0e0 40%,
-    #808080 50%,
+    #707070 50%,
     #ffffff 60%,
-    #707070 90%
+    #4a4a4a 90%
   );
+
+  .dark .text-gold-shine {
+    background: linear-gradient(
+      to right,
+      #707070 10%,
+      #e0e0e0 40%,
+      #808080 50%,
+      #ffffff 60%,
+      #707070 90%
+    );
+  }
+
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   animation: metal-shine 4s linear infinite;
   display: inline-block;
-
   backface-visibility: hidden;
   transform: translateZ(0);
   -webkit-font-smoothing: antialiased;

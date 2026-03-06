@@ -17,7 +17,7 @@
           class="rounded-full object-cover hidden dark:block"
         />
         <div class="flex md:hidden flex-col items-center">
-          <h4 class="text-xl">Plato y Copa</h4>
+          <h4 class="text-xl text-gold-shine">Plato y Copa</h4>
           <span
             class="text-[0.45rem] text-black dark:text-white uppercase tracking-widest text-silver-shine"
             >Servicio de meseros</span
@@ -44,12 +44,12 @@
               [routerLink]="['/']"
               [pStyleClass]="option.fragment === 'services' ? '@next' : undefined"
               [fragment]="option.fragment"
-              (click)="closeMenu()"
               [ngClass]="{
                 'bg-[var(--p-primary-color)]/20 shadow-sm': activeFragment() === option.fragment,
                 'text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800/50':
                   activeFragment() !== option.fragment,
               }"
+              (click)="closeMenu()"
             >
               <div
                 class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-7 rounded-r-full transition-all duration-500 ease-out"
@@ -133,13 +133,13 @@
           <a [routerLink]="[channel.value]" (click)="closeMenu()">
             <ng-container
               *ngTemplateOutlet="contactCardTemplate; context: { $implicit: channel }"
-            ></ng-container>
+            />
           </a>
         } @else {
           <a [href]="channel.action + channel.value">
             <ng-container
               *ngTemplateOutlet="contactCardTemplate; context: { $implicit: channel }"
-            ></ng-container>
+            />
           </a>
         }
       }
@@ -175,7 +175,7 @@
 
     <div class="flex items-center justify-center gap-4 px-6 py-4 w-full">
       @for (sm of socials; track sm) {
-        <a [href]="sm.link" target="_blank" rel="noopener noreferrer" class="no-underline">
+        <a target="_blank" rel="noopener noreferrer" class="no-underline" [href]="sm.link">
           <p-button
             severity="secondary"
             rounded="true"

@@ -30,7 +30,7 @@
   </div>
   <div class="relative z-10 p-0 md:p-0 mx-auto max-w-7xl w-full">
     <div class="flex flex-col items-center justify-center gap-4">
-      <div class="flex flex-col items-center justify-center mt-30! md:mt-0!">
+      <div class="flex flex-col items-center justify-center mt-30! md:mt-0! 2xl:mt-20!">
         <img
           alt="{{ 'general.logo.alt' | translate }}"
           src="/assets/logo.png"
@@ -45,11 +45,7 @@
           height="150"
           class="rounded-full object-cover mr-2 hidden dark:block w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 2xl:w-60 2xl:h-60"
         />
-        <h1
-          class="text-4xl md:text-5xl 2xl:text-8xl !text-[var(--p-primary-color)] md:pt-0 text-gold-shine"
-        >
-          Plato y Copa
-        </h1>
+        <h1 class="text-4xl md:text-5xl 2xl:text-8xl md:pt-0 text-gold-shine">Plato y Copa</h1>
         <span
           class="text-xs sm:text-sm md:text-base 2xl:text-3xl uppercase tracking-widest mt-2 2xl:mt-6 text-silver-shine"
         >
@@ -70,7 +66,7 @@
                   shape="circle"
                   styleClass="!bg-[var(--p-primary-color)] !text-[var(--p-primary-contrast-color)] !w-8 !h-8 md:!w-10 md:!h-10 2xl:!w-20 2xl:!h-20"
                 >
-                  <i [class]="card.icon" class="!text-base md:!text-xl 2xl:!text-4xl"> </i>
+                  <i class="!text-base md:!text-xl 2xl:!text-4xl" [class]="card.icon"> </i>
                 </p-avatar>
               </div>
             </ng-template>
@@ -84,7 +80,7 @@
             </div>
             <ng-template #footer>
               <div class="flex justify-end pt-0">
-                <p-button [link]="true" styleClass="!p-0">
+                <p-button styleClass="!p-0" [link]="true">
                   <ng-template #icon>
                     <i class="text-sm! md:text-lg! xl:text-xl 2xl:text-3xl! pi pi-arrow-right"></i>
                   </ng-template>
@@ -97,10 +93,10 @@
       <div class="flex flex-col sm:flex-row justify-center gap-4 pt-2 2xl:pt-8">
         <p-button
           variant="outlined"
-          [rounded]="true"
-          [label]="'home.button.book' | translate"
           class="w-full sm:w-auto"
           styleClass="!text-sm md:!text-base 2xl:!text-3xl !px-4 md:!px-6 !py-2 md:!py-3 2xl:!py-6 2xl:!px-10"
+          [rounded]="true"
+          [label]="'home.button.book' | translate"
         >
           <ng-template #icon>
             <i class="text-sm! md:text-lg! xl:text-xl 2xl:text-3xl! pi pi-calendar-clock"></i>
@@ -108,10 +104,10 @@
         </p-button>
 
         <p-button
-          [rounded]="true"
-          [label]="'home.button.contact' | translate"
           class="w-full sm:w-auto"
           styleClass="!text-sm md:!text-base 2xl:!text-3xl !px-4 md:!px-6 !py-2 md:!py-3 2xl:!p-6"
+          [rounded]="true"
+          [label]="'home.button.contact' | translate"
         >
           <ng-template #icon>
             <i class="text-sm! md:text-lg! xl:text-xl 2xl:text-3xl! pi pi-envelope"></i>
