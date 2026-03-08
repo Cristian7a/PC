@@ -1,6 +1,9 @@
 import { Route } from '@angular/router';
 //import { authenticatedGuard, unauthenticatedGuard } from './guards/authenticated.guard';
-import { servicesCustomerResolver } from './resolvers/landing-page.resolver';
+import {
+  servicesCustomerResolver,
+  reviewsCustomerResolver,
+} from './resolvers/landing-page.resolver';
 
 export const APP_ROUTES = {
   landingPage: {
@@ -25,6 +28,7 @@ export const appRoutes: Route[] = [
           ),
         resolve: {
           services: servicesCustomerResolver,
+          reviews: reviewsCustomerResolver,
         },
       },
     ],

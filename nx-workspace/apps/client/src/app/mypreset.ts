@@ -1,4 +1,3 @@
-// client/src/app/mypreset.ts
 import { definePreset } from '@primeuix/themes';
 import Aura from '@primeng/themes/aura';
 
@@ -28,26 +27,38 @@ const MyPreset = definePreset(Aura, {
           400: '#a1a1aa',
           500: '#71717a',
           600: '#52525b',
-          700: '#3f3f46',
-          800: '#18181b', // Color para elevaciones (Cards/Inputs)
-          900: '#0c0c0c', // Color para secciones secundarias
-          950: '#000000', // FONDO PRINCIPAL ABSOLUTO
+          // Borde de Card de Reseñas (Neutral 800)
+          700: '#262626',
+          // Fondo de Card de Reseñas (Neutral 950 + Toque Dorado 900)
+          800: '#0c0c0c',
+          900: '#080808',
+          950: '#000000', // Fondo absoluto
+        },
+        text: {
+          color: '{surface.0}', // Blanco puro para máximo contraste
+          hoverColor: '{surface.50}',
         },
       },
       light: {
         surface: {
           0: '#ffffff',
-          50: '#fafafa',
-          100: '#f4f4f5',
-          200: '#e4e4e7',
+          // Fondo matizado de Card de Reseñas (Primary 50/100)
+          50: '#fcfaf2',
+          100: '#f7f2de',
+          // Borde de Card de Reseñas (Gray 200)
+          200: '#e5e7eb',
           300: '#d4d4d8',
           400: '#a1a1aa',
           500: '#71717a',
           600: '#52525b',
-          700: '#3f3f46',
-          800: '#27272a',
-          900: '#18181b',
+          700: '#27272a', // Oscurecido para mayor legibilidad
+          800: '#18181b',
+          900: '#09090b', // Casi negro puro
           950: '#000000',
+        },
+        text: {
+          color: '{surface.900}', // Forzamos un texto súper oscuro de base
+          hoverColor: '{surface.950}',
         },
       },
     },
