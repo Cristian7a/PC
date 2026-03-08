@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-features-section',
   standalone: true,
-  imports: [AvatarModule, AnimateOnScrollModule],
+  imports: [AvatarModule, AnimateOnScrollModule, TranslatePipe],
   templateUrl: './features-section.component.html',
   styleUrl: './features-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,18 +14,18 @@ import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 export class FeaturesSectionComponent {
   readonly features = [
     {
-      title: 'Elegancia',
-      description: 'Servicio de etiqueta que eleva el nivel de tu evento.',
+      titleKey: 'features.elegance.title',
+      descriptionKey: 'features.elegance.description',
       icon: 'pi pi-star',
     },
     {
-      title: 'Puntualidad',
-      description: 'Llegamos antes para asegurar que todo esté perfecto.',
+      titleKey: 'features.punctuality.title',
+      descriptionKey: 'features.punctuality.description',
       icon: 'pi pi-clock',
     },
     {
-      title: 'Profesionalismo',
-      description: 'Personal altamente capacitado y discreto.',
+      titleKey: 'features.professionalism.title',
+      descriptionKey: 'features.professionalism.description',
       icon: 'pi pi-briefcase',
     },
   ];
