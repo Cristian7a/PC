@@ -1,10 +1,14 @@
 <div
   id="services"
-  class="scroll-mt-20 md:scroll-mt-28 relative flex flex-col justify-center w-full px-4 py-8 mx-auto max-w-[2000px] md:px-12 md:py-16 2xl:px-24 2xl:py-26"
+  class="scroll-mt-20 md:scroll-mt-28 relative flex flex-col justify-center w-full px-6 pt-0 pb-16 mx-auto max-w-[2000px] sm:px-12 md:px-16 lg:px-24 md:pb-24 2xl:pb-32 z-10"
 >
   <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[50%] bg-[var(--p-primary-500)] rounded-full filter blur-[100px] md:blur-[160px] opacity-[0.08] dark:opacity-[0.03] pointer-events-none z-0"
+  ></div>
+
+  <div
     #animHeader
-    class="opacity-0 flex flex-col items-center mb-8 md:mb-12 2xl:mb-16"
+    class="relative z-10 opacity-0 flex flex-col items-center mb-8 md:mb-12 2xl:mb-16"
     pAnimateOnScroll
     enterClass="animate-fade-in-up"
     (animationstart)="animHeader.classList.remove('opacity-0')"
@@ -14,32 +18,35 @@
     >
       {{ 'services.title' | translate }}
     </h2>
+
     <div
-      class="w-24 md:w-32 h-[1px] mt-4 bg-gradient-to-r from-transparent via-[#e2c87d] to-transparent opacity-80"
+      class="w-24 md:w-32 h-[1px] mt-4 bg-gradient-to-r from-transparent via-[var(--p-primary-500)] to-transparent opacity-80"
     ></div>
+
     <span
       class="mt-4 text-[10px] font-bold text-center uppercase tracking-[0.4em] text-silver-shine md:text-xs 2xl:text-sm"
     >
-      {{ 'services.description' | translate }}
+      {{ 'services.subtitle' | translate }}
     </span>
   </div>
 
-  <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:gap-10">
+  <div class="relative z-10 grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-3 2xl:gap-6">
     @for (sv of services(); track sv.id; let i = $index) {
       <div
         #animCard
         class="opacity-0 h-full"
         pAnimateOnScroll
         enterClass="animate-fade-in-up"
-        [style.animation-delay]="i * 120 + 'ms'"
+        [style.animation-delay]="i * 100 + 'ms'"
         (animationstart)="animCard.classList.remove('opacity-0')"
         (animationend)="animCard.style.animationDelay = '0ms'"
       >
         <p-card
-          styleClass="group relative overflow-hidden !bg-transparent !border-none !shadow-none !p-0 cursor-pointer transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+          (click)="showDialog(sv)"
+          styleClass="group relative overflow-hidden !bg-transparent !border-none !shadow-none !p-0 cursor-pointer transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
         >
           <div
-            class="relative w-full overflow-hidden transition-all duration-500 border border-gray-200/60 dark:border-white/10 shadow-lg aspect-[5/3] rounded-2xl group-hover:border-[#e2c87d]/40 dark:group-hover:border-[#e2c87d]/30 2xl:rounded-[2rem]"
+            class="relative w-full overflow-hidden transition-all duration-700 border border-gray-200/60 dark:border-white/10 shadow-lg aspect-[5/4] md:aspect-[4/3] rounded-[2rem] 2xl:rounded-[2.5rem] group-hover:border-[#e2c87d]/40 dark:group-hover:border-[#e2c87d]/30"
           >
             <img
               class="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
@@ -50,35 +57,39 @@
             />
 
             <div
-              class="absolute inset-0 z-10 transition-opacity duration-500 bg-gradient-to-t from-slate-900/70 via-slate-800/10 to-transparent dark:from-black/90 dark:via-black/20 group-hover:opacity-0"
+              class="absolute inset-0 z-10 transition-opacity duration-700 bg-gradient-to-t from-slate-950/90 via-slate-900/20 to-transparent dark:from-black/95 dark:via-black/40 lg:opacity-100 lg:group-hover:opacity-0"
             ></div>
             <div
-              class="absolute inset-0 z-10 transition-opacity duration-700 opacity-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/10 dark:from-black dark:via-black/80 dark:to-black/20 group-hover:opacity-100 backdrop-blur-[1px]"
+              class="absolute inset-0 z-10 transition-opacity duration-700 opacity-0 bg-gradient-to-t from-slate-950 via-slate-900/80 to-slate-900/20 dark:from-black dark:via-black/90 dark:to-black/30 lg:group-hover:opacity-100 backdrop-blur-[1px]"
             ></div>
 
             <div
-              class="absolute z-20 top-4 right-4 md:top-5 md:right-5 transition-transform duration-500 group-hover:-translate-y-0.5"
+              class="absolute z-20 top-4 right-4 md:top-5 md:right-5 transition-transform duration-500 group-hover:-translate-y-1"
             >
               <p-tag
                 rounded="true"
-                styleClass="!backdrop-blur-xl !bg-white/70 dark:!bg-black/50 !text-[var(--p-primary-700)] dark:!text-[var(--p-primary-300)] !font-bold !px-4 !py-1.5 !text-xs md:!text-sm 2xl:!text-xl shadow-[0_8px_16px_rgba(0,0,0,0.1)] border border-white/60 dark:border-white/10"
+                styleClass="!backdrop-blur-xl !bg-white/80 dark:!bg-black/60 !text-[var(--p-primary-700)] dark:!text-[var(--p-primary-300)] !font-bold !px-3 !py-1.5 !text-xs md:!text-sm 2xl:!text-lg shadow-lg border border-white/60 dark:border-white/10"
                 [value]="'$' + sv.price"
               />
             </div>
 
             <div
-              class="absolute inset-0 z-30 flex flex-col justify-end p-5 transition-all duration-500 md:p-6 2xl:p-8"
+              class="absolute inset-0 z-30 flex flex-col justify-end p-6 md:p-8 2xl:p-10 transition-all duration-500"
             >
               <div
-                class="transition-transform duration-500 transform translate-y-0 group-hover:-translate-y-3"
+                class="transition-transform duration-500 transform translate-y-0 lg:group-hover:-translate-y-2"
               >
-                <div class="flex items-center gap-3 mb-1 2xl:gap-4 2xl:mb-3">
-                  <i
-                    class="text-xl text-[#e2c87d] drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] 2xl:text-3xl transition-transform duration-500 group-hover:scale-110"
-                    [class]="sv.icon"
-                  ></i>
+                <div class="flex items-center gap-3 mb-2 2xl:gap-5 2xl:mb-4">
+                  <div
+                    class="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-sm"
+                  >
+                    <i
+                      class="text-base md:text-lg text-[#e2c87d] drop-shadow-sm"
+                      [class]="sv.icon"
+                    ></i>
+                  </div>
                   <h3
-                    class="text-xl font-medium tracking-wide text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] 2xl:text-3xl"
+                    class="text-lg md:text-xl font-medium tracking-wide text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] 2xl:text-3xl"
                   >
                     {{ sv.name }}
                   </h3>
@@ -86,37 +97,31 @@
               </div>
 
               <div
-                class="h-0 overflow-hidden transition-all duration-500 opacity-0 group-hover:h-auto group-hover:opacity-100 group-hover:mt-2"
+                class="transition-all duration-500 overflow-hidden lg:h-0 lg:opacity-0 lg:group-hover:h-auto lg:group-hover:opacity-100 lg:group-hover:mt-3"
               >
                 <p
-                  class="mb-5 text-xs font-light leading-relaxed text-gray-200 drop-shadow-md line-clamp-3 2xl:mb-8 2xl:text-base"
+                  class="mb-4 text-xs md:text-sm font-light leading-relaxed text-gray-200 drop-shadow-md line-clamp-2 2xl:mb-6 2xl:text-lg transition-colors group-hover:text-white"
                 >
                   {{ sv.description }}
                 </p>
 
-                <p-button
-                  link="true"
-                  styleClass="!p-0 w-full !text-left group/btn"
-                  (onClick)="showDialog(sv)"
-                >
-                  <div class="flex items-center w-full pr-2 gap-x-3">
-                    <span
-                      class="text-[10px] font-bold tracking-[0.25em] uppercase whitespace-nowrap text-[#e2c87d] drop-shadow-md 2xl:text-sm transition-colors group-hover/btn:text-white"
-                    >
-                      {{ 'general.learnMore' | translate }}
-                    </span>
-                    <p-divider
-                      class="flex-grow mx-2 before:!border-[#e2c87d]/40 drop-shadow-md transition-colors group-hover/btn:before:!border-white/50"
-                    />
-                    <div
-                      class="flex items-center justify-center w-6 h-6 rounded-full bg-[#e2c87d]/20 backdrop-blur-sm transition-all duration-300 group-hover/btn:bg-[#e2c87d] group-hover/btn:translate-x-2"
-                    >
-                      <i
-                        class="pi pi-arrow-right text-[10px] transition-colors text-[#e2c87d] group-hover/btn:text-neutral-900"
-                      ></i>
-                    </div>
+                <div class="flex items-center w-full pr-2 gap-x-3 mt-auto">
+                  <span
+                    class="text-[10px] md:text-xs font-bold tracking-[0.25em] uppercase whitespace-nowrap text-[#e2c87d] drop-shadow-md transition-colors group-hover:text-white"
+                  >
+                    {{ 'general.learnMore' | translate }}
+                  </span>
+                  <p-divider
+                    class="flex-grow mx-1 before:!border-[#e2c87d]/40 drop-shadow-md transition-colors group-hover:before:!border-white/50"
+                  />
+                  <div
+                    class="flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#e2c87d]/20 backdrop-blur-sm transition-all duration-300 group-hover:bg-[#e2c87d] group-hover:translate-x-2"
+                  >
+                    <i
+                      class="pi pi-arrow-right text-[10px] md:text-xs transition-colors text-[#e2c87d] group-hover:text-neutral-900"
+                    ></i>
                   </div>
-                </p-button>
+                </div>
               </div>
             </div>
           </div>
@@ -128,8 +133,8 @@
 
 <p-dialog
   contentStyleClass="!p-0 !bg-transparent !overflow-hidden"
-  maskStyleClass="backdrop-blur-lg bg-black/50 dark:bg-black/80"
-  styleClass="w-[95vw] md:w-[75vw] lg:w-[60vw] xl:w-[50vw] !rounded-[2rem] overflow-hidden !border !border-white/40 dark:!border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.4)] !bg-gradient-to-br !from-white/95 !via-white/80 !to-[var(--p-primary-50)]/60 dark:!from-black/95 dark:!via-neutral-950/90 dark:!to-neutral-900/60 !backdrop-blur-3xl"
+  maskStyleClass="backdrop-blur-xl bg-black/40 dark:bg-black/80"
+  styleClass="w-[95vw] md:w-[80vw] lg:w-[60vw] xl:w-[45vw] !rounded-[2.5rem] md:!rounded-[3rem] overflow-hidden !border !border-white/40 dark:!border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.5)] !bg-gradient-to-br !from-white/95 !via-white/80 !to-[var(--p-primary-50)]/60 dark:!from-black/95 dark:!via-neutral-950/95 dark:!to-neutral-900/80 !backdrop-blur-3xl"
   [draggable]="false"
   [modal]="true"
   [resizable]="false"
@@ -138,8 +143,8 @@
   (visibleChange)="visible.set($event)"
 >
   @if (selectedService(); as service) {
-    <div class="relative w-full max-h-[85vh] overflow-y-auto" style="scrollbar-width: none">
-      <div class="relative w-full shrink-0 h-52 md:h-72">
+    <div class="relative w-full max-h-[90vh] overflow-y-auto" style="scrollbar-width: none">
+      <div class="relative w-full shrink-0 h-48 md:h-56 lg:h-64">
         <div
           class="absolute inset-0 w-full h-full"
           style="
@@ -155,22 +160,22 @@
           <div class="absolute inset-0 bg-slate-900/20 dark:bg-black/40"></div>
         </div>
 
-        <div class="absolute z-50 top-4 right-4 md:top-6 md:right-6">
+        <div class="absolute z-50 top-5 right-5 md:top-6 md:right-6">
           <p-button
             icon="pi pi-times"
             rounded="true"
-            styleClass="!w-10 !h-10 shrink-0 flex items-center justify-center !bg-black/20 hover:!bg-black/60 backdrop-blur-xl !border-white/30 !text-white shadow-lg transition-all hover:scale-110 hover:rotate-90"
+            styleClass="!w-10 !h-10 md:!w-11 md:!h-11 shrink-0 flex items-center justify-center !bg-black/20 hover:!bg-black/60 backdrop-blur-xl !border-white/30 !text-white shadow-xl transition-all hover:scale-110"
             (onClick)="visible.set(false)"
           ></p-button>
         </div>
       </div>
 
-      <div class="relative z-10 px-6 pb-8 md:px-12 md:pb-12 -mt-16 md:-mt-24">
+      <div class="relative z-10 px-6 pb-10 md:px-12 md:pb-12 -mt-12 md:-mt-16 lg:-mt-20">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
           <div class="flex flex-col">
             <p-avatar
               shape="circle"
-              styleClass="!w-20 !h-20 !text-3xl md:!w-28 md:!h-28 md:!text-5xl shadow-[0_10px_20px_rgba(0,0,0,0.2)] border-4 md:border-[6px] border-white/60 dark:border-neutral-900/80 backdrop-blur-md !bg-[var(--p-primary-600)] !text-white mb-4 transition-transform hover:scale-105"
+              styleClass="!w-16 !h-16 md:!w-24 md:!h-24 !text-2xl md:!text-4xl shadow-2xl border-[4px] md:border-[5px] border-white dark:border-neutral-900 backdrop-blur-md !bg-[var(--p-primary-600)] !text-white mb-4 transition-transform hover:scale-105"
               [icon]="service.icon"
             ></p-avatar>
 
@@ -185,53 +190,54 @@
             <p-tag
               icon="pi pi-tag"
               rounded="true"
-              styleClass="!bg-white/50 dark:!bg-black/40 !backdrop-blur-md px-3 md:px-5 py-1.5 md:py-2.5 border border-white/60 dark:border-white/10 shadow-sm text-xs md:text-sm !text-gray-900 dark:!text-gray-100 !font-bold"
+              styleClass="!bg-white/60 dark:!bg-black/40 !backdrop-blur-xl px-3 md:px-5 py-2 border border-white/60 dark:border-white/10 shadow-md text-xs md:text-sm !text-gray-900 dark:!text-gray-100 !font-bold"
               [value]="('services.dialog.from' | translate) + ' $' + service.price"
             ></p-tag>
             <p-tag
               icon="pi pi-star-fill"
               rounded="true"
-              styleClass="!bg-white/50 dark:!bg-black/40 !backdrop-blur-md px-3 md:px-5 py-1.5 md:py-2.5 border border-white/60 dark:border-white/10 shadow-sm !text-[#c5a059] dark:!text-[#e2c87d] text-xs md:text-sm !font-bold"
+              styleClass="!bg-white/60 dark:!bg-black/40 !backdrop-blur-xl px-3 md:px-5 py-2 border border-white/60 dark:border-white/10 shadow-md !text-[#c5a059] dark:!text-[#e2c87d] text-xs md:text-sm !font-bold"
               [value]="service.rating + ' / 5.0'"
             ></p-tag>
           </div>
         </div>
 
-        <div class="mb-10">
+        <div class="mb-8 md:mb-10">
           <h3
-            class="mb-3 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-silver-shine drop-shadow-sm"
+            class="mb-2 text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-silver-shine"
           >
             {{ 'services.dialog.description' | translate }}
           </h3>
           <p
-            class="text-base leading-relaxed font-light text-gray-800 dark:text-gray-200 md:text-lg"
+            class="text-base leading-relaxed font-light text-gray-800 dark:text-gray-200 md:text-lg max-w-4xl"
           >
             {{ service.description }}
           </p>
         </div>
 
         <p-divider
-          styleClass="before:!border-gray-300/60 dark:before:!border-gray-700/60"
+          styleClass="before:!border-gray-300/40 dark:before:!border-gray-700/40"
         ></p-divider>
 
-        <div class="grid grid-cols-1 gap-10 my-10 md:grid-cols-2 md:gap-8">
+        <div class="grid grid-cols-1 gap-8 my-8 lg:grid-cols-2 lg:gap-12">
           <div>
             <h3
-              class="mb-5 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-silver-shine drop-shadow-sm"
+              class="mb-4 text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-silver-shine"
             >
               {{ 'services.dialog.includes' | translate }}
             </h3>
-            <ul class="p-0 m-0 space-y-4 list-none">
+            <ul class="p-0 m-0 space-y-3 list-none">
               @for (feature of service.features; track $index) {
-                <li class="flex items-start gap-4">
+                <li class="flex items-start gap-3 group/item">
                   <div
-                    class="flex items-center justify-center shrink-0 w-6 h-6 rounded-full bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 mt-0.5 shadow-sm"
+                    class="flex items-center justify-center shrink-0 w-6 h-6 rounded-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 shadow-sm transition-all group-hover/item:border-[#e2c87d]"
                   >
                     <i class="text-[10px] text-[#c5a059] dark:text-[#e2c87d] pi pi-check"></i>
                   </div>
-                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300 md:text-base">{{
-                    feature
-                  }}</span>
+                  <span
+                    class="text-sm font-medium text-gray-700 dark:text-gray-300 md:text-base pt-0.5"
+                    >{{ feature }}</span
+                  >
                 </li>
               }
             </ul>
@@ -240,31 +246,30 @@
           @if (service.packages && service.packages.length > 0) {
             <div>
               <h3
-                class="mb-5 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-silver-shine drop-shadow-sm"
+                class="mb-4 text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-silver-shine"
               >
                 {{ 'services.dialog.packages' | translate }}
               </h3>
               <div class="flex flex-col gap-3">
                 @for (pkg of service.packages; track pkg.id) {
                   <div
-                    class="relative p-4 md:p-5 bg-white/40 dark:bg-black/30 backdrop-blur-md rounded-2xl border border-white/60 dark:border-white/5 hover:border-[#e2c87d]/50 dark:hover:border-[#e2c87d]/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group/pkg overflow-hidden"
+                    class="relative p-4 md:p-5 bg-white/60 dark:bg-black/40 backdrop-blur-2xl rounded-[1.5rem] border border-white/80 dark:border-white/5 hover:border-[#e2c87d]/50 transition-all duration-300 hover:shadow-lg group/pkg overflow-hidden"
                   >
                     <div
                       class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#e2c87d] to-[#c5a059] opacity-0 group-hover/pkg:opacity-100 transition-opacity duration-300"
                     ></div>
-
                     <div class="flex items-center justify-between mb-2">
                       <span
-                        class="text-base font-bold text-gray-900 dark:text-white transition-colors group-hover/pkg:text-[#c5a059] dark:group-hover/pkg:text-[#e2c87d]"
+                        class="text-base font-bold text-gray-900 dark:text-white transition-colors group-hover/pkg:text-[#c5a059] pl-1"
                         >{{ pkg.name }}</span
                       >
                       <span
-                        class="text-base font-bold text-[#c5a059] dark:text-[#e2c87d] px-3 py-1 bg-white/50 dark:bg-black/50 rounded-full border border-white/50 dark:border-white/10 shadow-sm"
+                        class="text-sm font-bold text-[#c5a059] dark:text-[#e2c87d] px-3 py-1 bg-white dark:bg-black/60 rounded-full border border-gray-100 dark:border-white/10 shadow-sm"
                         >${{ pkg.price }}</span
                       >
                     </div>
                     <p
-                      class="text-xs font-light leading-relaxed text-gray-600 dark:text-gray-400 m-0"
+                      class="text-xs font-light leading-relaxed text-gray-600 dark:text-gray-400 m-0 pl-1"
                     >
                       {{ pkg.description }}
                     </p>
@@ -276,12 +281,12 @@
         </div>
 
         <div
-          class="flex flex-col gap-4 pt-8 mt-8 border-t border-gray-300/60 dark:border-gray-700/60 sm:flex-row"
+          class="flex flex-col gap-4 pt-6 mt-8 border-t border-gray-300/40 dark:border-gray-700/40 sm:flex-row"
         >
           <p-button
             class="flex-1"
             severity="secondary"
-            styleClass="w-full !rounded-2xl !py-4 !text-gray-600 hover:!bg-black/5 dark:!text-gray-400 dark:hover:!bg-white/10 transition-colors font-medium"
+            styleClass="w-full !rounded-[1rem] !py-4 !text-gray-600 hover:!bg-black/5 dark:!text-gray-400 dark:hover:!bg-white/5 transition-colors font-medium text-base"
             text="true"
             [label]="'services.dialog.close' | translate"
             (onClick)="visible.set(false)"
@@ -290,7 +295,7 @@
           <p-button
             class="flex-1"
             icon="pi pi-whatsapp"
-            styleClass="w-full !rounded-2xl !py-4 bg-gold-shine !border-none !text-neutral-900 hover:brightness-110 transition-all duration-300 hover:scale-[1.02] shadow-[0_8px_20px_rgba(226,200,125,0.25)] font-bold text-lg"
+            styleClass="w-full !rounded-[1rem] !py-4 bg-gold-shine !border-none !text-neutral-900 hover:brightness-110 transition-all duration-300 hover:scale-[1.02] shadow-[0_10px_25px_rgba(226,200,125,0.25)] font-bold text-lg"
             [label]="'home.button.contact' | translate"
           ></p-button>
         </div>
