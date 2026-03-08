@@ -40,24 +40,21 @@
     "experience":{
       "title":"Experiencia",
       "description":"Años de excelencia en eventos"
-      },
+      },  
     "avaliable":{ 
       "title":"Disponibilidad",
       "description":"24/7 para tus necesidades"
     }
   },
-  "services":{
-    "title":"Servicios de Excelencia",
-    "description":"Ejecución impecable y profesionalismo absoluto en cada instante de tu evento",
-    "detailService":{
-      "title":"Detalles del servicio"
-    },
+  "services": {
+    "subtitle": "Nuestros Servicios", 
+    "title": "Experiencias a la Medida",
     "dialog": {
       "from": "Desde",
-      "description": "Descripción del servicio",
-      "includes": "Lo que incluye",
-      "packages": "Paquetes disponibles",
-      "close": "Cerrar"
+      "description": "Sobre esta experiencia",
+      "includes": "La experiencia incluye",
+      "packages": "Niveles de Servicio",
+      "close": "Volver"
     }
   },
   "reviews": {
@@ -72,6 +69,31 @@
     "close_gallery": "Cerrar galería",
     "prev_photo": "Foto anterior",
     "next_photo": "Siguiente foto"
+  },
+  "about": {
+    "subtitle": "Sobre Nosotros",
+    "title": "El Arte del Buen Servicio",
+    "description1": "En Plato y Copa entendemos que los pequeños detalles son los que transforman una reunión común en una velada inolvidable. Nacimos con una convicción clara: llevar la excelencia, el rigor y la elegancia de la alta hostelería directamente a la puerta de tu evento.",
+    "description2": "Nuestro equipo de meseros profesionales no se limita a servir; nos anticipamos a cada necesidad con discreción absoluta. Nos enorgullece ser esos anfitriones invisibles que te permiten relajarte, celebrar y ser el invitado de honor en tu propia fiesta, sin la más mínima preocupación.",
+    "point1": "Atención milimétrica y etiqueta impecable.",
+    "point2": "Tranquilidad absoluta para ti y tus invitados.",
+    "image_alt": "Equipo de meseros profesionales de Plato y Copa ofreciendo un servicio elegante",
+    "badge_title": "Calidad Premium",
+    "badge_subtitle": "Servicio de Alta Etiqueta"
+  },
+  "features": {
+    "elegance": {
+      "title": "Elegancia Intachable",
+      "description": "Porte, protocolo y etiqueta que elevan el prestigio de tu evento."
+    },
+    "punctuality": {
+      "title": "Puntualidad Absoluta",
+      "description": "Sincronización perfecta. Llegamos antes para que todo fluya."
+    },
+    "professionalism": {
+      "title": "Profesionalismo",
+      "description": "Anticipación y discreción absoluta ante las necesidades de tus invitados."
+    }
   },
   "menu":{
     "sections":{

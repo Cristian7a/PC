@@ -1,8 +1,12 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 
 @Component({
   selector: 'app-about-section',
-  imports: [],
+  standalone: true,
+  imports: [NgOptimizedImage, TranslatePipe, AnimateOnScrollModule],
   templateUrl: './about-section.component.html',
   styleUrl: './about-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
