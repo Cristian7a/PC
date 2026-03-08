@@ -53,7 +53,7 @@ export class ServicesCustomerService {
         description:
           'Servicio de recepción y resguardo de vehículos por conductores profesionales, brindando comodidad y seguridad total a sus invitados desde su llegada.',
         image: '',
-        icon: null,
+        icon: 'pi pi-star',
         price: 0,
         packages: null,
         rating: 4.9,
