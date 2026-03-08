@@ -91,27 +91,6 @@
   margin-top: calc(var(--diamond-size) * 0.6) !important;
 }
 
-.text-gold-shine {
-  background: linear-gradient(
-    110deg,
-    #6f5b2b 10%,
-    #ffffff 40%,
-    #b79f56 50%,
-    #ffffff 60%,
-    #6f5b2b 90%
-  );
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: metal-shine 4.5s linear infinite;
-  display: inline-block;
-
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  -webkit-font-smoothing: antialiased;
-}
-
 @keyframes harmoniousBreath {
   0%,
   100% {

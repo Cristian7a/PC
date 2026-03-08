@@ -13,9 +13,10 @@
     "logo":{
       "alt":"Logo"
     },
-    "rightsReserved":"Todos los derechos reservados."
+    "rightsReserved":"Todos los derechos reservados.",
+    "learnMore":"Ver detalles"
   },
-  "pages":{
+  "sections":{
     "home":"Inicio",
     "services":"Servicios",
     "reviews":"Reseñas",
@@ -43,6 +44,13 @@
     "avaliable":{ 
       "title":"Disponibilidad",
       "description":"24/7 para tus necesidades"
+    }
+  },
+  "services":{
+    "title":"Servicios",
+    "description":"Experiencia y profesionalismo en cada momento de tu evento",
+    "detailService":{
+      "title":"Detalles del servicio"
     }
   },
   "menu":{
