@@ -5,6 +5,7 @@ import { ContactSectionComponent } from './contact-section/contact-section.compo
 import { HeroSectionComponent } from './hero-section/hero-section.component';
 import { GallerySectionComponent } from './gallery-section/gallery-section.component';
 import { ReviewsSectionComponent } from './reviews-section/reviews-section.component';
+import { FeaturesSectionComponent } from './features-section/features-section.component';
 
 @Component({
   selector: 'app-home-landing-page',
@@ -15,6 +16,7 @@ import { ReviewsSectionComponent } from './reviews-section/reviews-section.compo
     HeroSectionComponent,
     GallerySectionComponent,
     ReviewsSectionComponent,
+    FeaturesSectionComponent,
   ],
   templateUrl: './home-landing-page.component.html',
   styleUrl: './home-landing-page.component.scss',
