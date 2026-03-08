@@ -1,15 +1,17 @@
 <div
-  class="fixed bottom-25 md:bottom-8 left-1/2 -translate-x-1/2 z-40 transition-all duration-500 ease-in-out"
+  class="fixed bottom-25 md:bottom-8 left-1/2 -translate-x-1/2 z-40 transition-all duration-500 ease-in-out animate-bounce"
+  style="animation-duration: 1s"
   [ngClass]="{
     'opacity-100 translate-y-0': isAtTop() || isPastHero(),
     'opacity-0 translate-y-10 pointer-events-none': !isAtTop() && !isPastHero(),
   }"
 >
   <p-button
-    severity="primary"
     [styleClass]="
-      '!w-10 !h-10 md:!w-12 md:!h-12 2xl:!w-20 2xl:!h-20 transition-all duration-300 hover:scale-110 active:scale-95 ' +
-      (!isPastHero() ? 'bg-white! dark:bg-black!' : '')
+      '!w-11 !h-11 md:!w-13 md:!h-13 2xl:!w-22 2xl:!h-22 transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center ' +
+      (!isPastHero()
+        ? '!bg-gradient-to-br !from-white !via-[var(--p-primary-50)]/40 !to-[var(--p-primary-100)]/80 !backdrop-blur-md !border !border-gray-200/80 !text-[var(--p-primary-700)] dark:!from-black/95 dark:!via-neutral-900/90 dark:!to-[var(--p-primary-900)]/30 dark:!border-neutral-800/80 dark:!text-gold-shine'
+        : 'bg-gold-shine !border-none !text-neutral-900 hover:brightness-110')
     "
     [rounded]="true"
     [raised]="true"

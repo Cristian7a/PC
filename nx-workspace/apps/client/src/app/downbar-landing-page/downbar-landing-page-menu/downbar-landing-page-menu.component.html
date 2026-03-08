@@ -1,117 +1,152 @@
-<p-drawer position="right" styleClass="!w-full sm:!w-80" closeable="true" [(visible)]="visible">
+<p-drawer
+  position="right"
+  styleClass="!w-full !bg-[var(--p-surface-0)] dark:!bg-[var(--p-surface-950)] border-l border-gray-200/50 dark:border-white/5 shadow-2xl"
+  closeable="true"
+  [(visible)]="visible"
+>
   <ng-template #header>
-    <div class="flex items-center justify-between shrink-0">
-      <p-button variant="text" routerLink="/">
-        <img
-          alt="{{ 'general.logo.alt' | translate }}"
-          ngSrc="/assets/logo.png"
-          width="40"
-          height="40"
-          class="rounded-full object-cover block dark:hidden"
-        />
-        <img
-          alt="{{ 'general.logo.alt' | translate }}"
-          ngSrc="/assets/logo_dark.png"
-          width="40"
-          height="40"
-          class="rounded-full object-cover hidden dark:block"
-        />
-        <div class="flex md:hidden flex-col items-center">
-          <h4 class="text-xl text-gold-shine">Plato y Copa</h4>
-          <span
-            class="text-[0.45rem] text-black dark:text-white uppercase tracking-widest text-silver-shine"
-            >Servicio de meseros</span
-          >
+    <div class="flex items-center justify-between shrink-0 pr-2">
+      <p-button
+        variant="text"
+        routerLink="/"
+        styleClass="!p-0 hover:bg-transparent! outline-none"
+        (onClick)="closeMenu()"
+      >
+        <div class="flex items-center gap-3">
+          <img
+            alt="{{ 'general.logo.alt' | translate }}"
+            ngSrc="/assets/logo.png"
+            width="40"
+            height="40"
+            class="rounded-full object-cover block dark:hidden drop-shadow-md"
+          />
+          <img
+            alt="{{ 'general.logo.alt' | translate }}"
+            ngSrc="/assets/logo_dark.png"
+            width="40"
+            height="40"
+            class="rounded-full object-cover hidden dark:block"
+          />
+          <div class="flex flex-col items-start mt-0.5">
+            <h4 class="text-lg font-bold text-gold-shine leading-none">Plato y Copa</h4>
+            <span
+              class="text-[0.5rem] font-medium uppercase tracking-[0.25em] text-silver-shine mt-1"
+            >
+              Servicio de meseros
+            </span>
+          </div>
         </div>
       </p-button>
     </div>
   </ng-template>
-  <div class="h-full">
-    <div class="pb-4">
-      <div class="mb-4">
-        <p-divider align="left">
-          <h3 class="text-sm uppercase !text-[var(--p-primary-color)] font-bold">
-            {{ 'menu.sections.navigation' | translate }}
-          </h3>
-        </p-divider>
+
+  <div class="flex flex-col h-full px-3 sm:px-5 pb-4">
+    <div class="mb-5 mt-2">
+      <div class="flex items-center gap-3 mb-3">
+        <span
+          class="text-[11px] font-bold uppercase tracking-[0.3em] text-silver-shine drop-shadow-sm"
+        >
+          {{ 'menu.sections.navigation' | translate }}
+        </span>
+        <div
+          class="h-[1px] flex-1 bg-gradient-to-r from-[var(--p-primary-500)]/40 to-transparent"
+        ></div>
       </div>
-      <ul>
-        @for (option of options; track option) {
+
+      <ul class="flex flex-col gap-1.5 p-0 m-0 list-none">
+        @for (option of options; track option.fragment) {
           <li>
             <a
               pRipple
-              class="relative mx-3 my-1.5 px-4 py-3.5 flex items-center justify-between transition-all duration-300 ease-in-out rounded-xl group cursor-pointer overflow-hidden"
+              class="group relative flex items-center justify-between px-5 py-3 rounded-2xl cursor-pointer transition-all duration-300 overflow-hidden outline-none border border-transparent hover:border-[var(--p-primary-200)] dark:hover:border-[var(--p-primary-800)]/50"
               [routerLink]="['/']"
-              [pStyleClass]="option.fragment === 'services' ? '@next' : undefined"
+              [pStyleClass]="option.fragment === 'servicios' ? '@next' : undefined"
               [fragment]="option.fragment"
-              [ngClass]="{
-                'bg-[var(--p-primary-color)]/20 shadow-sm': activeFragment() === option.fragment,
-                'text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800/50':
-                  activeFragment() !== option.fragment,
-              }"
-              (click)="closeMenu()"
+              (click)="option.fragment !== 'servicios' ? closeMenu() : null"
             >
               <div
-                class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-7 rounded-r-full transition-all duration-500 ease-out"
+                class="absolute inset-0 bg-gradient-to-r from-[var(--p-primary-500)]/15 to-transparent transition-opacity duration-300"
                 [ngClass]="
                   activeFragment() === option.fragment
-                    ? 'bg-primary opacity-100 scale-y-100'
-                    : 'bg-transparent opacity-0 scale-y-0'
+                    ? 'opacity-100'
+                    : 'opacity-0 group-hover:opacity-60'
                 "
               ></div>
 
-              <span class="flex items-center gap-4 z-10">
+              <div
+                class="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] bg-gradient-to-b from-[var(--p-primary-400)] via-[var(--p-primary-600)] to-[var(--p-primary-400)] transition-all duration-300 rounded-r-full"
+                [ngClass]="
+                  activeFragment() === option.fragment
+                    ? 'h-3/4 opacity-100 shadow-[0_0_8px_var(--p-primary-500)]'
+                    : 'h-0 opacity-0 group-hover:h-1/2 group-hover:opacity-100'
+                "
+              ></div>
+
+              <div class="relative z-10 flex items-center gap-3">
                 <i
-                  class="text-xl transition-all duration-300 group-hover:scale-110"
-                  [style.color]="
-                    activeFragment() === option.fragment ? 'var(--p-primary-500)' : 'inherit'
-                  "
+                  class="text-lg transition-all duration-300"
                   [class]="option.icon"
-                  [ngClass]="{
-                    'drop-shadow-[0_0_8px_rgba(229,199,107,0.4)]':
-                      activeFragment() === option.fragment,
-                  }"
+                  [ngClass]="
+                    activeFragment() === option.fragment
+                      ? 'text-[var(--p-primary-500)] drop-shadow-[0_0_8px_rgba(229,199,107,0.5)] scale-110'
+                      : 'text-[var(--p-surface-400)] group-hover:text-gold-shine'
+                  "
                 ></i>
                 <span
-                  class="text-sm transition-colors duration-300"
-                  [ngClass]="{
-                    'text-primary-700 dark:text-primary-400 font-bold tracking-wide':
-                      activeFragment() === option.fragment,
-                    'font-medium': activeFragment() !== option.fragment,
-                  }"
+                  class="text-sm tracking-widest transition-colors duration-300"
+                  [ngClass]="
+                    activeFragment() === option.fragment
+                      ? 'text-gold-shine font-bold'
+                      : 'text-[var(--p-surface-600)] dark:text-[var(--p-surface-300)] font-medium group-hover:text-[var(--p-surface-900)] dark:group-hover:text-white'
+                  "
                 >
                   {{ option.labelKey | translate }}
                 </span>
-              </span>
+              </div>
 
-              @if (option.fragment === 'services') {
+              @if (option.fragment === 'servicios') {
                 <i
-                  class="pi pi-chevron-down text-xs transition-transform duration-300 opacity-50"
-                  [ngClass]="{
-                    'rotate-180 text-primary opacity-100': activeFragment() === option.fragment,
-                  }"
+                  class="relative z-10 pi pi-chevron-down text-[10px] transition-transform duration-300"
+                  [ngClass]="
+                    activeFragment() === option.fragment
+                      ? 'text-[var(--p-primary-500)] rotate-180'
+                      : 'text-[var(--p-surface-400)]'
+                  "
                 ></i>
               }
             </a>
 
             <ul
-              class="list-none py-0 pl-4 pr-0 m-0 hidden overflow-y-hidden transition-all duration-[400ms] ease-in-out"
+              class="hidden overflow-hidden list-none p-0 m-0 ml-6 mr-2 border-l-2 border-[var(--p-surface-100)] dark:border-[var(--p-surface-800)] transition-all duration-500 ease-in-out"
             >
-              @for (sv of services; track sv) {
+              @for (sv of services; track sv.name) {
                 <li>
                   <a
                     pRipple
-                    class="flex items-center cursor-pointer p-4 rounded-border text-surface-700 dark:text-surface-100 hover:bg-surface-100 dark:hover:bg-surface-700 duration-150 transition-colors p-ripple"
+                    class="flex items-center justify-between px-5 py-2 mt-1 rounded-r-2xl cursor-pointer transition-all duration-300 group/sub hover:bg-[var(--p-surface-50)] dark:hover:bg-[var(--p-surface-900)] hover:shadow-sm"
                     [routerLink]="['/']"
                     [fragment]="sv.name"
                     (click)="closeMenu()"
                   >
-                    <i
-                      class="mr-2"
-                      style="color: var(--p-primary-500) !important"
-                      [class]="sv.icon"
-                    ></i>
-                    <span class="font-medium">{{ sv.name }}</span>
+                    <div class="flex items-center gap-3">
+                      <i
+                        class="text-[13px] text-[var(--p-primary-500)] opacity-70 transition-all duration-300 group-hover/sub:opacity-100 group-hover/sub:scale-110"
+                        [class]="sv.icon"
+                      ></i>
+                      <span
+                        class="text-[13px] font-medium tracking-wide text-[var(--p-surface-600)] dark:text-[var(--p-surface-400)] transition-colors group-hover/sub:text-[var(--p-surface-900)] dark:group-hover/sub:text-white"
+                      >
+                        {{ sv.name }}
+                      </span>
+                    </div>
+
+                    @if (sv.name === 'Bartender' || sv.name === 'Mesa de dulces') {
+                      <span
+                        class="px-2 py-0.5 text-[7px] font-bold uppercase tracking-widest text-[var(--p-primary-700)] dark:text-[var(--p-primary-400)] bg-[var(--p-primary-100)] dark:bg-[var(--p-primary-900)]/40 rounded-full border border-[var(--p-primary-200)] dark:border-[var(--p-primary-800)] shadow-sm"
+                      >
+                        Nuevo
+                      </span>
+                    }
                   </a>
                 </li>
               }
@@ -120,75 +155,103 @@
         }
       </ul>
     </div>
-    <div class="mb-10">
-      <div class="mb-4">
-        <p-divider align="left">
-          <h3 class="text-sm uppercase font-bold !text-[var(--p-primary-color)]">
-            {{ 'menu.sections.contact' | translate }}
-          </h3>
-        </p-divider>
+
+    <div class="mb-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span
+          class="text-[11px] font-bold uppercase tracking-[0.3em] text-silver-shine drop-shadow-sm"
+        >
+          {{ 'menu.sections.contact' | translate }}
+        </span>
+        <div
+          class="h-[1px] flex-1 bg-gradient-to-r from-[var(--p-primary-500)]/40 to-transparent"
+        ></div>
       </div>
-      @for (channel of contactChannels; track channel.id) {
-        @if (channel.id === 'quotation') {
-          <a [routerLink]="[channel.value]" (click)="closeMenu()">
-            <ng-container
-              *ngTemplateOutlet="contactCardTemplate; context: { $implicit: channel }"
-            />
-          </a>
-        } @else {
-          <a [href]="channel.action + channel.value">
-            <ng-container
-              *ngTemplateOutlet="contactCardTemplate; context: { $implicit: channel }"
-            />
-          </a>
+
+      <div class="flex flex-col gap-2.5">
+        @for (channel of contactChannels; track channel.id) {
+          @if (channel.id === 'quotation') {
+            <a [routerLink]="[channel.value]" class="outline-none" (click)="closeMenu()">
+              <ng-container
+                *ngTemplateOutlet="contactCardTemplate; context: { $implicit: channel }"
+              />
+            </a>
+          } @else {
+            <a [href]="channel.action + channel.value" class="outline-none">
+              <ng-container
+                *ngTemplateOutlet="contactCardTemplate; context: { $implicit: channel }"
+              />
+            </a>
+          }
         }
-      }
+      </div>
 
       <ng-template #contactCardTemplate let-channel>
-        <p-card class="block mb-2">
-          <div class="flex gap-4 items-center justify-center py-0">
-            <div>
-              <p-button
-                rounded="true"
-                styleClass="text-white!"
-                [icon]="channel.icon"
-                [severity]="channel.severity"
-              />
-            </div>
+        <div
+          pRipple
+          class="group flex items-center justify-between p-3 rounded-2xl border border-[var(--p-surface-200)] dark:border-[var(--p-surface-800)] bg-gradient-to-br from-white to-[var(--p-surface-50)] dark:from-[var(--p-surface-900)] dark:to-black hover:border-[var(--p-primary-400)] dark:hover:border-[var(--p-primary-700)] hover:shadow-lg transition-all duration-300 cursor-pointer"
+        >
+          <div class="flex items-center gap-3">
             <div
-              pRipple
-              class="box rounded p-4 grid grid-cols-1 w-full border border-[var(--p-primary-400)] dark:border-[var(--p-primary-800)]"
+              class="flex items-center justify-center w-10 h-10 rounded-xl bg-[var(--p-surface-100)] dark:bg-[var(--p-surface-800)] text-[var(--p-surface-600)] dark:text-[var(--p-surface-300)] group-hover:bg-gradient-to-br group-hover:from-[var(--p-primary-500)] group-hover:to-[var(--p-primary-600)] group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-md group-hover:scale-105"
             >
-              <h4 class="text-bold">{{ channel.labelKey | translate }}</h4>
-              <span class="text-sm">
+              <i class="text-lg" [class]="channel.icon"></i>
+            </div>
+            <div class="flex flex-col">
+              <span
+                class="text-[15px] font-bold text-[var(--p-surface-900)] dark:text-white transition-colors group-hover:text-gold-shine"
+              >
+                {{ channel.labelKey | translate }}
+              </span>
+              <span
+                class="text-[11px] mt-0.5 text-[var(--p-surface-500)] dark:text-[var(--p-surface-400)] font-medium"
+              >
                 {{ channel.descriptionKey ? (channel.descriptionKey | translate) : channel.value }}
               </span>
             </div>
           </div>
-        </p-card>
+
+          <div
+            class="w-7 h-7 rounded-full flex items-center justify-center bg-[var(--p-surface-50)] dark:bg-[var(--p-surface-800)] group-hover:bg-[var(--p-primary-50)] dark:group-hover:bg-[var(--p-primary-900)]/30 transition-colors"
+          >
+            <i
+              class="pi pi-arrow-right text-[10px] text-[var(--p-surface-400)] transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[var(--p-primary-500)]"
+            ></i>
+          </div>
+        </div>
       </ng-template>
     </div>
   </div>
+
   <ng-template #footer>
-    <p-divider class="!p-0 !m-0" />
-    <div class="text-xs text-center pt-2">{{ 'menu.visit' | translate }}</div>
+    <div
+      class="pt-4 pb-2 border-t border-[var(--p-surface-200)] dark:border-[var(--p-surface-800)]"
+    >
+      <div
+        class="text-[10px] text-center font-bold tracking-[0.4em] uppercase text-[var(--p-surface-400)] mb-3"
+      >
+        {{ 'menu.visit' | translate }}
+      </div>
 
-    <div class="flex items-center justify-center gap-4 px-6 py-4 w-full">
-      @for (sm of socials; track sm) {
-        <a target="_blank" rel="noopener noreferrer" class="no-underline" [href]="sm.link">
-          <p-button
-            severity="secondary"
-            rounded="true"
-            tooltipPosition="bottom"
-            [icon]="sm.icon"
-            [pTooltip]="sm.label"
-          />
-        </a>
-      }
-    </div>
+      <div class="flex items-center justify-center gap-3 mb-4">
+        @for (sm of socials; track sm.link) {
+          <a target="_blank" rel="noopener noreferrer" class="outline-none" [href]="sm.link">
+            <p-button
+              styleClass="!w-10 !h-10 !bg-white dark:!bg-[var(--p-surface-800)] hover:!bg-gradient-to-br hover:!from-[var(--p-primary-400)] hover:!to-[var(--p-primary-600)] !border !border-[var(--p-surface-200)] dark:!border-white/5 hover:!border-transparent !text-[var(--p-surface-600)] dark:!text-[var(--p-surface-300)] hover:!text-white transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-lg"
+              rounded="true"
+              tooltipPosition="top"
+              [icon]="sm.icon"
+              [pTooltip]="sm.label"
+            />
+          </a>
+        }
+      </div>
 
-    <div class="text-xs text-center pb-4 w-full">
-      © 2025 Plato y Copa. {{ 'general.rightsReserved' | translate }}
+      <div
+        class="text-[9px] text-center font-medium text-[var(--p-surface-400)] dark:text-[var(--p-surface-500)]"
+      >
+        © 2025 Plato y Copa. {{ 'general.rightsReserved' | translate }}
+      </div>
     </div>
   </ng-template>
 </p-drawer>

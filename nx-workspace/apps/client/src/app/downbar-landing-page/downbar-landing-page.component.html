@@ -1,4 +1,10 @@
-<div class="fixed lg:hidden bottom-0 left-0 w-full z-50">
+<div
+  class="fixed lg:hidden bottom-0 left-0 w-full z-50 backdrop-blur-2xl bg-gradient-to-br from-white via-[var(--p-primary-50)]/20 to-[var(--p-primary-100)]/70 border-t border-gray-200/80 shadow-[0_-10px_40px_rgba(var(--p-primary-500),0.08)] dark:from-black/95 dark:via-neutral-950/90 dark:to-[var(--p-primary-900)]/10 dark:border-neutral-800/80 dark:shadow-[0_-8px_30px_rgb(0,0,0,0.4)]"
+>
+  <div
+    class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--p-primary-500)] to-transparent opacity-100 dark:via-[var(--p-primary-400)]/30"
+  ></div>
+
   <app-downbar-landing-page-menu
     [visible]="isMenuVisible"
     [activeFragment]="activeTab()"
@@ -13,31 +19,62 @@
             <p-tab class="flex justify-center w-full" [value]="option.id">
               <a
                 href="tel:2223780903"
-                class="flex justify-center items-center pb-1 text-inherit no-underline w-full h-full"
+                class="flex justify-center items-center pb-1 text-inherit no-underline w-full h-full outline-none"
               >
                 <p-button
-                  outlined="true"
-                  styleClass="!w-10 !h-10 sm:!w-12 sm:!h-12"
+                  styleClass="!w-10 !h-10 sm:!w-12 sm:!h-12 bg-gold-shine !border-none !text-neutral-900 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 hover:brightness-110"
                   rounded="true"
                   tooltipPosition="top"
                   [pTooltip]="option.label"
-                  [icon]="option.icon"
-                />
+                >
+                  <ng-template #icon>
+                    <i [class]="option.icon" class="text-base sm:text-lg"></i>
+                  </ng-template>
+                </p-button>
               </a>
             </p-tab>
+
           } @else {
             <p-tab
-              class="flex justify-center w-full cursor-pointer"
+              class="flex justify-center w-full cursor-pointer group"
               [value]="option.fragment || option.id"
               [routerLink]="option.type === 'link' ? ['/'] : null"
               [fragment]="option.fragment"
               (click)="onTabClick(option)"
             >
-              <div class="flex flex-col justify-center items-center gap-1 py-1">
-                <i class="text-lg" [class]="option.icon"></i>
-                <span class="text-[10px] sm:text-xs leading-none">
+              <div
+                class="relative w-full h-full flex flex-col justify-center items-center gap-1 py-1"
+              >
+                <i
+                  class="text-lg transition-all duration-300"
+                  [class]="option.icon"
+                  [ngClass]="
+                    activeTab() === (option.fragment || option.id)
+                      ? 'text-gold-shine scale-110'
+                      : 'text-[var(--p-surface-400)] dark:text-[var(--p-surface-500)] group-hover:text-gold-shine'
+                  "
+                >
+                </i>
+
+                <span
+                  class="text-[10px] sm:text-xs leading-none font-medium transition-colors duration-300"
+                  [ngClass]="
+                    activeTab() === (option.fragment || option.id)
+                      ? 'text-gold-shine'
+                      : 'text-[var(--p-surface-400)] dark:text-[var(--p-surface-500)] group-hover:text-gold-shine'
+                  "
+                >
                   {{ option.label }}
                 </span>
+
+                <div
+                  class="absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] bg-gradient-to-r from-transparent via-[var(--p-primary-500)] to-transparent transition-all duration-500 ease-out"
+                  [ngClass]="
+                    activeTab() === (option.fragment || option.id)
+                      ? 'w-1/2 opacity-100'
+                      : 'w-0 opacity-0 group-hover:w-1/3 group-hover:opacity-100'
+                  "
+                ></div>
               </div>
             </p-tab>
           }

@@ -8,11 +8,11 @@ import {
   AfterViewInit,
   PLATFORM_ID,
 } from '@angular/core';
-import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common'; // <-- CommonModule agregado aquí
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterModule, NavigationEnd, Event } from '@angular/router';
-import { TranslateService, TranslatePipe } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core'; // <-- TranslatePipe eliminado
 import { TabsModule } from 'primeng/tabs';
 import { DownbarLandingPageMenuComponent } from './downbar-landing-page-menu/downbar-landing-page-menu.component';
 import { filter, Subscription } from 'rxjs';
@@ -29,15 +29,15 @@ export interface DownbarOption {
 
 @Component({
   selector: 'app-downbar-landing-page',
+  standalone: true,
   imports: [
+    CommonModule,
     ToolbarModule,
     ButtonModule,
     RouterModule,
     TabsModule,
     DownbarLandingPageMenuComponent,
-    RouterModule,
     TooltipModule,
-    TranslatePipe,
   ],
   templateUrl: './downbar-landing-page.component.html',
   styleUrl: './downbar-landing-page.component.scss',
@@ -150,9 +150,7 @@ export class DownbarLandingPageComponent implements OnInit, OnDestroy, AfterView
 
   private updateActiveTabFromUrl() {
     const url = this.router.url.split('?')[0];
-
     const currentRoute = (url ?? '/') === '/' ? '/' : (url ?? '').substring(1);
-
     this.activeTab.set(currentRoute);
   }
 }

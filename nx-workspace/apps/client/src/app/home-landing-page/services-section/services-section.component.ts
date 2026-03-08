@@ -1,47 +1,63 @@
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
-  Component,
   ChangeDetectionStrategy,
+  Component,
   inject,
-  OnInit,
   OnDestroy,
+  OnInit,
   signal,
 } from '@angular/core';
-import { Card } from 'primeng/card';
-import { Button } from 'primeng/button';
-import { TranslatePipe } from '@ngx-translate/core';
-import { NgOptimizedImage, CommonModule } from '@angular/common';
-import { Service } from '../../api/models/services';
 import { ActivatedRoute } from '@angular/router';
-import { ImageUrlService } from '../../utils/imageUrl.utils';
-import { Tag } from 'primeng/tag';
+import { TranslatePipe } from '@ngx-translate/core';
+import { Avatar } from 'primeng/avatar';
+import { Button } from 'primeng/button';
+import { Card } from 'primeng/card';
 import { Dialog } from 'primeng/dialog';
 import { Divider } from 'primeng/divider';
+import { Tag } from 'primeng/tag';
+import { TooltipModule } from 'primeng/tooltip';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
+import { Service } from '../../api/models/services';
+import { ImageUrlService } from '../../utils/imageUrl.utils';
 
 @Component({
   selector: 'app-services-section',
-  imports: [Card, Button, TranslatePipe, NgOptimizedImage, Tag, Dialog, Divider, CommonModule],
+  standalone: true,
+  imports: [
+    Avatar,
+    Button,
+    Card,
+    CommonModule,
+    Dialog,
+    Divider,
+    NgOptimizedImage,
+    Tag,
+    TooltipModule,
+    TranslatePipe,
+    AnimateOnScrollModule,
+  ],
   templateUrl: './services-section.component.html',
   styleUrl: './services-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServicesSectionComponent implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
-  readonly services = signal<Service[]>([]);
   readonly imageUrl = inject(ImageUrlService);
 
+  readonly services = signal<Service[]>([]);
   readonly visible = signal<boolean>(false);
   readonly selectedService = signal<Service | null>(null);
-
-  showDialog(service: Service) {
-    this.selectedService.set(service);
-    this.visible.set(true);
-  }
 
   ngOnInit(): void {
     const resolvedData = this.route.snapshot.data['services'];
     if (resolvedData) {
       this.services.set(resolvedData);
     }
+  }
+
+  showDialog(service: Service): void {
+    this.selectedService.set(service);
+    this.visible.set(true);
   }
 
   ngOnDestroy(): void {

@@ -32,7 +32,7 @@
       "book":"Reservar",
       "contact":"Contactar"
     },
-    "description":"Elevamos la experiencia de tus eventos con un servicio excepcional y atención al detalle impecable.",
+    "description":"Elevamos la experiencia de tus eventos con un servicio excepcional y atención al detalle impecable",
     "service":{
       "title":"Servicio premium",
       "description":"Atención de primer nivel"
@@ -47,11 +47,31 @@
     }
   },
   "services":{
-    "title":"Servicios",
-    "description":"Experiencia y profesionalismo en cada momento de tu evento",
+    "title":"Servicios de Excelencia",
+    "description":"Ejecución impecable y profesionalismo absoluto en cada instante de tu evento",
     "detailService":{
       "title":"Detalles del servicio"
+    },
+    "dialog": {
+      "from": "Desde",
+      "description": "Descripción del servicio",
+      "includes": "Lo que incluye",
+      "packages": "Paquetes disponibles",
+      "close": "Cerrar"
     }
+  },
+  "reviews": {
+    "title": "Lo que dicen nuestros clientes",
+    "description": "Descubre por qué somos la mejor opción para tus eventos",
+    "verified_tooltip": "Reseña verificada por Plato y Copa",
+    "photo_alt": "Fotografía adjunta de la reseña del cliente",
+    "see_photos": "Ver fotos",
+    "see_photos_tooltip": "Ver galería de imágenes",
+    "prev_review": "Reseña anterior",
+    "next_review": "Siguiente reseña",
+    "close_gallery": "Cerrar galería",
+    "prev_photo": "Foto anterior",
+    "next_photo": "Siguiente foto"
   },
   "menu":{
     "sections":{

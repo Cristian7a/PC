@@ -11,7 +11,7 @@ export interface Service {
   name: string;
   description: string;
   image: string | null;
-  icon: string | null;
+  icon: string;
   price: number;
   packages: packageService[] | null;
   rating: number | null;
