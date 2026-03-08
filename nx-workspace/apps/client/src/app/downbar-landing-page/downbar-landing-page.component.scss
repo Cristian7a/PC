@@ -1,0 +1,10 @@
+:host ::ng-deep {
+  .p-tabs,
+  .p-tablist,
+  .p-tablist-content,
+  .p-tablist-tab-list,
+  .p-tab {
+    background: transparent !important;
+    border: none !important;
+  }
+}

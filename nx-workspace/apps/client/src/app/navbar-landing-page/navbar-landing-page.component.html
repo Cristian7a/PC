@@ -1,6 +1,13 @@
-<p-toolbar class="fixed z-50 w-full py-2! px-0! lg:px-2! lg:py-0! 2xl:px-4!">
+<p-toolbar
+  [ngClass]="{
+    '!bg-transparent !border-none !shadow-none': !isScrolled(),
+    '!bg-gradient-to-br !from-white !via-[var(--p-primary-50)]/20 !to-[var(--p-primary-100)]/70 dark:!from-black/95 dark:!via-neutral-950/90 dark:!to-[var(--p-primary-900)]/10 !backdrop-blur-2xl !border-b !border-gray-200/80 dark:!border-neutral-800/80 shadow-[0_10px_40px_rgba(var(--p-primary-500),0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]':
+      isScrolled(),
+  }"
+  class="fixed z-50 w-full py-2! px-0! lg:px-2! lg:py-0! 2xl:px-4! transition-all duration-500 ease-in-out"
+>
   <ng-template #start>
-    <p-button variant="text" routerLink="/" styleClass="py-1! 2xl:py-4!">
+    <p-button variant="text" routerLink="/" styleClass="py-1! 2xl:py-4! hover:bg-transparent!">
       <img
         alt="{{ 'general.logo.alt' | translate }}"
         ngSrc="/assets/logo.png"
@@ -19,31 +26,56 @@
         <h4 class="text-sm lg:text-lg 2xl:text-4xl text-gold-shine">Plato y Copa</h4>
         <span
           class="text-[0.45rem] lg:text-[0.4rem] text-black dark:text-white 2xl:text-[0.7rem] !text-[var(--p-text-color)] uppercase tracking-widest text-silver-shine"
-          >Servicio de meseros</span
         >
+          Servicio de meseros
+        </span>
       </div>
     </p-button>
   </ng-template>
+
   <ng-template #center>
     <div class="hidden lg:block">
-      <p-tabs [value]="activeTab()">
-        <p-tablist>
-          @for (tab of tabs; track tab.fragment) {
-            <p-tab
-              class="flex !gap-2 text-inherit text-xs lg:text-sm 2xl:text-xl min-[1600px]:!text-2xl min-[2000px]:!text-3xl items-center p-3! py-7! 2xl:py-11! 2xl:p-2 2xl:gap-4!"
-              [value]="tab.fragment"
-              [routerLink]="['/']"
-              [fragment]="tab.fragment"
-            >
+      <nav class="flex items-center gap-1 xl:gap-2 h-full">
+        @for (tab of tabs; track tab.fragment) {
+          <a
+            class="group relative flex flex-col items-center justify-center px-3 py-6 2xl:px-5 2xl:py-10 cursor-pointer transition-all duration-300 outline-none"
+            [routerLink]="['/']"
+            [fragment]="tab.fragment"
+          >
+            <div class="flex items-center gap-2">
               <i
-                class="text-xs! lg:text-sm! 2xl:text-xl! min-[1600px]:text-2xl! min-[2000px]:text-5xl!"
+                class="text-xs! lg:text-sm! 2xl:text-xl! min-[1600px]:text-2xl! min-[2000px]:text-5xl! transition-all duration-300"
                 [class]="tab.icon"
+                [ngClass]="
+                  activeTab() === tab.fragment
+                    ? 'text-gold-shine'
+                    : 'text-inherit opacity-50 group-hover:opacity-100 group-hover:text-gold-shine'
+                "
               ></i>
-              <span>{{ tab.labelKey | translate }}</span>
-            </p-tab>
-          }
-        </p-tablist>
-      </p-tabs>
+
+              <span
+                class="text-xs lg:text-sm 2xl:text-xl min-[1600px]:text-2xl min-[2000px]:text-3xl font-medium transition-colors duration-300"
+                [ngClass]="
+                  activeTab() === tab.fragment
+                    ? 'text-gold-shine'
+                    : 'text-inherit opacity-60 group-hover:opacity-100 group-hover:text-gold-shine'
+                "
+              >
+                {{ tab.labelKey | translate }}
+              </span>
+            </div>
+
+            <div
+              class="absolute bottom-2 left-1/2 -translate-x-1/2 h-[1px] bg-gradient-to-r from-transparent via-[var(--p-primary-500)] to-transparent transition-all duration-500 ease-out"
+              [ngClass]="{
+                'w-2/3 opacity-100': activeTab() === tab.fragment,
+                'w-0 opacity-0 group-hover:w-1/2 group-hover:opacity-100':
+                  activeTab() !== tab.fragment,
+              }"
+            ></div>
+          </a>
+        }
+      </nav>
     </div>
   </ng-template>
 
@@ -63,9 +95,10 @@
           <i class="text-lg! 2xl:text-3xl! pi pi-search"></i>
         </ng-template>
       </p-button>
+
       <p-button
         label="{{ 'general.quotationBtn' | translate }}"
-        styleClass="!text-sm 2xl:!text-3xl 2xl:p-4!"
+        styleClass="!text-sm 2xl:!text-3xl 2xl:p-4! bg-gold-shine !border-none !text-neutral-900 hover:brightness-110 transition-all duration-300 hover:scale-105 shadow-md"
         rounded="true"
         class="hidden md:block"
       >
@@ -73,16 +106,19 @@
           <i class="text-lg! 2xl:text-3xl! pi pi-calculator"></i>
         </ng-template>
       </p-button>
+
       <p-button
         icon="pi pi-calculator"
         rounded="true"
         class="block md:hidden"
+        styleClass="bg-gold-shine !border-none !text-neutral-900 hover:brightness-110 transition-all duration-300 hover:scale-105 shadow-md"
         tooltipPosition="bottom"
         tooltipStyleClass="!text-xs md:!text-base 2xl:!text-4xl 2xl:p-1!"
         [pTooltip]="'general.quotationBtn' | translate"
       />
+
       <p-button
-        styleClass="!text-sm 2xl:!text-3xl 2xl:p-8!"
+        styleClass="!text-sm 2xl:!text-2xl 2xl:p-8!"
         variant="text"
         rounded="true"
         tooltipPosition="bottom"
@@ -91,10 +127,7 @@
         (click)="toggleTheme()"
       >
         <ng-template #icon>
-          <i
-            class="text-lg! 2xl:text-3xl! pi pi-calculator"
-            [class]="isDarkMode() ? 'pi-sun' : 'pi-moon'"
-          ></i>
+          <i class="text-lg! 2xl:text-3xl! pi" [class]="isDarkMode() ? 'pi-sun' : 'pi-moon'"></i>
         </ng-template>
       </p-button>
     </div>

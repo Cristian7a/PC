@@ -6,22 +6,23 @@ import {
   AfterViewInit,
   OnDestroy,
   PLATFORM_ID,
+  HostListener,
 } from '@angular/core';
-import { ToolbarModule } from 'primeng/toolbar';
-import { TabsModule } from 'primeng/tabs';
-import { ButtonModule } from 'primeng/button';
-import { isPlatformBrowser, DOCUMENT, NgOptimizedImage } from '@angular/common';
+import { CommonModule, isPlatformBrowser, DOCUMENT, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { ThemeService } from '../services/theme.service';
 import { NAV_SECTIONS } from '../shared/constants/navigation.constants';
 
 @Component({
   selector: 'app-navbar-landing-page',
+  standalone: true,
   imports: [
+    CommonModule,
     ToolbarModule,
-    TabsModule,
     ButtonModule,
     NgOptimizedImage,
     RouterModule,
@@ -34,15 +35,22 @@ import { NAV_SECTIONS } from '../shared/constants/navigation.constants';
 })
 export class NavbarLandingPageComponent implements AfterViewInit, OnDestroy {
   readonly activeTab = signal<string>('inicio');
+  readonly isScrolled = signal<boolean>(false);
+
   private observer?: IntersectionObserver;
   private themeService = inject(ThemeService);
   private readonly document = inject(DOCUMENT);
-  private readonly translateService = inject(TranslateService);
   private readonly platformId = inject(PLATFORM_ID);
 
   readonly tabs = NAV_SECTIONS;
-
   isDarkMode = this.themeService.isDarkMode;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isScrolled.set(window.scrollY > 20);
+    }
+  }
 
   toggleTheme(): void {
     this.themeService.toggleTheme();
