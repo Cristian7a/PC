@@ -14,7 +14,7 @@
       <div
         class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200/60 dark:divide-neutral-800/80"
       >
-        @for (feat of features; track feat.title) {
+        @for (feat of features; track feat.titleKey) {
           <div
             class="group flex flex-col items-center text-center p-6 sm:p-8 md:p-10 2xl:p-14 transition-colors duration-500 hover:bg-white/40 dark:hover:bg-white/5"
           >
@@ -28,13 +28,13 @@
             <h5
               class="mb-2 text-xl font-bold tracking-wide text-gray-900 transition-colors duration-300 2xl:text-3xl 2xl:mb-4 dark:text-white group-hover:text-[#c5a059] dark:group-hover:text-[#e2c87d]"
             >
-              {{ feat.title }}
+              {{ feat.titleKey | translate }}
             </h5>
 
             <p
               class="text-sm font-light leading-relaxed text-gray-600 2xl:text-xl dark:text-gray-300"
             >
-              {{ feat.description }}
+              {{ feat.descriptionKey | translate }}
             </p>
           </div>
         }
