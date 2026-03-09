@@ -115,7 +115,7 @@
                     class="flex-grow mx-1 before:!border-[#e2c87d]/40 drop-shadow-md transition-colors group-hover:before:!border-white/50"
                   />
                   <div
-                    class="flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#e2c87d]/20 backdrop-blur-sm transition-all duration-300 group-hover:bg-[#e2c87d] group-hover:translate-x-2"
+                    class="p-3 flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#e2c87d]/20 backdrop-blur-sm transition-all duration-300 group-hover:bg-[#e2c87d] group-hover:translate-x-2"
                   >
                     <i
                       class="pi pi-arrow-right text-[10px] md:text-xs transition-colors text-[#e2c87d] group-hover:text-neutral-900"
@@ -175,7 +175,7 @@
           <div class="flex flex-col">
             <p-avatar
               shape="circle"
-              styleClass="!w-16 !h-16 md:!w-24 md:!h-24 !text-2xl md:!text-4xl shadow-2xl border-[4px] md:border-[5px] border-white dark:border-neutral-900 backdrop-blur-md !bg-[var(--p-primary-600)] !text-white mb-4 transition-transform hover:scale-105"
+              styleClass="!w-14 !h-14 md:!w-16 md:!h-16 !text-2xl md:!text-3xl shadow-2xl border-[3px] md:border-[4px] border-white dark:border-neutral-900 backdrop-blur-md !bg-[var(--p-primary-600)] !text-white mb-4 transition-transform hover:scale-105"
               [icon]="service.icon"
             ></p-avatar>
 
@@ -186,19 +186,35 @@
             </h2>
           </div>
 
-          <div class="flex flex-wrap gap-2 shrink-0 md:pb-2">
-            <p-tag
-              icon="pi pi-tag"
-              rounded="true"
-              styleClass="!bg-white/60 dark:!bg-black/40 !backdrop-blur-xl px-3 md:px-5 py-2 border border-white/60 dark:border-white/10 shadow-md text-xs md:text-sm !text-gray-900 dark:!text-gray-100 !font-bold"
-              [value]="('services.dialog.from' | translate) + ' $' + service.price"
-            ></p-tag>
-            <p-tag
-              icon="pi pi-star-fill"
-              rounded="true"
-              styleClass="!bg-white/60 dark:!bg-black/40 !backdrop-blur-xl px-3 md:px-5 py-2 border border-white/60 dark:border-white/10 shadow-md !text-[#c5a059] dark:!text-[#e2c87d] text-xs md:text-sm !font-bold"
-              [value]="service.rating + ' / 5.0'"
-            ></p-tag>
+          <div class="flex items-center gap-4 md:gap-6 mt-4 md:mt-0 shrink-0 md:pb-2">
+            <div class="flex items-center gap-2 group/rate cursor-default">
+              <i
+                class="pi pi-star-fill text-[#c5a059] dark:text-[#e2c87d] text-[10px] md:text-sm transition-transform duration-500 group-hover/rate:rotate-[72deg] group-hover:scale-110"
+              ></i>
+              <div class="flex items-baseline gap-1">
+                <span class="text-sm md:text-lg font-medium text-gray-900 dark:text-white">{{
+                  service.rating
+                }}</span>
+                <span class="text-[10px] md:text-xs font-light text-gray-500 dark:text-gray-400"
+                  >/ 5.0</span
+                >
+              </div>
+            </div>
+
+            <div class="w-[1px] h-5 md:h-7 bg-gray-300 dark:bg-neutral-700"></div>
+
+            <div class="flex items-center gap-2 md:gap-3 cursor-default">
+              <span
+                class="text-[9px] md:text-[10px] font-bold text-silver-shine uppercase tracking-[0.25em] md:tracking-[0.3em]"
+              >
+                {{ 'services.dialog.from' | translate }}
+              </span>
+              <span
+                class="text-lg md:text-2xl font-light tracking-tight text-gold-shine drop-shadow-sm"
+              >
+                ${{ service.price }}
+              </span>
+            </div>
           </div>
         </div>
 
@@ -228,9 +244,9 @@
             </h3>
             <ul class="p-0 m-0 space-y-3 list-none">
               @for (feature of service.features; track $index) {
-                <li class="flex items-start gap-3 group/item">
+                <li class="flex items-center gap-3 group/item">
                   <div
-                    class="flex items-center justify-center shrink-0 w-6 h-6 rounded-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 shadow-sm transition-all group-hover/item:border-[#e2c87d]"
+                    class="flex items-center justify-center shrink-0 w-8 h-8 rounded-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 shadow-sm transition-all group-hover/item:border-[#e2c87d]"
                   >
                     <i class="text-[10px] text-[#c5a059] dark:text-[#e2c87d] pi pi-check"></i>
                   </div>
@@ -285,9 +301,8 @@
         >
           <p-button
             class="flex-1"
-            severity="secondary"
-            styleClass="w-full !rounded-[1rem] !py-4 !text-gray-600 hover:!bg-black/5 dark:!text-gray-400 dark:hover:!bg-white/5 transition-colors font-medium text-base"
-            text="true"
+            variant="outlined"
+            styleClass="w-full !rounded-[1rem] !py-4 !bg-gradient-to-br !from-white !via-[var(--p-primary-50)]/20 !to-[var(--p-primary-100)]/70 !backdrop-blur-2xl !border !border-gray-300/80 !text-[var(--p-primary-700)] dark:!from-black/95 dark:!via-neutral-950/90 dark:!to-[var(--p-primary-900)]/10 dark:!border-neutral-700/80 dark:!text-gold-shine transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(226,200,125,0.15)] font-bold text-base"
             [label]="'services.dialog.close' | translate"
             (onClick)="visible.set(false)"
           ></p-button>
