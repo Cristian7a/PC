@@ -171,13 +171,13 @@
       <div class="flex flex-col gap-2.5">
         @for (channel of contactChannels; track channel.id) {
           @if (channel.id === 'quotation') {
-            <a [routerLink]="[channel.value]" class="outline-none" (click)="closeMenu()">
+            <a class="outline-none" [routerLink]="[channel.value]" (click)="closeMenu()">
               <ng-container
                 *ngTemplateOutlet="contactCardTemplate; context: { $implicit: channel }"
               />
             </a>
           } @else {
-            <a [href]="channel.action + channel.value" class="outline-none">
+            <a class="outline-none" [href]="channel.action + channel.value">
               <ng-container
                 *ngTemplateOutlet="contactCardTemplate; context: { $implicit: channel }"
               />

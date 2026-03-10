@@ -1,0 +1,10 @@
+::ng-deep .p-galleria-mask {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  transition: background-color 0.4s ease !important;
+}
+
+:host-context(.dark) ::ng-deep .p-galleria-mask {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}

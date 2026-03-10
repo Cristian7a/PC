@@ -48,8 +48,8 @@
         (animationend)="animCard.style.animationDelay = '0ms'"
       >
         <p-card
-          (click)="showDialog(sv)"
           styleClass="group relative overflow-hidden !bg-transparent !border-none !shadow-none !p-0 cursor-pointer transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
+          (click)="showDialog(sv)"
         >
           <div
             class="relative w-full overflow-hidden transition-all duration-700 border border-gray-200/60 dark:border-white/10 shadow-lg aspect-[5/4] md:aspect-[4/3] rounded-[2rem] 2xl:rounded-[2.5rem] group-hover:border-[#e2c87d]/40 dark:group-hover:border-[#e2c87d]/30"
@@ -172,7 +172,7 @@
             rounded="true"
             styleClass="!w-10 !h-10 md:!w-11 md:!h-11 shrink-0 flex items-center justify-center !bg-black/20 hover:!bg-black/60 backdrop-blur-xl !border-white/30 !text-white shadow-xl transition-all hover:scale-110"
             (onClick)="visible.set(false)"
-          ></p-button>
+          />
         </div>
       </div>
 
@@ -183,7 +183,7 @@
               shape="circle"
               styleClass="!w-14 !h-14 md:!w-16 md:!h-16 !text-2xl md:!text-3xl shadow-2xl border-[3px] md:border-[4px] border-white dark:border-neutral-900 backdrop-blur-md !bg-[var(--p-primary-600)] !text-white mb-4 transition-transform hover:scale-105"
               [icon]="service.icon"
-            ></p-avatar>
+            />
 
             <h2
               class="text-3xl font-light tracking-tight md:text-5xl text-gold-shine drop-shadow-sm"
@@ -237,9 +237,7 @@
           </p>
         </div>
 
-        <p-divider
-          styleClass="before:!border-gray-300/40 dark:before:!border-gray-700/40"
-        ></p-divider>
+        <p-divider styleClass="before:!border-gray-300/40 dark:before:!border-gray-700/40" />
 
         <div class="grid grid-cols-1 gap-8 my-8 lg:grid-cols-2 lg:gap-12">
           <div>
@@ -311,14 +309,14 @@
             styleClass="w-full !rounded-[1rem] !py-4 !bg-gradient-to-br !from-white !via-[var(--p-primary-50)]/20 !to-[var(--p-primary-100)]/70 !backdrop-blur-2xl !border !border-gray-300/80 !text-[var(--p-primary-700)] dark:!from-black/95 dark:!via-neutral-950/90 dark:!to-[var(--p-primary-900)]/10 dark:!border-neutral-700/80 dark:!text-gold-shine transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(226,200,125,0.15)] font-bold text-base"
             [label]="'services.dialog.close' | translate"
             (onClick)="visible.set(false)"
-          ></p-button>
+          />
 
           <p-button
             class="flex-1"
             icon="pi pi-whatsapp"
             styleClass="w-full !rounded-[1rem] !py-4 bg-gold-shine !border-none hover:brightness-110 transition-all duration-300 hover:scale-[1.02] shadow-[0_10px_25px_rgba(226,200,125,0.25)] font-bold text-lg"
             [label]="'home.button.contact' | translate"
-          ></p-button>
+          />
         </div>
       </div>
     </div>

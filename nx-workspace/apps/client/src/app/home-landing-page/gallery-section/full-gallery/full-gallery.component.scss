@@ -1,0 +1,136 @@
+/* =========================================================
+   OVERRIDE P-DIALOG: FORZAR FULLSCREEN Y FONDOS
+   ========================================================= */
+
+::ng-deep .full-gallery-dialog .p-dialog-content {
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* EL FONDO UNIFICADO: Toda la pantalla es cristal esmerilado */
+::ng-deep .full-gallery-mask {
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  background-color: rgba(
+    250,
+    250,
+    250,
+    0.85
+  ) !important; /* Blanco translúcido para dejar ver el blur */
+}
+
+/* Fondo inmersivo en Modo Oscuro */
+:host-context(.dark) ::ng-deep .full-gallery-mask {
+  background-color: rgba(10, 10, 10, 0.85) !important;
+}
+
+/* Ocultar barra de scroll en Firefox para la cápsula (Tailwind se encarga de Webkit en el HTML con hide-scrollbar) */
+::ng-deep .full-gallery-dialog div[style*='scrollbar-width: none;']::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================================
+   VISOR INTERNO (Galleria - Estilo Joyería)
+   ========================================================= */
+::ng-deep .internal-galleria {
+  .p-galleria-mask {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+  }
+
+  .p-galleria-close {
+    border-radius: 50% !important;
+    margin: 1.5rem !important;
+    width: 3.5rem !important;
+    height: 3.5rem !important;
+    backdrop-filter: blur(10px) !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: var(--p-surface-900) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.1) !important;
+      transform: scale(1.1) rotate(90deg) !important;
+    }
+  }
+
+  .p-galleria-item-prev,
+  .p-galleria-item-next {
+    border-radius: 50% !important;
+    width: 3.8rem !important;
+    height: 3.8rem !important;
+    backdrop-filter: blur(10px) !important;
+    margin: 0 1rem !important;
+    background: rgba(0, 0, 0, 0.03) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+
+    .p-galleria-item-prev-icon,
+    .p-galleria-item-next-icon,
+    .p-icon,
+    .pi {
+      color: var(--p-primary-500) !important;
+      font-size: 1.5rem !important;
+    }
+
+    &:hover {
+      background: rgba(var(--p-primary-500-rgb), 0.1) !important;
+      border-color: var(--p-primary-400) !important;
+      transform: scale(1.1) !important;
+
+      .p-icon,
+      .pi {
+        color: var(--p-primary-600) !important;
+      }
+    }
+  }
+}
+
+:host-context(.dark) ::ng-deep .internal-galleria {
+  .p-galleria-mask {
+    background-color: rgba(0, 0, 0, 0.85) !important;
+  }
+
+  .p-galleria-close {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: var(--p-surface-0) !important;
+    &:hover {
+      background: rgba(255, 255, 255, 0.25) !important;
+    }
+  }
+
+  .p-galleria-item-prev,
+  .p-galleria-item-next {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+    .p-icon,
+    .pi {
+      color: var(--p-primary-400) !important;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15) !important;
+      .p-icon,
+      .pi {
+        color: var(--p-primary-300) !important;
+      }
+    }
+  }
+}
+
+/* Estilo para el contenedor de filtros cuando está activo el scroll horizontal en móviles */
+::ng-template #filtersTemplate div {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Mejora la visibilidad del botón seleccionado en modo oscuro */
+:host-context(.dark) {
+  .bg-\[var\(--p-primary-500\)\] {
+    color: #000 !important; /* Asegura contraste del texto sobre el dorado en Dark Mode */
+  }
+}

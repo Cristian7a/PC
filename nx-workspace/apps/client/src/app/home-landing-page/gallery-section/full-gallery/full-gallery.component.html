@@ -1,0 +1,243 @@
+<ng-template #filtersTemplate>
+  <div
+    class="pointer-events-auto flex items-center p-1.5 md:p-2 rounded-full overflow-x-auto w-max max-w-full bg-white bg-gradient-to-br from-white via-[var(--p-primary-50)]/50 to-[var(--p-primary-100)]/70 border border-gray-200/80 shadow-[0_15px_40px_rgba(0,0,0,0.1)] dark:bg-black dark:from-black dark:via-neutral-950 dark:to-[var(--p-primary-900)]/20 dark:border-neutral-800/80 dark:shadow-[0_15px_40px_rgba(0,0,0,0.5)]"
+    style="scrollbar-width: none"
+  >
+    @for (cat of categories; track cat.value) {
+      <button
+        class="shrink-0 whitespace-nowrap px-4 py-2 md:px-6 md:py-2.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out"
+        [ngClass]="
+          selectedCategory() === cat.value
+            ? 'bg-[var(--p-primary-600)] dark:bg-[var(--p-primary-500)] text-white dark:text-neutral-900 shadow-md scale-100'
+            : 'bg-transparent text-gray-700 dark:text-neutral-300 hover:bg-[var(--p-primary-500)]/10 dark:hover:bg-white/5'
+        "
+        (click)="changeCategory(cat.value)"
+      >
+        {{ cat.label }}
+      </button>
+    }
+  </div>
+</ng-template>
+
+<p-dialog
+  styleClass="!w-[100vw] !h-[100vh] !max-w-none !max-h-[100vh] !m-0 !rounded-none !border-none !shadow-none !bg-[var(--p-surface-0)] dark:!bg-[var(--p-surface-950)]"
+  contentStyleClass="!p-0 !bg-transparent !overflow-hidden flex flex-col"
+  [visible]="visible()"
+  [modal]="true"
+  [showHeader]="false"
+  [draggable]="false"
+  [resizable]="false"
+  [dismissableMask]="false"
+  (onHide)="closeDialog()"
+>
+  <div class="relative w-full h-full flex flex-col bg-transparent overflow-hidden">
+    <div class="absolute top-4 right-4 md:top-6 md:right-8 z-[100]">
+      <p-button
+        icon="pi pi-times"
+        rounded="true"
+        styleClass="!w-12 !h-12 !bg-gold-shine !border-none !text-neutral-900 shadow-[0_10px_30px_rgba(226,200,125,0.3)] dark:shadow-[0_10px_30px_rgba(226,200,125,0.2)] transition-all duration-300 hover:rotate-90 hover:scale-110 hover:brightness-110"
+        (onClick)="closeDialog()"
+      />
+    </div>
+
+    <div
+      class="absolute top-4 md:top-6 left-4 right-20 md:left-0 md:right-0 z-[90] flex justify-start md:justify-center pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+      [ngClass]="showFloatingMenu() ? 'translate-y-0 opacity-100' : '-translate-y-[150%] opacity-0'"
+    >
+      <ng-container *ngTemplateOutlet="filtersTemplate" />
+    </div>
+
+    <main
+      class="flex-grow overflow-y-auto px-4 pt-16 md:px-12 lg:px-20 md:pt-20 pb-20 scroll-smooth"
+      style="scrollbar-width: thin"
+      (scroll)="onScroll($event)"
+    >
+      <div class="flex flex-col items-center mb-6 md:mb-8 px-4">
+        <h3
+          class="text-3xl md:text-5xl font-light text-center text-gold-shine tracking-tight drop-shadow-md"
+        >
+          {{ 'full_gallery.title' | translate }}
+        </h3>
+        <div
+          class="w-16 md:w-24 h-[1px] my-3 md:my-5 bg-gradient-to-r from-transparent via-[var(--p-primary-500)] to-transparent opacity-80"
+        ></div>
+        <p
+          class="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-silver-shine text-center"
+        >
+          {{ 'full_gallery.subtitle' | translate }}
+        </p>
+      </div>
+
+      <div class="flex justify-center w-full mb-8 md:mb-12 overflow-hidden pointer-events-none">
+        <ng-container *ngTemplateOutlet="filtersTemplate" />
+      </div>
+
+      @if (filteredImages().length > 0) {
+        <div class="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-6">
+          @for (img of filteredImages(); track $index) {
+            <div
+              class="relative w-full inline-block break-inside-avoid mb-3 md:mb-6 rounded-[1rem] md:rounded-[2rem] overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-700 bg-gray-200 dark:bg-neutral-900 animate-fade-in-up focus:outline-none focus:ring-4 focus:ring-[var(--p-primary-500)]/50"
+              tabindex="0"
+              (click)="openViewer($index)"
+              (keydown.enter)="openViewer($index)"
+              (keydown.space)="openViewer($index); $event.preventDefault()"
+            >
+              <img
+                class="w-full h-auto block object-cover transition-transform duration-[2s] ease-out group-hover:scale-110"
+                loading="lazy"
+                [src]="img.src"
+                [alt]="img.alt"
+              />
+              <div
+                class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 backdrop-blur-[2px] transition-all duration-500 flex items-center justify-center pointer-events-none"
+              >
+                <div
+                  class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white scale-75 group-hover:scale-100 transition-transform duration-500 shadow-2xl"
+                >
+                  <i class="pi pi-expand text-xl md:text-2xl drop-shadow-lg"></i>
+                </div>
+              </div>
+              <div
+                class="absolute inset-0 z-20 transition-colors duration-500 border pointer-events-none rounded-[1rem] md:rounded-[2rem] border-white/30 dark:border-white/10 group-hover:border-[#e2c87d]/60"
+              ></div>
+            </div>
+          }
+
+          @if (isLoading()) {
+            <div class="w-full inline-block break-inside-avoid mb-3 md:mb-6 animate-pulse">
+              <p-skeleton
+                width="100%"
+                height="22rem"
+                styleClass="!rounded-[1rem] md:!rounded-[2rem] !bg-gray-200 dark:!bg-neutral-800"
+              />
+            </div>
+            <div class="w-full inline-block break-inside-avoid mb-3 md:mb-6 animate-pulse">
+              <p-skeleton
+                width="100%"
+                height="15rem"
+                styleClass="!rounded-[1rem] md:!rounded-[2rem] !bg-gray-200 dark:!bg-neutral-800"
+              />
+            </div>
+            <div class="w-full inline-block break-inside-avoid mb-3 md:mb-6 animate-pulse">
+              <p-skeleton
+                width="100%"
+                height="28rem"
+                styleClass="!rounded-[1rem] md:!rounded-[2rem] !bg-gray-200 dark:!bg-neutral-800"
+              />
+            </div>
+            <div class="w-full inline-block break-inside-avoid mb-3 md:mb-6 animate-pulse">
+              <p-skeleton
+                width="100%"
+                height="18rem"
+                styleClass="!rounded-[1rem] md:!rounded-[2rem] !bg-gray-200 dark:!bg-neutral-800"
+              />
+            </div>
+          }
+        </div>
+
+        @if (requireManualLoad() && !isLoading()) {
+          <div
+            class="flex justify-center w-full mt-10 md:mt-16 mb-4 relative z-10 animate-fade-in-up"
+          >
+            <p-button
+              variant="outlined"
+              styleClass="!rounded-full !px-8 !py-3 !bg-white/50 dark:!bg-black/50 !backdrop-blur-md !border !border-gray-300 dark:!border-neutral-700 !text-gray-800 dark:!text-gray-200 transition-all duration-300 hover:scale-105 hover:!bg-[var(--p-primary-50)] dark:hover:!bg-[var(--p-primary-900)]/30 hover:!text-[var(--p-primary-700)] dark:hover:!text-[var(--p-primary-400)] group"
+              (onClick)="loadMoreManual()"
+            >
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-xs md:text-sm uppercase tracking-widest">{{
+                  'full_gallery.load_more' | translate
+                }}</span>
+                <i
+                  class="pi pi-angle-down transition-transform duration-300 group-hover:translate-y-1"
+                ></i>
+              </div>
+            </p-button>
+          </div>
+        }
+      } @else {
+        @if (!isLoading()) {
+          <div
+            class="flex flex-col items-center justify-center w-full py-20 px-4 mt-8 bg-gray-50/50 dark:bg-neutral-900/30 rounded-[2rem] border border-dashed border-gray-200 dark:border-neutral-800 animate-fade-in-up"
+          >
+            <div
+              class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-[var(--p-primary-50)] dark:bg-[var(--p-primary-900)]/30 flex items-center justify-center mb-6 shadow-inner"
+            >
+              <i
+                class="pi pi-images text-3xl md:text-4xl text-[var(--p-primary-400)] dark:text-[var(--p-primary-500)]"
+              ></i>
+            </div>
+            <h4
+              class="text-xl md:text-2xl font-medium text-gray-800 dark:text-gray-200 mb-3 text-center"
+            >
+              {{ 'full_gallery.empty_state_title' | translate }}
+            </h4>
+            <p
+              class="text-sm md:text-base text-gray-500 dark:text-gray-400 text-center max-w-md leading-relaxed"
+            >
+              {{ 'full_gallery.empty_state_desc' | translate }}
+            </p>
+          </div>
+        } @else {
+          <div class="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-6">
+            <div class="w-full inline-block break-inside-avoid mb-3 md:mb-6 animate-pulse">
+              <p-skeleton
+                width="100%"
+                height="22rem"
+                styleClass="!rounded-[1rem] md:!rounded-[2rem] !bg-gray-200 dark:!bg-neutral-800"
+              />
+            </div>
+            <div class="w-full inline-block break-inside-avoid mb-3 md:mb-6 animate-pulse">
+              <p-skeleton
+                width="100%"
+                height="15rem"
+                styleClass="!rounded-[1rem] md:!rounded-[2rem] !bg-gray-200 dark:!bg-neutral-800"
+              />
+            </div>
+            <div class="w-full inline-block break-inside-avoid mb-3 md:mb-6 animate-pulse">
+              <p-skeleton
+                width="100%"
+                height="28rem"
+                styleClass="!rounded-[1rem] md:!rounded-[2rem] !bg-gray-200 dark:!bg-neutral-800"
+              />
+            </div>
+          </div>
+        }
+      }
+
+      <div
+        class="mt-16 md:mt-24 pb-8 flex flex-col items-center border-t border-gray-300/40 dark:border-white/10 pt-16 md:pt-24"
+      >
+        <h4
+          class="text-2xl md:text-4xl font-light text-center text-gold-shine mb-8 md:mb-12 tracking-tight max-w-3xl"
+        >
+          {{ 'full_gallery.cta_title' | translate }}
+        </h4>
+        <p-button
+          icon="pi pi-whatsapp"
+          styleClass="bg-gold-shine !border-none !py-4 !px-8 md:!py-5 md:!px-12 !rounded-[2rem] !text-neutral-900 font-bold text-base md:text-xl shadow-none hover:shadow-[0_20px_50px_rgba(226,200,125,0.3)] hover:-translate-y-1 hover:brightness-110 transition-all duration-300"
+          [label]="'full_gallery.cta_button' | translate"
+        />
+      </div>
+    </main>
+  </div>
+</p-dialog>
+
+<p-galleria
+  styleClass="internal-galleria"
+  [value]="filteredImages()"
+  [fullScreen]="true"
+  [showItemNavigators]="true"
+  [showThumbnails]="false"
+  [circular]="true"
+  [(visible)]="galleriaVisible"
+  [(activeIndex)]="activeIndex"
+>
+  <ng-template let-item pTemplate="item">
+    <img
+      class="block w-auto h-auto max-w-[95vw] max-h-[85vh] rounded-md shadow-[0_30px_80px_rgba(0,0,0,0.9)]"
+      [src]="item.src"
+      [alt]="item.alt"
+    />
+  </ng-template>
+</p-galleria>
