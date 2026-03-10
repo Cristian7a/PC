@@ -1,6 +1,6 @@
 <div
   id="services"
-  class="scroll-mt-20 md:scroll-mt-28 relative flex flex-col justify-center w-full px-6 pt-0 pb-16 mx-auto max-w-[2000px] sm:px-12 md:px-16 lg:px-24 md:pb-24 2xl:pb-32 z-10"
+  class="scroll-mt-20 md:scroll-mt-28 relative flex flex-col justify-center w-full px-6 pt-0 py-2 md:py-4 2xl:py-8 mx-auto max-w-[2000px] sm:px-12 md:px-16 lg:px-24 z-10"
 >
   <div
     class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[50%] bg-[var(--p-primary-500)] rounded-full filter blur-[100px] md:blur-[160px] opacity-[0.08] dark:opacity-[0.03] pointer-events-none z-0"
@@ -28,6 +28,12 @@
     >
       {{ 'services.subtitle' | translate }}
     </span>
+
+    <p
+      class="mt-6 text-sm font-light leading-relaxed text-center text-gray-600 max-w-2xl dark:text-gray-400 md:text-base 2xl:text-xl"
+    >
+      {{ 'services.description' | translate }}
+    </p>
   </div>
 
   <div class="relative z-10 grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-3 2xl:gap-6">
@@ -118,7 +124,7 @@
                     class="p-3 flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#e2c87d]/20 backdrop-blur-sm transition-all duration-300 group-hover:bg-[#e2c87d] group-hover:translate-x-2"
                   >
                     <i
-                      class="pi pi-arrow-right text-[10px] md:text-xs transition-colors text-[#e2c87d] group-hover:text-neutral-900"
+                      class="pi pi-arrow-right text-[10px] md:text-xs transition-colors !text-white dark:!text-neutral-950"
                     ></i>
                   </div>
                 </div>
@@ -310,7 +316,7 @@
           <p-button
             class="flex-1"
             icon="pi pi-whatsapp"
-            styleClass="w-full !rounded-[1rem] !py-4 bg-gold-shine !border-none !text-neutral-900 hover:brightness-110 transition-all duration-300 hover:scale-[1.02] shadow-[0_10px_25px_rgba(226,200,125,0.25)] font-bold text-lg"
+            styleClass="w-full !rounded-[1rem] !py-4 bg-gold-shine !border-none hover:brightness-110 transition-all duration-300 hover:scale-[1.02] shadow-[0_10px_25px_rgba(226,200,125,0.25)] font-bold text-lg"
             [label]="'home.button.contact' | translate"
           ></p-button>
         </div>

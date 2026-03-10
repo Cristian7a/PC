@@ -29,26 +29,15 @@
   },
   "home":{
     "button": {
-      "book":"Reservar",
-      "contact":"Contactar"
+      "book":"Reservar Fecha",
+      "contact":"Cotizar Evento"
     },
-    "description":"Elevamos la experiencia de tus eventos con un servicio excepcional y atención al detalle impecable",
-    "service":{
-      "title":"Servicio premium",
-      "description":"Atención de primer nivel"
-    },
-    "experience":{
-      "title":"Experiencia",
-      "description":"Años de excelencia en eventos"
-      },  
-    "avaliable":{ 
-      "title":"Disponibilidad",
-      "description":"24/7 para tus necesidades"
-    }
+    "description": "Maestría en etiqueta y discreción absoluta. Diseñamos el escenario perfecto para su tranquilidad."
   },
   "services": {
     "subtitle": "Nuestros Servicios", 
     "title": "Experiencias a la Medida",
+    "description": "Propuestas de servicio diseñadas a la medida de su visión, donde el rigor del protocolo y la calidez en el detalle son los pilares de una experiencia verdaderamente exclusiva.",    
     "dialog": {
       "from": "Desde",
       "description": "Sobre esta experiencia",
@@ -56,6 +45,21 @@
       "packages": "Niveles de Servicio",
       "close": "Volver"
     }
+  },
+  "gallery": {
+    "subtitle": "Portafolio Visual",
+    "title": "La Excelencia en Acción",
+    "description": "Una cuidada selección de memorias donde la elegancia, la discreción y el arte del buen servicio son los verdaderos protagonistas.",
+    "view_more": "Ver Colección Completa"
+  },
+  "full_gallery": {
+    "title": "Portafolio de Excelencia",
+    "subtitle": "La perfección se refleja en los detalles",
+    "cta_title": "¿Visualizas tu evento con este nivel de elegancia?",
+    "cta_button": "Diseñar mi Evento",
+    "empty_state_title": "Colección en Curaduría",
+    "empty_state_desc": "Aún estamos seleccionando nuestros mejores momentos para esta categoría. Vuelve pronto para inspirarte.",
+    "load_more": "Explorar más contenido"
   },
   "reviews": {
     "title": "Lo que dicen nuestros clientes",
