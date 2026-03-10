@@ -9,6 +9,7 @@ import { GalleriaModule } from 'primeng/galleria';
 import { RatingModule } from 'primeng/rating';
 import { TooltipModule } from 'primeng/tooltip';
 import { Review } from '../../api/models/reviews';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 
 @Component({
   selector: 'app-reviews-section',
@@ -22,6 +23,7 @@ import { Review } from '../../api/models/reviews';
     RatingModule,
     TooltipModule,
     TranslatePipe,
+    AnimateOnScrollModule,
   ],
   templateUrl: './reviews-section.component.html',
   styleUrl: './reviews-section.component.scss',
