@@ -1,0 +1,313 @@
+<p-dialog
+  contentStyleClass="!p-0 !bg-transparent !overflow-hidden"
+  maskStyleClass="backdrop-blur-xl bg-black/40 dark:bg-black/80"
+  styleClass="w-[95vw] sm:w-[85vw] md:w-[70vw] lg:w-[50vw] xl:w-[40vw] !rounded-[2.5rem] md:!rounded-[3rem] overflow-hidden !border !border-white/40 dark:!border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.5)] !bg-gradient-to-br !from-white/95 !via-white/80 !to-[var(--p-primary-50)]/60 dark:!from-black/95 dark:!via-neutral-950/95 dark:!to-neutral-900/80 !backdrop-blur-3xl"
+  [draggable]="false"
+  [modal]="true"
+  [resizable]="false"
+  [showHeader]="false"
+  [visible]="visible()"
+  (visibleChange)="!$event ? closeDialog() : null"
+>
+  <div class="relative w-full flex flex-col animate-luxury-island bg-transparent">
+    <div
+      class="w-full max-h-[85vh] overflow-y-auto rounded-[inherit]"
+      style="scrollbar-width: thin; scrollbar-color: rgba(226, 200, 125, 0.4) transparent"
+      (scroll)="onDialogScroll($event)"
+    >
+      <div
+        class="sticky top-0 left-0 w-full z-[60] px-6 py-4 md:px-12 md:py-6 transition-all duration-300"
+        [ngClass]="{
+          'pointer-events-none bg-transparent': !isDialogScrolled(),
+          'bg-white dark:bg-neutral-950 shadow-sm border-b border-gray-200 dark:border-neutral-800':
+            isDialogScrolled(),
+        }"
+      >
+        <button
+          class="pointer-events-auto flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-500 group focus:outline-none cursor-pointer"
+          [ngClass]="{
+            'border-transparent text-gray-500 hover:text-gold-shine dark:text-gray-400 dark:hover:text-gold-shine':
+              !isDialogScrolled(),
+            'bg-gray-100 hover:bg-gray-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 border-gray-300 dark:border-neutral-700 text-gold-shine shadow-xl backdrop-blur-none':
+              isDialogScrolled(),
+          }"
+          (click)="closeDialog()"
+        >
+          <i class="pi pi-arrow-left text-sm transition-transform group-hover:-translate-x-1"></i>
+          <span class="text-[10px] md:text-xs font-bold uppercase tracking-widest">{{
+            'reviews.form_cancel' | translate
+          }}</span>
+        </button>
+      </div>
+
+      <div class="px-6 pb-8 md:px-12 md:pb-10 pt-2 md:pt-4">
+        <div class="flex flex-col items-start mb-8 md:mb-10 animate-reveal-text-left">
+          <h3 class="text-3xl md:text-4xl font-light tracking-tight text-gold-shine drop-shadow-sm">
+            {{ 'reviews.dialog_title' | translate }}
+          </h3>
+          <div
+            class="w-16 md:w-24 h-[1px] my-3 bg-gradient-to-r from-[var(--p-primary-500)] to-transparent opacity-80"
+          ></div>
+          <span
+            class="mt-1 text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-silver-shine"
+          >
+            {{ 'reviews.dialog_subtitle' | translate }}
+          </span>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-7 w-full animate-feature-unveil"
+          style="animation-delay: 200ms"
+        >
+          <div class="md:col-span-2 flex flex-col w-full">
+            <div
+              class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-2 ml-2"
+            >
+              {{ 'reviews.form_rating' | translate }}
+            </div>
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full !bg-white/70 dark:!bg-neutral-900/60 !border transition-all hover:!bg-white dark:hover:!bg-neutral-900 !rounded-xl !px-5 !py-4 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+              [ngClass]="
+                formErrors()['rating']
+                  ? '!border-red-400 dark:!border-red-500/50'
+                  : '!border-gray-200 dark:!border-neutral-800'
+              "
+            >
+              <span class="text-sm font-light text-gray-500 dark:text-gray-400">
+                {{ 'reviews.form_rating_helper' | translate }}
+              </span>
+              <p-rating
+                styleClass="text-2xl md:text-3xl text-[#c5a059] drop-shadow-md gap-2"
+                [(ngModel)]="reviewForm.rating"
+                (ngModelChange)="onInteraction('rating')"
+              />
+            </div>
+            @if (formErrors()['rating']) {
+              <span
+                class="text-[10px] text-red-500 dark:text-red-400 ml-3 mt-1.5 animate-fade-in-up"
+                >{{ formErrors()['rating'] | translate }}</span
+              >
+            }
+          </div>
+
+          <div class="md:col-span-2 flex flex-col w-full mt-2 md:mt-4">
+            <div
+              class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 ml-2"
+            >
+              {{ 'reviews.form_section_details' | translate }}
+            </div>
+          </div>
+
+          <div class="w-full flex flex-col">
+            <p-floatLabel class="w-full">
+              <input
+                id="name"
+                type="text"
+                pInputText
+                class="w-full !bg-white/70 dark:!bg-neutral-900/60 !border focus:!border-[#c5a059] dark:focus:!border-[#e2c87d] !rounded-xl !px-5 !pt-6 !pb-2 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all text-gray-800 dark:text-white hover:!bg-white dark:hover:!bg-neutral-900 min-h-[58px]"
+                [ngClass]="
+                  formErrors()['name']
+                    ? '!border-red-400 dark:!border-red-500/50'
+                    : '!border-gray-200 dark:!border-neutral-800'
+                "
+                [(ngModel)]="reviewForm.name"
+                (blur)="onInteraction('name')"
+                (ngModelChange)="onInteraction('name')"
+              />
+              <label
+                for="name"
+                class="font-light text-gray-500 ml-3"
+                [ngClass]="{ '!text-red-500': formErrors()['name'] }"
+                >{{ 'reviews.form_name' | translate }}</label
+              >
+            </p-floatLabel>
+            @if (formErrors()['name']) {
+              <span
+                class="text-[10px] text-red-500 dark:text-red-400 ml-3 mt-1.5 animate-fade-in-up"
+                >{{ formErrors()['name'] | translate }}</span
+              >
+            }
+          </div>
+
+          <div class="w-full flex flex-col">
+            <p-floatLabel class="w-full">
+              <input
+                id="contract"
+                type="text"
+                pInputText
+                class="w-full !bg-white/70 dark:!bg-neutral-900/60 !border focus:!border-[#c5a059] dark:focus:!border-[#e2c87d] !rounded-xl !px-5 !pt-6 !pb-2 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all text-gray-800 dark:text-white hover:!bg-white dark:hover:!bg-neutral-900 min-h-[58px]"
+                [ngClass]="
+                  formErrors()['contract']
+                    ? '!border-red-400 dark:!border-red-500/50'
+                    : '!border-gray-200 dark:!border-neutral-800'
+                "
+                [(ngModel)]="reviewForm.contract"
+                (blur)="onInteraction('contract')"
+                (ngModelChange)="onInteraction('contract')"
+              />
+              <label
+                for="contract"
+                class="font-light text-gray-500 ml-3"
+                [ngClass]="{ '!text-red-500': formErrors()['contract'] }"
+                >{{ 'reviews.form_contract' | translate }}</label
+              >
+            </p-floatLabel>
+            <span
+              class="text-[10px] ml-4 mt-1.5"
+              [ngClass]="
+                formErrors()['contract']
+                  ? 'text-red-500 dark:text-red-400 animate-fade-in-up'
+                  : 'text-gray-400'
+              "
+            >
+              {{
+                formErrors()['contract']
+                  ? (formErrors()['contract'] | translate)
+                  : ('reviews.form_contract_helper' | translate)
+              }}
+            </span>
+          </div>
+
+          <div class="w-full flex flex-col">
+            <p-floatLabel class="w-full">
+              <p-autoComplete
+                inputId="category"
+                appendTo="body"
+                optionLabel="label"
+                styleClass="w-full flex min-h-[58px] !bg-white/70 dark:!bg-neutral-900/60 !border focus-within:!border-[#c5a059] dark:focus-within:!border-[#e2c87d] !rounded-xl shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all hover:!bg-white dark:hover:!bg-neutral-900 [&>button]:!bg-transparent [&>button]:!border-none [&>button]:!text-gray-500 dark:[&>button]:!text-gray-400 [&>button]:!w-12 [&>button]:!p-0 hover:[&>button]:!bg-transparent focus:[&>button]:!ring-0"
+                inputStyleClass="flex-1 w-full !bg-transparent !border-none !outline-none !shadow-none !px-5 !pt-6 !pb-2 text-gray-800 dark:text-white"
+                panelStyleClass="!bg-white/95 dark:!bg-neutral-900/95 !backdrop-blur-xl !border !border-gray-200 dark:!border-neutral-800 !rounded-xl !shadow-xl [scrollbar-width:thin] [scrollbar-color:rgba(226,200,125,0.4)_transparent] [&_.p-autocomplete-items]:[scrollbar-width:thin] [&_.p-autocomplete-items]:[scrollbar-color:rgba(226,200,125,0.4)_transparent]"
+                [ngClass]="
+                  formErrors()['category']
+                    ? '!border-red-400 dark:!border-red-500/50'
+                    : '!border-gray-200 dark:!border-neutral-800'
+                "
+                [suggestions]="filteredCategories()"
+                [dropdown]="true"
+                [forceSelection]="true"
+                [(ngModel)]="reviewForm.category"
+                (completeMethod)="searchCategory($event)"
+                (ngModelChange)="onInteraction('category')"
+                (onBlur)="onInteraction('category')"
+                (onSelect)="onCategorySelect($event)"
+              />
+              <label
+                for="category"
+                class="font-light text-gray-500 ml-3"
+                [ngClass]="{ '!text-red-500': formErrors()['category'] }"
+                >{{ 'reviews.form_category' | translate }}</label
+              >
+            </p-floatLabel>
+            @if (formErrors()['category']) {
+              <span
+                class="text-[10px] text-red-500 dark:text-red-400 ml-3 mt-1.5 animate-fade-in-up"
+                >{{ formErrors()['category'] | translate }}</span
+              >
+            }
+          </div>
+
+          <div class="w-full flex flex-col">
+            <p-floatLabel class="w-full">
+              <p-multiSelect
+                inputId="services"
+                optionLabel="label"
+                optionValue="value"
+                display="chip"
+                appendTo="body"
+                panelStyleClass="!bg-white/95 dark:!bg-neutral-900/95 !backdrop-blur-xl !border !border-gray-200 dark:!border-neutral-800 !rounded-xl !shadow-xl [scrollbar-width:thin] [scrollbar-color:rgba(226,200,125,0.4)_transparent] [&_.p-multiselect-items]:[scrollbar-width:thin] [&_.p-multiselect-items]:[scrollbar-color:rgba(226,200,125,0.4)_transparent]"
+                styleClass="w-full flex min-h-[58px] items-center !bg-white/70 dark:!bg-neutral-900/60 !border focus-within:!border-[#c5a059] dark:focus-within:!border-[#e2c87d] !rounded-xl !px-2 !pt-3 !pb-1 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all text-gray-800 dark:text-white hover:!bg-white dark:hover:!bg-neutral-900"
+                [options]="availableServices"
+                [ngClass]="
+                  formErrors()['services']
+                    ? '!border-red-400 dark:!border-red-500/50'
+                    : '!border-gray-200 dark:!border-neutral-800'
+                "
+                [(ngModel)]="reviewForm.services"
+                (ngModelChange)="onInteraction('services')"
+                (onBlur)="onInteraction('services')"
+              />
+              <label
+                for="services"
+                class="font-light text-gray-500 ml-3"
+                [ngClass]="{ '!text-red-500': formErrors()['services'] }"
+                >{{ 'reviews.form_services' | translate }}</label
+              >
+            </p-floatLabel>
+            @if (formErrors()['services']) {
+              <span
+                class="text-[10px] text-red-500 dark:text-red-400 ml-3 mt-1.5 animate-fade-in-up"
+                >{{ formErrors()['services'] | translate }}</span
+              >
+            }
+          </div>
+
+          <div class="md:col-span-2 w-full flex flex-col mt-2">
+            <p-floatLabel class="w-full">
+              <textarea
+                id="comment"
+                rows="4"
+                pTextarea
+                class="w-full pt-6 !bg-white/70 dark:!bg-neutral-900/60 !border focus:!border-[#c5a059] dark:focus:!border-[#e2c87d] !rounded-xl !px-5 !pt-7 !pb-3 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all resize-none text-gray-800 dark:text-white hover:!bg-white dark:hover:!bg-neutral-900"
+                [ngClass]="
+                  formErrors()['comment']
+                    ? '!border-red-400 dark:!border-red-500/50'
+                    : '!border-gray-200 dark:!border-neutral-800'
+                "
+                [(ngModel)]="reviewForm.comment"
+                (blur)="onInteraction('comment')"
+                (ngModelChange)="onInteraction('comment')"
+              ></textarea>
+              <label
+                for="comment"
+                class="font-light text-gray-500 ml-3 mt-4"
+                [ngClass]="{ '!text-red-500': formErrors()['comment'] }"
+                >{{ 'reviews.form_comment' | translate }}</label
+              >
+            </p-floatLabel>
+            @if (formErrors()['comment']) {
+              <span
+                class="text-[10px] text-red-500 dark:text-red-400 ml-3 mt-1.5 animate-fade-in-up"
+                >{{ formErrors()['comment'] | translate }}</span
+              >
+            }
+          </div>
+        </div>
+
+        <div class="flex mt-10 md:mt-12 w-full animate-cta-reveal" style="animation-delay: 400ms">
+          <div
+            class="w-full"
+            tooltipPosition="top"
+            [pTooltip]="
+              !isFormValid && !isSubmitting()
+                ? ('reviews.form_submit_disabled_tooltip' | translate)
+                : undefined
+            "
+            [showDelay]="200"
+          >
+            <p-button
+              styleClass="w-full !rounded-xl !py-4 md:!py-5 bg-gold-shine !border-none text-neutral-900 flex justify-center items-center group/submit transition-all duration-300 disabled:opacity-40 disabled:grayscale-[40%] disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none disabled:hover:brightness-100 [&:not(:disabled)]:hover:brightness-110 [&:not(:disabled)]:hover:shadow-[0_10px_20px_rgba(226,200,125,0.25)] [&:not(:disabled)]:hover:scale-[1.02]"
+              [disabled]="!isFormValid || isSubmitting()"
+              (onClick)="submitReview()"
+            >
+              <div class="flex items-center gap-3">
+                <i
+                  class="pi text-sm transition-transform duration-300 opacity-90"
+                  [ngClass]="
+                    isSubmitting()
+                      ? 'pi-spinner animate-spin'
+                      : 'pi-send [&:not(:disabled)_&]:group-hover/submit:-translate-y-1 [&:not(:disabled)_&]:group-hover/submit:translate-x-1'
+                  "
+                >
+                </i>
+
+                <span class="text-sm md:text-base font-bold">
+                  {{ isSubmitting() ? 'Enviando...' : ('reviews.form_submit' | translate) }}
+                </span>
+              </div>
+            </p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>

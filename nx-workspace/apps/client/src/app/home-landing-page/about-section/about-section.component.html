@@ -1,26 +1,23 @@
 <div
   id="about"
-  class="scroll-mt-20 md:scroll-mt-28 relative flex justify-center w-full px-6 py-16 mx-auto max-w-[2000px] sm:px-12 md:px-16 lg:px-24 md:py-24 2xl:py-32 z-10"
+  class="scroll-mt-20 md:scroll-mt-28 relative flex justify-center w-full px-6 pt-4 pb-16 mx-auto max-w-[2000px] sm:px-12 md:px-16 lg:px-24 md:pt-12 md:pb-24 z-10"
 >
   <div
     class="grid items-center w-full max-w-6xl grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20 2xl:max-w-7xl"
   >
-    <div
-      #animText
-      class="flex flex-col items-start opacity-0"
-      pAnimateOnScroll
-      enterClass="animate-fade-in-left"
-      (animationstart)="animText.classList.remove('opacity-0')"
-    >
-      <div class="flex flex-col items-start mb-10 2xl:mb-14">
+    <div class="flex flex-col items-start">
+      <div
+        class="opacity-0 flex flex-col items-start mb-10 2xl:mb-14"
+        pAnimateOnScroll
+        enterClass="animate-reveal-text-left"
+        leaveClass="opacity-0"
+      >
         <h2 class="text-3xl font-light tracking-tight text-gold-shine md:text-5xl 2xl:text-6xl">
           {{ 'about.title' | translate }}
         </h2>
-
         <div
           class="w-24 md:w-32 h-[1px] mt-3 bg-gradient-to-r from-[var(--p-primary-500)] to-transparent opacity-80"
         ></div>
-
         <span
           class="mt-3 text-[10px] font-bold uppercase tracking-[0.4em] text-silver-shine md:text-xs 2xl:text-sm"
         >
@@ -28,13 +25,18 @@
         </span>
       </div>
 
-      <div class="pl-5 mb-10 border-l-2 border-[#e2c87d]/40 dark:border-[#e2c87d]/30 2xl:pl-8">
+      <div
+        class="opacity-0 pl-5 mb-10 border-l-2 border-[#e2c87d]/40 dark:border-[#e2c87d]/30 2xl:pl-8"
+        pAnimateOnScroll
+        enterClass="animate-reveal-text-left"
+        leaveClass="opacity-0"
+        style="animation-delay: 150ms"
+      >
         <p
           class="mb-6 text-base font-light leading-relaxed text-gray-700 dark:text-gray-300 md:text-lg 2xl:text-2xl"
         >
           {{ 'about.description1' | translate }}
         </p>
-
         <p
           class="m-0 text-base font-light leading-relaxed text-gray-700 dark:text-gray-300 md:text-lg 2xl:text-2xl"
         >
@@ -43,27 +45,39 @@
       </div>
 
       <div class="flex flex-col w-full gap-5">
-        <div class="flex items-center gap-5 group">
+        <div
+          class="opacity-0 flex items-center gap-5 group"
+          pAnimateOnScroll
+          enterClass="animate-reveal-text-left"
+          leaveClass="opacity-0"
+          style="animation-delay: 300ms"
+        >
           <div
-            class="flex items-center justify-center shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-white via-[var(--p-primary-50)]/20 to-[var(--p-primary-100)]/70 dark:from-black/95 dark:via-neutral-950/90 dark:to-[var(--p-primary-900)]/10 backdrop-blur-md border border-gray-200/80 dark:border-neutral-800/80 shadow-[0_8px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
+            class="flex items-center justify-center shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-white via-[var(--p-primary-50)]/20 to-[var(--p-primary-100)]/70 dark:from-black/95 dark:via-neutral-950/90 dark:to-[var(--p-primary-900)]/10 backdrop-blur-md border border-gray-200/80 dark:border-neutral-800/80 shadow-[0_8px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-6"
           >
             <i class="pi pi-check text-lg md:text-xl text-[#c5a059] dark:text-[#e2c87d]"></i>
           </div>
           <span
-            class="text-sm font-medium tracking-widest text-gray-900 uppercase transition-colors duration-300 md:text-base 2xl:text-lg dark:text-gray-100 group-hover:text-[#c5a059] dark:group-hover:text-[#e2c87d]"
+            class="text-sm font-medium tracking-widest text-gray-900 uppercase transition-colors duration-500 md:text-base 2xl:text-lg dark:text-gray-100 group-hover:text-[#c5a059] dark:group-hover:text-[#e2c87d]"
           >
             {{ 'about.point1' | translate }}
           </span>
         </div>
 
-        <div class="flex items-center gap-5 group">
+        <div
+          class="opacity-0 flex items-center gap-5 group"
+          pAnimateOnScroll
+          enterClass="animate-reveal-text-left"
+          leaveClass="opacity-0"
+          style="animation-delay: 450ms"
+        >
           <div
-            class="flex items-center justify-center shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-white via-[var(--p-primary-50)]/20 to-[var(--p-primary-100)]/70 dark:from-black/95 dark:via-neutral-950/90 dark:to-[var(--p-primary-900)]/10 backdrop-blur-md border border-gray-200/80 dark:border-neutral-800/80 shadow-[0_8px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
+            class="flex items-center justify-center shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-white via-[var(--p-primary-50)]/20 to-[var(--p-primary-100)]/70 dark:from-black/95 dark:via-neutral-950/90 dark:to-[var(--p-primary-900)]/10 backdrop-blur-md border border-gray-200/80 dark:border-neutral-800/80 shadow-[0_8px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-6"
           >
             <i class="pi pi-check text-lg md:text-xl text-[#c5a059] dark:text-[#e2c87d]"></i>
           </div>
           <span
-            class="text-sm font-medium tracking-widest text-gray-900 uppercase transition-colors duration-300 md:text-base 2xl:text-lg dark:text-gray-100 group-hover:text-[#c5a059] dark:group-hover:text-[#e2c87d]"
+            class="text-sm font-medium tracking-widest text-gray-900 uppercase transition-colors duration-500 md:text-base 2xl:text-lg dark:text-gray-100 group-hover:text-[#c5a059] dark:group-hover:text-[#e2c87d]"
           >
             {{ 'about.point2' | translate }}
           </span>
@@ -77,38 +91,40 @@
       ></div>
 
       <div
-        #animImage
         class="absolute inset-0 opacity-0 group"
         pAnimateOnScroll
-        enterClass="animate-fade-in-up"
-        [style.animation-delay]="'200ms'"
-        (animationstart)="animImage.classList.remove('opacity-0')"
-        (animationend)="animImage.style.animationDelay = '0ms'"
+        enterClass="animate-image-unveil"
+        leaveClass="opacity-0"
+        style="animation-delay: 200ms"
       >
         <div
-          class="absolute inset-0 z-0 transition-transform duration-700 transform translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6 rounded-[2rem] md:rounded-[3rem] bg-gradient-to-br from-[#e2c87d]/30 to-transparent dark:from-[#c5a059]/30 border border-[#e2c87d]/20 group-hover:translate-x-2 group-hover:translate-y-2"
+          class="absolute inset-0 z-0 transition-transform duration-[1.5s] ease-out transform translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6 rounded-[2rem] md:rounded-[3rem] bg-gradient-to-br from-[#e2c87d]/30 to-transparent dark:from-[#c5a059]/30 border border-[#e2c87d]/20 group-hover:translate-x-2 group-hover:translate-y-2"
         ></div>
 
         <div
           class="absolute inset-0 z-10 rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-white/60 dark:border-white/10 bg-white/10 dark:bg-black/10 backdrop-blur-[2px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
         >
           <img
-            class="object-cover w-full h-full transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-            [alt]="'about.image_alt' | translate"
+            class="object-cover w-full h-full transition-transform duration-[2s] ease-out group-hover:scale-105"
             ngSrc="/assets/services/meseros.jpg"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
+            [alt]="'about.image_alt' | translate"
           />
           <div
-            class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"
+            class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none transition-opacity duration-1000 group-hover:opacity-70"
           ></div>
         </div>
 
         <div
-          class="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-6 z-30 p-3 sm:p-4 rounded-2xl bg-white/80 dark:bg-black/70 backdrop-blur-xl border border-white/60 dark:border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_15px_30px_rgba(0,0,0,0.5)] flex items-center gap-3 transition-transform duration-500 hover:-translate-y-2 group/badge"
+          class="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-6 z-30 p-3 sm:p-4 rounded-2xl bg-white/80 dark:bg-black/70 backdrop-blur-xl border border-white/60 dark:border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_15px_30px_rgba(0,0,0,0.5)] flex items-center gap-3 transition-transform duration-700 ease-out hover:-translate-y-2 group/badge opacity-0"
+          pAnimateOnScroll
+          enterClass="animate-seal-reveal"
+          leaveClass="opacity-0"
+          style="animation-delay: 700ms"
         >
           <div
-            class="flex items-center justify-center shrink-0 w-10 h-10 rounded-full shadow-inner sm:w-12 sm:h-12 bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 transition-colors duration-300 group-hover/badge:border-[#e2c87d]/50"
+            class="flex items-center justify-center shrink-0 w-10 h-10 rounded-full shadow-inner sm:w-12 sm:h-12 bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 transition-colors duration-500 group-hover/badge:border-[#e2c87d]/50"
           >
             <i class="text-sm sm:text-base pi pi-star-fill text-[#c5a059] dark:text-[#e2c87d]"></i>
           </div>

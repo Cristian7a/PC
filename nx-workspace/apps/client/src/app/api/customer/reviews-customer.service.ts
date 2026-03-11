@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ANGULAR_TEMPLATE_API } from '../../app.config';
-import { Observable, of } from 'rxjs';
+import { Observable, of, delay } from 'rxjs';
 import { Review } from '../models/reviews';
+import { CreateReviewDto } from 'packages/validation';
 
 @Injectable({
   providedIn: 'root',
@@ -54,5 +55,17 @@ export class ReviewsCustomerService {
       },
     ];
     return of(reviews);
+  }
+
+  createReview(payload: CreateReviewDto): Observable<{ success: boolean; message: string }> {
+    console.log(
+      '🌐 Servicio [ReviewsCustomerService]: Enviando payload al Backend simulado...',
+      payload,
+    );
+
+    return of({
+      success: true,
+      message: '¡Su memoria ha sido guardada con éxito!',
+    }).pipe(delay(1500));
   }
 }

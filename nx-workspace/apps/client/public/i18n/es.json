@@ -29,26 +29,15 @@
   },
   "home":{
     "button": {
-      "book":"Reservar",
-      "contact":"Contactar"
+      "book":"Reservar Fecha",
+      "contact":"Cotizar Evento"
     },
-    "description":"Elevamos la experiencia de tus eventos con un servicio excepcional y atención al detalle impecable",
-    "service":{
-      "title":"Servicio premium",
-      "description":"Atención de primer nivel"
-    },
-    "experience":{
-      "title":"Experiencia",
-      "description":"Años de excelencia en eventos"
-      },  
-    "avaliable":{ 
-      "title":"Disponibilidad",
-      "description":"24/7 para tus necesidades"
-    }
+    "description": "Maestría en etiqueta y discreción absoluta. Diseñamos el escenario perfecto para su tranquilidad."
   },
   "services": {
     "subtitle": "Nuestros Servicios", 
     "title": "Experiencias a la Medida",
+    "description": "Propuestas de servicio diseñadas a la medida de su visión, donde el rigor del protocolo y la calidez en el detalle son los pilares de una experiencia verdaderamente exclusiva.",    
     "dialog": {
       "from": "Desde",
       "description": "Sobre esta experiencia",
@@ -57,9 +46,25 @@
       "close": "Volver"
     }
   },
+  "gallery": {
+    "subtitle": "Portafolio Visual",
+    "title": "La Excelencia en Acción",
+    "description": "Una cuidada selección de memorias donde la elegancia, la discreción y el arte del buen servicio son los verdaderos protagonistas.",
+    "view_more": "Ver Colección Completa"
+  },
+  "full_gallery": {
+    "title": "Portafolio de Excelencia",
+    "subtitle": "La perfección se refleja en los detalles",
+    "cta_title": "¿Visualizas tu evento con este nivel de elegancia?",
+    "cta_button": "Diseñar mi Evento",
+    "empty_state_title": "Colección en Curaduría",
+    "empty_state_desc": "Aún estamos seleccionando nuestros mejores momentos para esta categoría. Vuelve pronto para inspirarte.",
+    "load_more": "Explorar más contenido"
+  },
   "reviews": {
-    "title": "Lo que dicen nuestros clientes",
-    "description": "Descubre por qué somos la mejor opción para tus eventos",
+    "title": "Memorias de Autor",
+    "subtitle": "Nuestra huella en cada evento",
+    "description": "Nuestra verdadera medida es el recuerdo impecable que dejamos. Conozca las historias de quienes han elevado sus eventos junto a nosotros.",
     "verified_tooltip": "Reseña verificada por Plato y Copa",
     "photo_alt": "Fotografía adjunta de la reseña del cliente",
     "see_photos": "Ver fotos",
@@ -68,7 +73,24 @@
     "next_review": "Siguiente reseña",
     "close_gallery": "Cerrar galería",
     "prev_photo": "Foto anterior",
-    "next_photo": "Siguiente foto"
+    "next_photo": "Siguiente foto",
+    "add_review_btn": "Compartir su experiencia",
+    "dialog_title": "Su Memoria",
+    "dialog_subtitle": "Valoramos su confianza y distinción",
+    "form_name": "Nombre completo",
+    "form_contract": "Contrato",
+    "form_contract_helper": "Para verificación del servicio",
+    "form_rating": "Calificación del servicio",
+    "form_section_details": "Detalles de la experiencia",
+    "form_rating_helper": "Toque las estrellas para calificar",
+    "form_category": "Categoría",
+    "form_services": "Servicios",
+    "form_comment": "Relate su experiencia...",
+    "form_submit": "Compartir experiencia",
+    "form_cancel": "Cancelar",
+    "category_placeholder": "Seleccione una categoría",
+    "services_placeholder": "Seleccione los servicios",
+    "form_submit_disabled_tooltip": "Complete todos los campos marcados correctamente para habilitar el envío."
   },
   "about": {
     "subtitle": "Sobre Nosotros",
@@ -115,5 +137,21 @@
       }
     },
     "visit":"Visita nuestras redes sociales:"
+  },
+  "validation": {
+    "name_required": "El nombre es obligatorio.",
+    "name_invalid": "El nombre solo debe contener letras.",
+    "name_min": "El nombre debe tener al menos 3 caracteres.",
+    "name_max": "El nombre no puede exceder los 100 caracteres.",
+    "contract_required": "El número de contrato es obligatorio.",
+    "contract_format": "El formato del contrato es incorrecto. Verifique su documento.",
+    "rating_required": "La calificación es obligatoria.",
+    "rating_min": "Debe otorgar al menos 1 estrella.",
+    "rating_max": "La calificación máxima es de 5 estrellas.",
+    "category_required": "Debe seleccionar la categoría de su evento.",
+    "services_required": "Debe seleccionar al menos un servicio.",
+    "comment_required": "Su experiencia es obligatoria.",
+    "comment_min": "Por favor, cuéntenos un poco más (mínimo 10 caracteres).",
+    "comment_max": "El comentario es demasiado largo (máximo 1000 caracteres)."
   }
 }

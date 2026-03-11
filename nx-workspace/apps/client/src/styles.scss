@@ -111,50 +111,330 @@ body {
 }
 
 /* =========================================
-   PREMIUM SCROLL ANIMATIONS
+   STORYTELLING & LUXURY ANIMATIONS 
+   (Optimizadas para 60fps sin Stuttering)
    ========================================= */
-@keyframes fadeInUp {
+
+:root {
+  /* Curvas de aceleración */
+  --easing-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --easing-reveal: cubic-bezier(0.22, 1, 0.36, 1); /* Más suave para features */
+  --easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* OPTIMIZACIÓN: Se redujo el blur a la mitad y se usa translate3d para forzar GPU */
+
+@keyframes slideDownReveal {
   0% {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translate3d(0, -100%, 0);
+    filter: blur(4px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
   }
 }
 
-@keyframes fadeInLeft {
+@keyframes zoomOutPresence {
   0% {
     opacity: 0;
-    transform: translateX(-40px);
+    transform: scale(1.1) translate3d(0, 0, 0);
+    filter: blur(6px);
   }
   100% {
     opacity: 1;
-    transform: translateX(0);
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: blur(0);
   }
 }
 
-@keyframes zoomInSmooth {
+@keyframes trackingInCinematic {
   0% {
     opacity: 0;
-    transform: scale(0.95);
+    letter-spacing: 0.1em;
+    filter: blur(4px);
+    transform: translate3d(0, 20px, 0);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    letter-spacing: normal;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
-/* Curva de aceleración Premium (0.2, 0.8, 0.2, 1) */
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+@keyframes etherealRise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 25px, 0);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
 }
 
-.animate-fade-in-left {
-  animation: fadeInLeft 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+@keyframes ctaReveal {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
 }
 
-.animate-zoom-in-smooth {
-  animation: zoomInSmooth 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+/* NUEVAS ANIMACIONES PARA FEATURES (Sólidas, sin brincos) */
+@keyframes luxuryIslandRise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 60px, 0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes featureUnveil {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* =========================================
+   ANIMACIONES SECCIÓN ABOUT (HERENCIA Y CONFIANZA)
+   ========================================= */
+
+/* Revelación de texto como la página de un libro elegante */
+@keyframes revealTextLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-40px, 0, 0);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+/* La imagen se revela como una obra de arte (ajusta escala y luz suavemente) */
+@keyframes imageUnveilLuxury {
+  0% {
+    opacity: 0;
+    transform: scale(1.05) translate3d(0, 30px, 0);
+    filter: brightness(0.7) blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: brightness(1) blur(0);
+  }
+}
+
+/* El sello de calidad se asienta con peso, sin rebotar */
+@keyframes sealReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translate3d(0, 20px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+/* =========================================
+   ANIMACIONES SECCIÓN SERVICES (LA VITRINA)
+   ========================================= */
+
+/* El header desciende suavemente, como si se abriera un telón o bajara una lámpara de diseño */
+@keyframes servicesHeaderDescend {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -30px, 0);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+/* Las tarjetas se acercan desde el fondo (scale 0.95) hacia el frente, simulando una bandeja que se sirve */
+@keyframes serviceCardPresent {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0) scale(0.95);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* =========================================
+   ANIMACIONES SECCIÓN GALLERY (EL REVELADO)
+   ========================================= */
+
+/* Las imágenes se revelan de las sombras y se enfocan suavemente */
+@keyframes galleryImageDevelop {
+  0% {
+    opacity: 0;
+    transform: scale(1.05) translate3d(0, 15px, 0);
+    filter: brightness(0.6) blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: brightness(1) blur(0);
+  }
+}
+
+@keyframes reviewsCarouselFloat {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+/* CLASES DE UTILIDAD ACELERADAS POR HARDWARE */
+.hardware-accelerated {
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Cambiamos "forwards" por "both" en TODAS las animaciones */
+.animate-slide-down {
+  animation: slideDownReveal 1.2s var(--easing-luxury) both;
+  @extend .hardware-accelerated;
+}
+.animate-zoom-out-presence {
+  animation: zoomOutPresence 1.6s var(--easing-luxury) both;
+  @extend .hardware-accelerated;
+}
+.animate-cinematic-title {
+  animation: trackingInCinematic 1.4s var(--easing-luxury) both;
+  @extend .hardware-accelerated;
+}
+.animate-ethereal-rise {
+  animation: etherealRise 1.2s var(--easing-luxury) both;
+  @extend .hardware-accelerated;
+}
+.animate-cta-reveal {
+  animation: ctaReveal 1.2s var(--easing-spring) both;
+  @extend .hardware-accelerated;
+}
+
+/* CLASES PARA FEATURES */
+.animate-luxury-island {
+  animation: luxuryIslandRise 1.4s var(--easing-luxury) both;
+  @extend .hardware-accelerated;
+}
+.animate-feature-unveil {
+  animation: featureUnveil 1.2s var(--easing-reveal) both;
+  @extend .hardware-accelerated;
+}
+
+/* CLASES PARA ABOUT */
+.animate-reveal-text-left {
+  animation: revealTextLeft 1.4s var(--easing-luxury) both;
+  @extend .hardware-accelerated;
+}
+.animate-image-unveil {
+  animation: imageUnveilLuxury 1.6s var(--easing-luxury) both;
+  @extend .hardware-accelerated;
+}
+.animate-seal-reveal {
+  animation: sealReveal 1.2s var(--easing-luxury) both;
+  @extend .hardware-accelerated;
+}
+
+.animate-services-header {
+  animation: servicesHeaderDescend 1.4s var(--easing-luxury) both;
+  @extend .hardware-accelerated;
+}
+.animate-service-card {
+  animation: serviceCardPresent 1.4s var(--easing-luxury) both;
+  @extend .hardware-accelerated;
+}
+.animate-gallery-image {
+  animation: galleryImageDevelop 1.6s var(--easing-luxury) both;
+  @extend .hardware-accelerated;
+}
+.animate-reviews-carousel {
+  animation: reviewsCarouselFloat 1.4s var(--easing-luxury) both;
+  @extend .hardware-accelerated;
+}
+
+/* Controladores de Escalonamiento */
+.delay-100 {
+  animation-delay: 100ms;
+}
+.delay-200 {
+  animation-delay: 200ms;
+}
+.delay-300 {
+  animation-delay: 350ms;
+}
+.delay-400 {
+  animation-delay: 500ms;
+}
+.delay-500 {
+  animation-delay: 650ms;
+}
+
+/* =========================================
+   DELAYS NATIVOS PARA EL GRID DE SERVICIOS
+   (Evita que Angular congele las tarjetas)
+   ========================================= */
+.service-card-wrapper:nth-child(3n + 1) {
+  animation-delay: 0ms;
+}
+.service-card-wrapper:nth-child(3n + 2) {
+  animation-delay: 150ms;
+}
+.service-card-wrapper:nth-child(3n + 3) {
+  animation-delay: 300ms;
+}
+
+/* Delays para el Grid de la Galería (Evitando cálculos de Angular) */
+.gallery-grid-item:nth-child(4n + 1) {
+  animation-delay: 0ms;
+}
+.gallery-grid-item:nth-child(4n + 2) {
+  animation-delay: 150ms;
+}
+.gallery-grid-item:nth-child(4n + 3) {
+  animation-delay: 300ms;
+}
+.gallery-grid-item:nth-child(4n + 4) {
+  animation-delay: 450ms;
+}
+
+/* Evita destellos antes de que empiece la animación */
+.opacity-0-init {
+  opacity: 0;
 }

@@ -48,6 +48,8 @@ export class ServicesSectionComponent implements OnInit, OnDestroy {
   readonly visible = signal<boolean>(false);
   readonly selectedService = signal<Service | null>(null);
 
+  readonly isDialogScrolled = signal<boolean>(false);
+
   ngOnInit(): void {
     const resolvedData = this.route.snapshot.data['services'];
     if (resolvedData) {
@@ -56,8 +58,14 @@ export class ServicesSectionComponent implements OnInit, OnDestroy {
   }
 
   showDialog(service: Service): void {
+    this.isDialogScrolled.set(false);
     this.selectedService.set(service);
     this.visible.set(true);
+  }
+
+  onDialogScroll(event: Event): void {
+    const target = event.target as HTMLElement;
+    this.isDialogScrolled.set(target.scrollTop > 30);
   }
 
   ngOnDestroy(): void {

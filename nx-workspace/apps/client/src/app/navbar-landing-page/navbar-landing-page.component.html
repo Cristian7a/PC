@@ -1,10 +1,10 @@
 <p-toolbar
+  class="fixed z-50 w-full py-2! px-0! lg:px-2! lg:py-0! 2xl:px-4! transition-all duration-500 ease-in-out animate-slide-down opacity-0-init"
   [ngClass]="{
     '!bg-transparent !border-none !shadow-none': !isScrolled(),
     '!bg-gradient-to-br !from-white !via-[var(--p-primary-50)]/20 !to-[var(--p-primary-100)]/70 dark:!from-black/95 dark:!via-neutral-950/90 dark:!to-[var(--p-primary-900)]/10 !backdrop-blur-2xl !border-b !border-gray-200/80 dark:!border-neutral-800/80 shadow-[0_10px_40px_rgba(var(--p-primary-500),0.08)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)]':
       isScrolled(),
   }"
-  class="fixed z-50 w-full py-2! px-0! lg:px-2! lg:py-0! 2xl:px-4! transition-all duration-500 ease-in-out"
 >
   <ng-template #start>
     <p-button variant="text" routerLink="/" styleClass="py-1! 2xl:py-4! hover:bg-transparent!">
@@ -82,7 +82,7 @@
   <ng-template #end>
     <div class="flex gap-2 2xl:gap-4 items-center">
       <p-button
-        styleClass="!text-sm 2xl:!text-2xl 2xl:p-8!"
+        styleClass="!text-sm 2xl:!text-2xl 2xl:p-8! transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(226,200,125,0.2)] dark:hover:shadow-[0_15px_40px_rgba(226,200,125,0.15)] hover:border-[#e2c87d]/40 dark:hover:border-[#e2c87d]/30"
         icon="pi pi-search"
         variant="text"
         rounded="true"
@@ -98,7 +98,7 @@
 
       <p-button
         label="{{ 'general.quotationBtn' | translate }}"
-        styleClass="!text-sm 2xl:!text-3xl 2xl:p-4! bg-gold-shine !border-none !text-neutral-900 hover:brightness-110 transition-all duration-300 hover:scale-105 shadow-md"
+        styleClass="!text-sm 2xl:!text-3xl 2xl:p-4! bg-gold-shine !border-none transition-all duration-700 ease-out hover:brightness-110 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(226,200,125,0.3)] dark:hover:shadow-[0_15px_40px_rgba(226,200,125,0.2)] shadow-md"
         rounded="true"
         class="hidden md:block"
       >
@@ -111,14 +111,14 @@
         icon="pi pi-calculator"
         rounded="true"
         class="block md:hidden"
-        styleClass="bg-gold-shine !border-none !text-neutral-900 hover:brightness-110 transition-all duration-300 hover:scale-105 shadow-md"
+        styleClass="bg-gold-shine !border-none transition-all duration-700 ease-out hover:brightness-110 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(226,200,125,0.3)] dark:hover:shadow-[0_15px_40px_rgba(226,200,125,0.2)] shadow-md"
         tooltipPosition="bottom"
         tooltipStyleClass="!text-xs md:!text-base 2xl:!text-4xl 2xl:p-1!"
         [pTooltip]="'general.quotationBtn' | translate"
       />
 
       <p-button
-        styleClass="!text-sm 2xl:!text-2xl 2xl:p-8!"
+        styleClass="!text-sm 2xl:!text-2xl 2xl:p-8! transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(226,200,125,0.2)] dark:hover:shadow-[0_15px_40px_rgba(226,200,125,0.15)] hover:border-[#e2c87d]/40 dark:hover:border-[#e2c87d]/30"
         variant="text"
         rounded="true"
         tooltipPosition="bottom"
