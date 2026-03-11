@@ -1,44 +1,54 @@
 <div
-  class="relative flex justify-center w-full px-8 py-0 md:py-4 2xl:py-8 mx-auto -mt-10 max-w-[2000px] sm:px-12 md:px-16 lg:px-24 md:-mt-16 md:pb-12 2xl:-mt-24 z-[8] pointer-events-none"
+  class="relative flex justify-center w-full px-8 pt-10 pb-2 2xl:pt-20 2xl:pb-4 mx-auto -mt-10 max-w-[2000px] sm:px-12 md:px-16 lg:px-24 md:-mt-16 2xl:-mt-24 z-[8] pointer-events-none"
 >
   <div
     #animIsland
-    class="opacity-0 w-full max-w-5xl pointer-events-auto"
+    class="opacity-0-init w-full max-w-5xl pointer-events-auto"
     pAnimateOnScroll
-    enterClass="animate-fade-in-up"
-    (animationstart)="animIsland.classList.remove('opacity-0')"
+    enterClass="animate-luxury-island"
+    (animationstart)="animIsland.classList.remove('opacity-0-init')"
   >
     <div
-      class="relative w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-gradient-to-br from-white via-[var(--p-primary-50)]/20 to-[var(--p-primary-100)]/70 dark:from-black/95 dark:via-neutral-950/90 dark:to-[var(--p-primary-900)]/10 backdrop-blur-2xl border border-gray-200/80 dark:border-neutral-800/80 shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.6)] transition-all duration-500 hover:shadow-[0_20px_60px_rgba(226,200,125,0.15)] dark:hover:shadow-[0_20px_60px_rgba(226,200,125,0.1)] hover:border-[#e2c87d]/40 dark:hover:border-[#e2c87d]/20"
+      class="relative w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-gradient-to-br from-white via-[var(--p-primary-50)]/20 to-[var(--p-primary-100)]/70 dark:from-black/95 dark:via-neutral-950/90 dark:to-[var(--p-primary-900)]/10 backdrop-blur-2xl border border-gray-200/80 dark:border-neutral-800/80 shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.6)] transition-all duration-700 hover:shadow-[0_20px_60px_rgba(226,200,125,0.15)] dark:hover:shadow-[0_20px_60px_rgba(226,200,125,0.1)] hover:border-[#e2c87d]/40 dark:hover:border-[#e2c87d]/20"
     >
       <div
         class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200/60 dark:divide-neutral-800/80"
       >
-        @for (feat of features; track feat.titleKey) {
+        @for (feat of features; track feat.titleKey; let i = $index) {
           <div
-            class="group flex flex-col items-center text-center p-6 sm:p-8 md:p-10 2xl:p-14 transition-colors duration-500 hover:bg-white/40 dark:hover:bg-white/5"
+            #animFeature
+            class="opacity-0-init h-full"
+            pAnimateOnScroll
+            enterClass="animate-feature-unveil"
+            [style.animation-delay]="i * 200 + 250 + 'ms'"
+            (animationstart)="animFeature.classList.remove('opacity-0-init')"
+            (animationend)="animFeature.style.animationDelay = '0ms'"
           >
-            <p-avatar
-              shape="circle"
-              styleClass="!w-16 !h-16 2xl:!w-24 2xl:!h-24 mb-4 2xl:mb-6 !text-primary-contrast shadow-lg border-[3px] 2xl:border-4 border-white/80 dark:border-white/10 bg-gold-shine transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[15deg]"
+            <div
+              class="group flex flex-col items-center text-center p-6 sm:p-8 md:p-10 2xl:p-14 transition-colors duration-700 hover:bg-white/40 dark:hover:bg-white/5 h-full"
             >
-              <i
-                class="!text-2xl 2xl:!text-4xl drop-shadow-sm !text-white dark:!text-neutral-950"
-                [class]="feat.icon"
-              ></i>
-            </p-avatar>
+              <p-avatar
+                shape="circle"
+                styleClass="!w-16 !h-16 2xl:!w-24 2xl:!h-24 mb-4 2xl:mb-6 shadow-lg border-[3px] 2xl:border-4 border-white/80 dark:border-white/10 bg-gold-shine transition-all duration-700 ease-out group-hover:scale-110 group-hover:-translate-y-2"
+              >
+                <i
+                  class="!text-2xl 2xl:!text-4xl drop-shadow-sm !text-white dark:!text-neutral-950 transition-transform duration-700 group-hover:scale-110"
+                  [class]="feat.icon"
+                ></i>
+              </p-avatar>
 
-            <h5
-              class="mb-2 text-xl font-bold tracking-wide text-gray-900 transition-colors duration-300 2xl:text-3xl 2xl:mb-4 dark:text-white group-hover:text-[#c5a059] dark:group-hover:text-[#e2c87d]"
-            >
-              {{ feat.titleKey | translate }}
-            </h5>
+              <h5
+                class="mb-2 text-xl font-bold tracking-wide text-gray-700 transition-colors duration-500 2xl:text-3xl 2xl:mb-4 dark:text-white group-hover:text-[#c5a059] dark:group-hover:text-[#e2c87d]"
+              >
+                {{ feat.titleKey | translate }}
+              </h5>
 
-            <p
-              class="text-sm font-light leading-relaxed text-gray-600 2xl:text-xl dark:text-gray-300"
-            >
-              {{ feat.descriptionKey | translate }}
-            </p>
+              <p
+                class="text-sm font-light leading-relaxed text-gray-600 2xl:text-xl dark:text-gray-300 transition-opacity duration-500 group-hover:opacity-100 opacity-90"
+              >
+                {{ feat.descriptionKey | translate }}
+              </p>
+            </div>
           </div>
         }
       </div>
