@@ -9,32 +9,26 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { Avatar } from 'primeng/avatar';
-import { Button } from 'primeng/button';
 import { Card } from 'primeng/card';
-import { Dialog } from 'primeng/dialog';
 import { Divider } from 'primeng/divider';
 import { Tag } from 'primeng/tag';
-import { TooltipModule } from 'primeng/tooltip';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { Service } from '../../api/models/services';
 import { ImageUrlService } from '../../utils/imageUrl.utils';
+import { ServiceDialogComponent } from './service-dialog/service-dialog.component';
 
 @Component({
   selector: 'app-services-section',
   standalone: true,
   imports: [
-    Avatar,
-    Button,
     Card,
     CommonModule,
-    Dialog,
     Divider,
     NgOptimizedImage,
     Tag,
-    TooltipModule,
     TranslatePipe,
     AnimateOnScrollModule,
+    ServiceDialogComponent,
   ],
   templateUrl: './services-section.component.html',
   styleUrl: './services-section.component.scss',
@@ -48,8 +42,6 @@ export class ServicesSectionComponent implements OnInit, OnDestroy {
   readonly visible = signal<boolean>(false);
   readonly selectedService = signal<Service | null>(null);
 
-  readonly isDialogScrolled = signal<boolean>(false);
-
   ngOnInit(): void {
     const resolvedData = this.route.snapshot.data['services'];
     if (resolvedData) {
@@ -58,14 +50,8 @@ export class ServicesSectionComponent implements OnInit, OnDestroy {
   }
 
   showDialog(service: Service): void {
-    this.isDialogScrolled.set(false);
     this.selectedService.set(service);
     this.visible.set(true);
-  }
-
-  onDialogScroll(event: Event): void {
-    const target = event.target as HTMLElement;
-    this.isDialogScrolled.set(target.scrollTop > 30);
   }
 
   ngOnDestroy(): void {
