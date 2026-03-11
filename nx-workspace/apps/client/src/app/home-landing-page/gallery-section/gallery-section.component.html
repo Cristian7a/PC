@@ -3,11 +3,10 @@
   class="scroll-mt-20 md:scroll-mt-28 relative flex flex-col items-center justify-center w-full px-6 py-2 md:py-4 2xl:py-8 mx-auto max-w-[2000px] sm:px-12 md:px-16 lg:px-24 z-10"
 >
   <div
-    #animHeader
     class="relative z-10 flex flex-col items-center w-full max-w-3xl mx-auto mb-10 opacity-0 md:mb-12 2xl:mb-16"
     pAnimateOnScroll
-    enterClass="animate-fade-in-up"
-    (animationstart)="animHeader.classList.remove('opacity-0')"
+    enterClass="animate-services-header"
+    leaveClass="opacity-0"
   >
     <h2
       class="text-3xl font-light text-center tracking-tight text-gold-shine md:text-5xl 2xl:text-7xl"
@@ -32,27 +31,24 @@
   <div
     class="relative z-10 w-full px-2 md:px-6 lg:px-10 grid grid-cols-2 md:grid-cols-4 grid-flow-dense auto-rows-[160px] sm:auto-rows-[180px] md:auto-rows-[220px] 2xl:auto-rows-[280px] gap-3 md:gap-4 2xl:gap-6"
   >
-    @for (img of galleryImages; track img.src; let i = $index) {
+    @for (img of galleryImages(); track img.id) {
       <div
-        #animImg
-        class="relative w-full h-full opacity-0 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden group shadow-md hover:shadow-2xl transition-shadow duration-500 bg-gray-100 dark:bg-neutral-900 cursor-pointer focus:outline-none focus:ring-4 focus:ring-[var(--p-primary-500)]/50"
+        class="relative w-full h-full opacity-0 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden group shadow-md hover:shadow-2xl transition-shadow duration-500 bg-gray-100 dark:bg-neutral-900 cursor-pointer focus:outline-none focus:ring-4 focus:ring-[var(--p-primary-500)]/50 gallery-grid-item"
         pAnimateOnScroll
-        enterClass="animate-fade-in-up"
-        [ngClass]="img.spanClass"
-        [style.animation-delay]="i * 100 + 'ms'"
-        (animationstart)="animImg.classList.remove('opacity-0')"
-        (animationend)="animImg.style.animationDelay = '0ms'"
+        enterClass="animate-gallery-image"
+        leaveClass="opacity-0"
         tabindex="0"
-        (click)="openViewer(i)"
-        (keydown.enter)="openViewer(i)"
-        (keydown.space)="openViewer(i); $event.preventDefault()"
+        [ngClass]="img.spanClass"
+        (click)="openViewer($index)"
+        (keydown.enter)="openViewer($index)"
+        (keydown.space)="openViewer($index); $event.preventDefault()"
       >
         <img
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           class="object-cover transition-transform duration-[2s] ease-out group-hover:scale-110"
-          [ngSrc]="img.src"
-          [alt]="img.alt"
+          [ngSrc]="img.url"
+          [alt]="img.title"
         />
 
         <div
@@ -72,12 +68,11 @@
   </div>
 
   <div
-    #animBtn
     class="mt-14 md:mt-16 2xl:mt-20 opacity-0"
     pAnimateOnScroll
-    enterClass="animate-fade-in-up"
-    [style.animation-delay]="'300ms'"
-    (animationstart)="animBtn.classList.remove('opacity-0')"
+    enterClass="animate-cta-reveal"
+    leaveClass="opacity-0"
+    style="animation-delay: 500ms"
   >
     <p-button
       variant="outlined"
@@ -93,7 +88,7 @@
 </div>
 
 <p-galleria
-  [value]="galleryImages"
+  [value]="galleryImages()"
   [fullScreen]="true"
   [showItemNavigators]="true"
   [showThumbnails]="false"
@@ -104,8 +99,8 @@
   <ng-template let-item pTemplate="item">
     <img
       class="block w-auto h-auto max-w-[95vw] max-h-[85vh] rounded-md shadow-[0_20px_50px_rgba(0,0,0,0.9)]"
-      [src]="item.src"
-      [alt]="item.alt"
+      [src]="item.url"
+      [alt]="item.title"
     />
   </ng-template>
 </p-galleria>
