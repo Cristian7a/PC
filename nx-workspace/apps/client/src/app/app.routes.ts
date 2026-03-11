@@ -3,6 +3,7 @@ import { Route } from '@angular/router';
 import {
   servicesCustomerResolver,
   reviewsCustomerResolver,
+  galleryCustomerResolver,
 } from './resolvers/landing-page.resolver';
 
 export const APP_ROUTES = {
@@ -29,6 +30,7 @@ export const appRoutes: Route[] = [
         resolve: {
           services: servicesCustomerResolver,
           reviews: reviewsCustomerResolver,
+          gallery: galleryCustomerResolver,
         },
       },
     ],
