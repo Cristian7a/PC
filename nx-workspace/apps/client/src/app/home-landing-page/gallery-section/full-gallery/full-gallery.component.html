@@ -48,8 +48,8 @@
     </div>
 
     <main
-      class="flex-grow overflow-y-auto px-4 pt-16 md:px-12 lg:px-20 md:pt-20 pb-20 scroll-smooth"
-      style="scrollbar-width: thin"
+      class="flex-grow overflow-y-auto px-4 pt-16 md:px-12 lg:px-20 md:pt-20 pb-20 scroll-smooth animate-luxury-island"
+      style="scrollbar-width: thin; scrollbar-color: rgba(226, 200, 125, 0.4) transparent"
       (scroll)="onScroll($event)"
     >
       <div class="flex flex-col items-center mb-6 md:mb-8 px-4">
@@ -74,9 +74,9 @@
 
       @if (filteredImages().length > 0) {
         <div class="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-6">
-          @for (img of filteredImages(); track $index) {
+          @for (img of filteredImages(); track img.id) {
             <div
-              class="relative w-full inline-block break-inside-avoid mb-3 md:mb-6 rounded-[1rem] md:rounded-[2rem] overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-700 bg-gray-200 dark:bg-neutral-900 animate-fade-in-up focus:outline-none focus:ring-4 focus:ring-[var(--p-primary-500)]/50"
+              class="relative w-full inline-block break-inside-avoid mb-3 md:mb-6 rounded-[1rem] md:rounded-[2rem] overflow-hidden group cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-700 bg-gray-200 dark:bg-neutral-900 animate-gallery-image gallery-grid-item focus:outline-none focus:ring-4 focus:ring-[var(--p-primary-500)]/50"
               tabindex="0"
               (click)="openViewer($index)"
               (keydown.enter)="openViewer($index)"
@@ -85,8 +85,8 @@
               <img
                 class="w-full h-auto block object-cover transition-transform duration-[2s] ease-out group-hover:scale-110"
                 loading="lazy"
-                [src]="img.src"
-                [alt]="img.alt"
+                [src]="img.url"
+                [alt]="img.title"
               />
               <div
                 class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-black/40 backdrop-blur-[2px] transition-all duration-500 flex items-center justify-center pointer-events-none"
@@ -236,8 +236,8 @@
   <ng-template let-item pTemplate="item">
     <img
       class="block w-auto h-auto max-w-[95vw] max-h-[85vh] rounded-md shadow-[0_30px_80px_rgba(0,0,0,0.9)]"
-      [src]="item.src"
-      [alt]="item.alt"
+      [src]="item.url"
+      [alt]="item.title"
     />
   </ng-template>
 </p-galleria>
