@@ -117,6 +117,28 @@
       "description": "Anticipación y discreción absoluta ante las necesidades de tus invitados."
     }
   },
+  "contact": {
+    "availability": "Disponibilidad Limitada",
+    "title": "El arte de ser el anfitrión",
+    "subtitle": "Diseño de experiencias exclusivas",
+    "description": "Permítanos conocer su visión para crear una propuesta a su estricta medida. Nuestro equipo diseñará una experiencia impecable, orquestando cada detalle para que usted se dedique únicamente a disfrutar de un evento verdaderamente memorable, sofisticado y libre de preocupaciones.",
+    "form": {
+      "name": "Su Nombre",
+      "date": "Fecha Estimada (Ej. Diciembre 2026)",
+      "event_type": "Tipo de Evento (Boda, Corporativo, etc.)",
+      "message": "Compártanos los detalles que harán único su evento..."
+    },
+    "button": {
+      "submit": "Iniciar Consultoría",
+      "submitting": "Procesando...",
+      "planner": "Diseñar mi cotización"
+    },
+    "info": {
+      "coverage": "Zona de Cobertura",
+      "coverage_value": "Puebla y Área Metropolitana",
+      "direct": "Atención Directa"
+    }
+  },
   "menu":{
     "sections":{
       "navigation":"Navegación",
