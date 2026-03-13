@@ -139,114 +139,244 @@
       >
         <div class="relative z-10 flex flex-col gap-6 md:gap-7">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-7">
-            <div class="w-full">
+            <div class="w-full flex flex-col">
               <p-floatLabel class="w-full">
                 <input
                   id="contact_name"
                   type="text"
                   pInputText
-                  class="w-full !bg-white/70 dark:!bg-neutral-900/60 !border !border-gray-200 dark:!border-neutral-800 focus:!border-[#c5a059] dark:focus:!border-[#e2c87d] !rounded-xl !px-5 !pt-7 !pb-3 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all text-gray-800 dark:text-white hover:!bg-white dark:hover:!bg-neutral-900"
+                  class="w-full !bg-white/70 dark:!bg-neutral-900/60 !border focus:!border-[#c5a059] dark:focus:!border-[#e2c87d] !rounded-xl !px-5 !pt-7 !pb-3 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all text-gray-800 dark:text-white hover:!bg-white dark:hover:!bg-neutral-900"
+                  [ngClass]="
+                    formErrors()['name']
+                      ? '!border-red-400 dark:!border-red-500/50'
+                      : '!border-gray-200 dark:!border-neutral-800'
+                  "
                   [(ngModel)]="contactForm.name"
+                  (blur)="onInteraction('name')"
+                  (ngModelChange)="onInteraction('name')"
                 />
                 <label
                   for="contact_name"
-                  class="font-light text-[13px] md:text-sm text-gray-500 ml-3"
+                  class="font-light text-[13px] md:text-sm ml-3"
+                  [ngClass]="formErrors()['name'] ? 'text-red-500' : 'text-gray-500'"
                   >{{ 'contact.form.name' | translate }}</label
                 >
               </p-floatLabel>
+              @if (formErrors()['name']) {
+                <span
+                  class="text-[10px] text-red-500 dark:text-red-400 ml-3 mt-1.5 animate-fade-in-up"
+                >
+                  {{ formErrors()['name'] | translate }}
+                </span>
+              }
             </div>
 
-            <div class="w-full">
-              <p-floatLabel class="w-full">
-                <input
-                  id="contact_date"
-                  type="text"
-                  pInputText
-                  class="w-full !bg-white/70 dark:!bg-neutral-900/60 !border !border-gray-200 dark:!border-neutral-800 focus:!border-[#c5a059] dark:focus:!border-[#e2c87d] !rounded-xl !px-5 !pt-7 !pb-3 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all text-gray-800 dark:text-white hover:!bg-white dark:hover:!bg-neutral-900"
+            <div class="w-full flex flex-col group/datepicker">
+              <p-floatLabel class="w-full relative">
+                <p-datepicker
+                  inputId="contact_date"
+                  appendTo="body"
+                  dateFormat="dd/mm/yy"
+                  styleClass="w-full flex !bg-white/70 dark:!bg-neutral-900/60 !border focus-within:!border-[#c5a059] dark:focus-within:!border-[#e2c87d] !rounded-xl shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all hover:!bg-white dark:hover:!bg-neutral-900 cursor-pointer [&>button]:!bg-transparent [&>button]:!border-none"
+                  inputStyleClass="w-full flex-1 !bg-transparent !border-none !outline-none !shadow-none !pl-5 !pr-10 !pt-7 !pb-3 text-gray-800 dark:text-white cursor-pointer"
+                  panelStyleClass="!bg-white/95 dark:!bg-neutral-900/95 !backdrop-blur-2xl !border !border-gray-200/50 dark:!border-neutral-800/80 !rounded-2xl !shadow-2xl"
+                  iconDisplay="input"
+                  [readonlyInput]="true"
+                  [minDate]="minDateAllowed"
+                  [showIcon]="true"
+                  [showClear]="true"
+                  [ngClass]="
+                    formErrors()['date']
+                      ? '!border-red-400 dark:!border-red-500/50'
+                      : '!border-gray-200 dark:!border-neutral-800'
+                  "
                   [(ngModel)]="contactForm.date"
-                />
+                  (ngModelChange)="onInteraction('date')"
+                  (onBlur)="onInteraction('date')"
+                >
+                  <ng-template #inputicon let-clickCallBack="clickCallBack">
+                    <i
+                      class="pi pi-calendar text-gray-400 dark:text-gray-500 transition-colors duration-300 group-hover/datepicker:text-[#c5a059] dark:group-hover/datepicker:text-[#e2c87d] cursor-pointer"
+                      role="button"
+                      tabindex="0"
+                      (click)="clickCallBack($event)"
+                      (keydown.enter)="clickCallBack($event)"
+                      (keydown.space)="clickCallBack($event)"
+                    >
+                    </i>
+                  </ng-template>
+
+                  <ng-template #clearicon let-clearCallBack="clearCallBack">
+                    <i
+                      class="pi pi-times text-gray-300 dark:text-gray-600 hover:text-red-400 transition-colors cursor-pointer mr-2"
+                      role="button"
+                      tabindex="0"
+                      (click)="clearCallBack($event)"
+                      (keydown.enter)="clearCallBack($event)"
+                      (keydown.space)="clearCallBack($event)"
+                    >
+                    </i>
+                  </ng-template>
+                </p-datepicker>
+
                 <label
                   for="contact_date"
-                  class="font-light text-[13px] md:text-sm text-gray-500 ml-3"
-                  >{{ 'contact.form.date' | translate }}</label
+                  class="font-light text-[13px] md:text-sm ml-3 pointer-events-none"
+                  [ngClass]="formErrors()['date'] ? 'text-red-500' : 'text-gray-500'"
                 >
+                  {{ 'contact.form.date' | translate }}
+                </label>
               </p-floatLabel>
+
+              @if (formErrors()['date']) {
+                <span
+                  class="text-[10px] text-red-500 dark:text-red-400 ml-3 mt-1.5 animate-fade-in-up"
+                >
+                  {{ formErrors()['date'] | translate }}
+                </span>
+              }
             </div>
           </div>
 
-          <div class="w-full">
+          <div class="w-full flex flex-col">
             <p-floatLabel class="w-full">
-              <input
-                id="contact_type"
-                type="text"
-                pInputText
-                class="w-full !bg-white/70 dark:!bg-neutral-900/60 !border !border-gray-200 dark:!border-neutral-800 focus:!border-[#c5a059] dark:focus:!border-[#e2c87d] !rounded-xl !px-5 !pt-7 !pb-3 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all text-gray-800 dark:text-white hover:!bg-white dark:hover:!bg-neutral-900"
-                [(ngModel)]="contactForm.eventType"
-              />
+              <p-select
+                inputId="contact_type"
+                appendTo="body"
+                optionLabel="name"
+                placeholder=" "
+                styleClass="w-full flex min-h-[58px] items-center !bg-white/70 dark:!bg-neutral-900/60 !border focus-within:!border-[#c5a059] dark:focus-within:!border-[#e2c87d] !rounded-xl shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all hover:!bg-white dark:hover:!bg-neutral-900 [&_.p-select-label]:!pt-6 [&_.p-select-label]:!pb-2 [&_.p-select-label]:!px-5"
+                inputStyleClass="!bg-transparent !border-none text-gray-800 dark:text-white"
+                panelStyleClass="!bg-white/95 dark:!bg-neutral-900/95 !backdrop-blur-xl !border !border-gray-200 dark:!border-neutral-800 !rounded-2xl !shadow-2xl [&_.p-select-list-container]:!max-h-[250px] [scrollbar-width:thin] [scrollbar-color:rgba(197,160,89,0.6)_transparent] dark:[scrollbar-color:rgba(226,200,125,0.6)_transparent] [&_.p-select-list-container]:[scrollbar-width:thin] [&_.p-select-list-container]:[scrollbar-color:rgba(197,160,89,0.6)_transparent] dark:[&_.p-select-list-container]:[scrollbar-color:rgba(226,200,125,0.6)_transparent] [&_.p-select-option]:!transition-all [&_.p-select-option]:!duration-300 [&_.p-select-option:hover]:!bg-[#c5a059]/10 dark:[&_.p-select-option:hover]:!bg-[#e2c87d]/10 [&_.p-select-option-selected]:!bg-[#c5a059]/20 dark:[&_.p-select-option-selected]:!bg-[#e2c87d]/20"
+                [options]="eventCategories()"
+                [ngClass]="
+                  formErrors()['category']
+                    ? '!border-red-400 dark:!border-red-500/50'
+                    : '!border-gray-200 dark:!border-neutral-800'
+                "
+                [(ngModel)]="contactForm.category"
+                (ngModelChange)="onInteraction('category')"
+                (onBlur)="onInteraction('category')"
+              >
+                <ng-template #dropdownicon>
+                  <i class="pi pi-chevron-down text-xs text-gray-400 mr-3"></i>
+                </ng-template>
+
+                <ng-template #selectedItem let-selectedOption>
+                  @if (selectedOption) {
+                    <div class="flex items-center gap-2">
+                      <i class="text-gold-shine/90 text-[15px]" [class]="selectedOption.icon"></i>
+                      <span class="text-sm text-gray-800 dark:text-white">{{
+                        selectedOption.name
+                      }}</span>
+                    </div>
+                  }
+                </ng-template>
+
+                <ng-template #item let-category>
+                  <div class="flex items-center gap-3 py-1">
+                    <i class="text-gold-shine/70 text-sm" [class]="category.icon"></i>
+                    <span class="text-sm font-light">{{ category.name }}</span>
+                  </div>
+                </ng-template>
+              </p-select>
               <label
                 for="contact_type"
-                class="font-light text-[13px] md:text-sm text-gray-500 ml-3"
-                >{{ 'contact.form.event_type' | translate }}</label
+                class="font-light text-[13px] md:text-sm ml-3 pointer-events-none"
+                [ngClass]="formErrors()['category'] ? 'text-red-500' : 'text-gray-500'"
+                >{{ 'contact.form.category' | translate }}</label
               >
             </p-floatLabel>
+            @if (formErrors()['category']) {
+              <span
+                class="text-[10px] text-red-500 dark:text-red-400 ml-3 mt-1.5 animate-fade-in-up"
+              >
+                {{ formErrors()['category'] | translate }}
+              </span>
+            }
           </div>
 
-          <div class="w-full">
+          <div class="w-full flex flex-col">
             <p-floatLabel class="w-full">
               <textarea
                 id="contact_message"
                 rows="3"
                 pTextarea
-                class="w-full !bg-white/70 dark:!bg-neutral-900/60 !border !border-gray-200 dark:!border-neutral-800 focus:!border-[#c5a059] dark:focus:!border-[#e2c87d] !rounded-xl !px-5 !pt-8 !pb-4 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all resize-none text-gray-800 dark:text-white hover:!bg-white dark:hover:!bg-neutral-900"
+                class="w-full !bg-white/70 dark:!bg-neutral-900/60 !border focus:!border-[#c5a059] dark:focus:!border-[#e2c87d] !rounded-xl !px-5 !pt-8 !pb-4 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all resize-none text-gray-800 dark:text-white hover:!bg-white dark:hover:!bg-neutral-900"
+                [ngClass]="
+                  formErrors()['message']
+                    ? '!border-red-400 dark:!border-red-500/50'
+                    : '!border-gray-200 dark:!border-neutral-800'
+                "
                 [(ngModel)]="contactForm.message"
+                (blur)="onInteraction('message')"
+                (ngModelChange)="onInteraction('message')"
               ></textarea>
               <label
                 for="contact_message"
-                class="font-light text-[13px] md:text-sm text-gray-500 ml-3 mt-4 md:mt-5"
+                class="font-light text-[13px] md:text-sm ml-3 mt-4 md:mt-5"
+                [ngClass]="formErrors()['message'] ? 'text-red-500' : 'text-gray-500'"
                 >{{ 'contact.form.message' | translate }}</label
               >
             </p-floatLabel>
+            @if (formErrors()['message']) {
+              <span
+                class="text-[10px] text-red-500 dark:text-red-400 ml-3 mt-1.5 animate-fade-in-up"
+              >
+                {{ formErrors()['message'] | translate }}
+              </span>
+            }
           </div>
 
           <div
             class="flex flex-col gap-3 mt-2 md:mt-3 pt-6 border-t border-gray-200/80 dark:border-white/10"
           >
-            <p-button
-              styleClass="w-full !rounded-xl !py-4 bg-gold-shine !border-none text-neutral-900 flex justify-center items-center group/submit transition-all duration-300 hover:scale-[1.02] shadow-[0_8px_15px_rgba(226,200,125,0.25)] hover:shadow-[0_12px_25px_rgba(226,200,125,0.4)]"
-              (onClick)="submitContact()"
+            <div
+              class="w-full"
+              tooltipPosition="top"
+              [pTooltip]="
+                !isFormValid && !isSubmitting()
+                  ? ('reviews.form_submit_disabled_tooltip' | translate)
+                  : undefined
+              "
+              [showDelay]="200"
             >
-              <div class="flex items-center gap-3">
-                <i
-                  class="pi text-sm md:text-base transition-transform duration-300 opacity-90"
-                  [ngClass]="
-                    isSubmitting()
-                      ? 'pi-spinner animate-spin'
-                      : 'pi-send group-hover/submit:-translate-y-1 group-hover/submit:translate-x-1'
-                  "
-                ></i>
-                <span class="text-sm md:text-base tracking-wide font-medium">
-                  {{
-                    isSubmitting()
-                      ? ('contact.button.submitting' | translate)
-                      : ('contact.button.submit' | translate)
-                  }}
-                </span>
-              </div>
-            </p-button>
+              <p-button
+                styleClass="w-full !rounded-xl !py-4 bg-gold-shine !border-none text-neutral-900 flex justify-center items-center group/submit transition-all duration-300 disabled:opacity-40 disabled:grayscale-[40%] disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none disabled:hover:brightness-100 [&:not(:disabled)]:hover:brightness-110 [&:not(:disabled)]:hover:shadow-[0_12px_25px_rgba(226,200,125,0.4)] [&:not(:disabled)]:hover:scale-[1.02]"
+                [disabled]="!isFormValid || isSubmitting()"
+                (onClick)="submitContact()"
+              >
+                <div class="flex items-center gap-3">
+                  <i
+                    class="pi text-sm md:text-base transition-transform duration-300 opacity-90"
+                    [ngClass]="
+                      isSubmitting()
+                        ? 'pi-spinner animate-spin'
+                        : 'pi-send [&:not(:disabled)_&]:group-hover/submit:-translate-y-1 [&:not(:disabled)_&]:group-hover/submit:translate-x-1'
+                    "
+                  ></i>
+                  <span class="text-sm md:text-base tracking-wide font-medium">
+                    {{
+                      isSubmitting()
+                        ? ('contact.button.submitting' | translate)
+                        : ('contact.button.submit' | translate)
+                    }}
+                  </span>
+                </div>
+              </p-button>
+            </div>
+            <!-- TODO: Habilitar cuando el planner esté listo
             <p-button
               styleClass="w-full !rounded-xl !py-3.5 !bg-gradient-to-br !from-white !via-[var(--p-primary-50)]/20 !to-[var(--p-primary-100)]/70 !backdrop-blur-2xl !border !border-gray-200/80 !text-[var(--p-primary-700)] dark:!from-black/95 dark:!via-neutral-950/90 dark:!to-[var(--p-primary-900)]/10 dark:!border-neutral-800/80 dark:!text-gold-shine transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(226,200,125,0.2)] dark:hover:shadow-[0_15px_40px_rgba(226,200,125,0.15)] hover:border-[#e2c87d]/40 dark:hover:border-[#e2c87d]/30 flex justify-center items-center"
               [variant]="'outlined'"
               (onClick)="goToDetailedPlanner()"
             >
               <div class="flex items-center gap-2">
-                <span class="text-sm tracking-wide font-medium">{{
-                  'contact.button.planner' | translate
-                }}</span>
-                <i
-                  class="pi pi-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"
-                ></i>
+                <span class="text-sm tracking-wide font-medium">{{ 'contact.button.planner' | translate }}</span>
+                <i class="pi pi-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
               </div>
-            </p-button>
+            </p-button> 
+            -->
           </div>
         </div>
       </div>

@@ -124,8 +124,8 @@
     "description": "Permítanos conocer su visión para crear una propuesta a su estricta medida. Nuestro equipo diseñará una experiencia impecable, orquestando cada detalle para que usted se dedique únicamente a disfrutar de un evento verdaderamente memorable, sofisticado y libre de preocupaciones.",
     "form": {
       "name": "Su Nombre",
-      "date": "Fecha Estimada (Ej. Diciembre 2026)",
-      "event_type": "Tipo de Evento (Boda, Corporativo, etc.)",
+      "date": "Fecha de su evento",
+      "category": "Categoría del Evento (Boda, Corporativo, etc.)",
       "message": "Compártanos los detalles que harán único su evento..."
     },
     "button": {
@@ -137,8 +137,30 @@
       "coverage": "Zona de Cobertura",
       "coverage_value": "Puebla y Área Metropolitana",
       "direct": "Atención Directa"
+    },
+    "whatsapp": {
+    "intro": "¡Hola equipo de *Plato y Copa*! 👋\nMe gustaría recibir información para un evento. Aquí dejo mis datos rápidos:",
+    "label_name": "👤 *Nombre:*",
+    "label_date": "📅 *Fecha:*",
+    "label_event": "🎉 *Evento:*",
+    "label_details": "💬 *Detalles:*",
+    "footer": "¡Quedo a la espera de su respuesta!"
     }
   },
+  "footer": {
+    "description": "Elevando el estándar de tus eventos con servicio de coctelería, banquetería y personal de alta gama.",
+    "links_title": "Explorar",
+    "link_about": "Nuestra Esencia",
+    "link_services": "Servicios",
+    "link_gallery": "Galería",
+    "link_reviews": "Reseñas",
+    "contact_title": "Contacto",
+    "contact_address": "Puebla, México",
+    "contact_hours": "Lun - Sáb: 9:00 AM - 8:00 PM",
+    "legal_privacy": "Aviso de Privacidad",
+    "legal_terms": "Términos y Condiciones",
+    "rights": "Todos los derechos reservados."
+},
   "menu":{
     "sections":{
       "navigation":"Navegación",
@@ -161,19 +183,37 @@
     "visit":"Visita nuestras redes sociales:"
   },
   "validation": {
-    "name_required": "El nombre es obligatorio.",
-    "name_invalid": "El nombre solo debe contener letras.",
-    "name_min": "El nombre debe tener al menos 3 caracteres.",
-    "name_max": "El nombre no puede exceder los 100 caracteres.",
-    "contract_required": "El número de contrato es obligatorio.",
-    "contract_format": "El formato del contrato es incorrecto. Verifique su documento.",
-    "rating_required": "La calificación es obligatoria.",
-    "rating_min": "Debe otorgar al menos 1 estrella.",
-    "rating_max": "La calificación máxima es de 5 estrellas.",
-    "category_required": "Debe seleccionar la categoría de su evento.",
-    "services_required": "Debe seleccionar al menos un servicio.",
-    "comment_required": "Su experiencia es obligatoria.",
-    "comment_min": "Por favor, cuéntenos un poco más (mínimo 10 caracteres).",
-    "comment_max": "El comentario es demasiado largo (máximo 1000 caracteres)."
+    "nameIsRequired": "El nombre es requerido.",
+    "invalidPersonName": "El nombre solo puede contener letras y espacios.",
+    "descriptionIsRequired": "La descripción es requerida.",
+    "textTooLong": "El texto excede el límite de caracteres permitidos.",
+    "textTooShort": "El texto es demasiado corto.",
+    "dateIsRequired": "La fecha es requerida.",
+    "invalidDateFormat": "El formato de la fecha es inválido.",
+    "eventDateTooSoon": "Los eventos requieren al menos 48 horas de anticipación.",
+    "invalidPhoneNumber": "El número de teléfono no tiene un formato válido.",
+    "invalidUuid": "El identificador no es válido.",
+    "numberIsRequired": "El número es requerido.",
+    "invalidNumber": "El valor debe ser un número.",
+    "numberMinZero": "El número no puede ser menor a cero.",
+    "categoryIsRequired": "Por favor, selecciona una categoría.",
+    "contractIsRequired": "El número de contrato es requerido.",
+    "invalidContractFormat": "El formato del contrato es incorrecto. Verifique su documento.",
+    "servicesAreRequired": "Debes seleccionar al menos un servicio.",
+    "eventTypeIsRequired": "Indica la categoría del evento.",
+    "ratingMin": "La calificación mínima es 1 estrella.",
+    "ratingMax": "La calificación máxima es 5 estrellas.",
+    "message_required": "Por favor, escríbenos un mensaje.",
+    "comment_required": "El comentario es requerido."
+  },
+  "toast": {
+  "contact": {
+    "success_summary": "¡Preparando!",
+    "success_detail": "Redirigiendo a WhatsApp..."
+  },
+  "review": {
+    "success_summary": "¡Gracias!",
+    "success_detail": "Tu reseña ha sido enviada con éxito."
   }
+}
 }
