@@ -18,6 +18,8 @@ import { globalReducer } from './store/global.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { authenticationInterceptor } from './interceptors/authentication-interceptor';
 import MyPreset from './mypreset';
+import { MessageService } from 'primeng/api';
+import { errorInterceptor } from './interceptors/error.interceptor';
 /**
  * The API path. What comes after the host. E.g. in http://localhost:8080/api/v1, the API path is /api/v1.
  */
@@ -56,7 +58,8 @@ export const appConfig: ApplicationConfig = {
       },
       ripple: true,
     }),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([errorInterceptor])),
+    MessageService,
     provideTranslateService({
       loader: {
         provide: TranslateLoader,

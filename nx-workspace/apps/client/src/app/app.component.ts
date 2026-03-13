@@ -3,9 +3,10 @@ import { RouterModule } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { DOCUMENT } from '@angular/common';
 import { ThemeService } from './services/theme.service';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
-  imports: [RouterModule],
+  imports: [RouterModule, ToastModule],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
