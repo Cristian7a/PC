@@ -1,11 +1,9 @@
 import { z } from 'zod';
 import { DateSchema } from './common-primitives.schema';
 
-export const CATEGORY_REQUIRED_MSG = 'validation.categoryIsRequired';
 export const CONTRACT_REQUIRED_MSG = 'validation.contractIsRequired';
 export const CONTRACT_INVALID_MSG = 'validation.invalidContractFormat';
 export const SERVICES_REQUIRED_MSG = 'validation.servicesAreRequired';
-export const EVENT_TYPE_REQUIRED_MSG = 'validation.eventTypeIsRequired';
 export const EVENT_DATE_TOO_SOON_MSG = 'validation.eventDateTooSoon';
 export const RATING_MIN_MSG = 'validation.ratingMin';
 export const RATING_MAX_MSG = 'validation.ratingMax';
@@ -21,29 +19,6 @@ export const ContractSchema = z
   .trim()
   .min(1, CONTRACT_REQUIRED_MSG)
   .regex(CONTRACT_REGEX, CONTRACT_INVALID_MSG);
-
-/**
- * Schema for validating arrays of services.
- * Used across quotes, reviews, and orders to ensure at least one service is selected.
- */
-export const ServicesArraySchema = z.array(z.string()).min(1, SERVICES_REQUIRED_MSG);
-
-/**
- * Schema for validating categories.
- * Used to classify events, food items, or gallery collections.
- */
-export const CategorySchema = z
-  .string({ message: CATEGORY_REQUIRED_MSG })
-  .min(1, CATEGORY_REQUIRED_MSG);
-
-/**
- * Schema for validating event types.
- * Represents the kind of event being quoted or organized (e.g., Wedding, Corporate).
- */
-export const EventTypeSchema = z
-  .string({ message: EVENT_TYPE_REQUIRED_MSG })
-  .trim()
-  .min(1, EVENT_TYPE_REQUIRED_MSG);
 
 /**
  * Schema for Plato y Copa Event Dates.
@@ -72,6 +47,5 @@ export const EventDateSchema = DateSchema.superRefine((val, ctx) => {
  */
 export const RatingSchema = z
   .number()
-  .int()
   .min(1, { message: RATING_MIN_MSG })
   .max(5, { message: RATING_MAX_MSG });

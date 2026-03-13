@@ -2,12 +2,10 @@ import { z } from 'zod';
 
 import { PersonNameSchema, createTextSchema } from '../common-primitives.schema';
 
-import {
-  ContractSchema,
-  RatingSchema,
-  CategorySchema,
-  ServicesArraySchema,
-} from '../core-business.schema';
+import { ContractSchema, RatingSchema } from '../core-business.schema';
+
+import { CategorySchema } from '../categories/categories.schema';
+import { ServicesArraySchema } from '../services/services.schema';
 
 /**
  * Schema for creating a new Review.
