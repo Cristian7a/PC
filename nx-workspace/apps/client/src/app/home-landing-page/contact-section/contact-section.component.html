@@ -233,17 +233,18 @@
                 </span>
               </div>
             </p-button>
-
             <p-button
-              styleClass="w-full !rounded-xl !py-2.5 !bg-transparent !border-none !text-gray-500 dark:!text-gray-400 hover:!text-[#c5a059] dark:hover:!text-[#e2c87d] transition-colors duration-300"
-              outline="true"
+              styleClass="w-full !rounded-xl !py-3.5 !bg-gradient-to-br !from-white !via-[var(--p-primary-50)]/20 !to-[var(--p-primary-100)]/70 !backdrop-blur-2xl !border !border-gray-200/80 !text-[var(--p-primary-700)] dark:!from-black/95 dark:!via-neutral-950/90 dark:!to-[var(--p-primary-900)]/10 dark:!border-neutral-800/80 dark:!text-gold-shine transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(226,200,125,0.2)] dark:hover:shadow-[0_15px_40px_rgba(226,200,125,0.15)] hover:border-[#e2c87d]/40 dark:hover:border-[#e2c87d]/30 flex justify-center items-center"
+              [variant]="'outlined'"
               (onClick)="goToDetailedPlanner()"
             >
               <div class="flex items-center gap-2">
-                <span class="text-xs md:text-sm tracking-wide font-medium">{{
+                <span class="text-sm tracking-wide font-medium">{{
                   'contact.button.planner' | translate
                 }}</span>
-                <i class="pi pi-arrow-right text-[10px] md:text-xs"></i>
+                <i
+                  class="pi pi-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"
+                ></i>
               </div>
             </p-button>
           </div>
