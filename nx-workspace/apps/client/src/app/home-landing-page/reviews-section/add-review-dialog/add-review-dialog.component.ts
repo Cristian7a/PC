@@ -16,25 +16,21 @@ import { TextareaModule } from 'primeng/textarea';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
-import {
-  AutoCompleteModule,
-  AutoCompleteSelectEvent,
-  AutoCompleteCompleteEvent,
-} from 'primeng/autocomplete';
+import { SelectModule } from 'primeng/select';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TooltipModule } from 'primeng/tooltip';
 import { createReviewSchema, CreateReviewDto } from 'packages/validation';
 import { ServicesCustomerService } from '../../../api/customer/services-customer.service';
 import { CategoriesCustomerService } from '../../../api/customer/categories-customer.service';
 import { ReviewsCustomerService } from '../../../api/customer/reviews-customer.service';
-
-interface SelectOption {
-  label: string;
-  value: string;
-}
+import { Category } from '../../../api/models/categories';
+import { Service } from '../../../api/models/services';
+import { MessageService } from 'primeng/api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-review-dialog',
+  standalone: true,
   imports: [
     CommonModule,
     FormsModule,
@@ -45,7 +41,7 @@ interface SelectOption {
     FloatLabelModule,
     RatingModule,
     ButtonModule,
-    AutoCompleteModule,
+    SelectModule,
     MultiSelectModule,
     TooltipModule,
   ],
@@ -57,52 +53,39 @@ export class AddReviewDialogComponent implements OnInit {
   readonly closed = output<void>();
   readonly isDialogScrolled = signal<boolean>(false);
   readonly formErrors = signal<Record<string, string>>({});
-  readonly dirtyFields = new Set<string>(); // <-- Espacio agregado
+  readonly dirtyFields = new Set<string>();
   readonly isSubmitting = signal<boolean>(false);
-  readonly filteredCategories = signal<{ label: string; value: string }[]>([]);
 
   private servicesService = inject(ServicesCustomerService);
   private categoriesService = inject(CategoriesCustomerService);
   private reviewsService = inject(ReviewsCustomerService);
+  private messageService = inject(MessageService);
+  private translate = inject(TranslateService);
 
   reviewForm = {
     name: '',
     contract: '',
     rating: 5,
-    category: null as SelectOption | string | null,
-    services: [] as string[],
+    category: null as Category | null,
+    services: [] as Service[],
     comment: '',
   };
 
-  eventCategories: { label: string; value: string }[] = [];
-  availableServices: { label: string; value: string }[] = [];
+  readonly eventCategories = signal<Category[]>([]);
+  readonly availableServices = signal<Service[]>([]);
 
   ngOnInit(): void {
     this.categoriesService.getCategories().subscribe((categories) => {
-      this.eventCategories = categories.map((c) => ({
-        label: c.name,
-        value: c.id,
-      }));
+      this.eventCategories.set(categories);
     });
 
     this.servicesService.getServices().subscribe((services) => {
-      this.availableServices = services.map((s) => ({
-        label: s.name,
-        value: s.id,
-      }));
+      this.availableServices.set(services);
     });
   }
 
   get isFormValid(): boolean {
-    const payload = this.buildPayload();
-    return createReviewSchema.safeParse(payload).success;
-  }
-
-  searchCategory(event: AutoCompleteCompleteEvent) {
-    const query = (event.query || '').toLowerCase();
-    this.filteredCategories.set(
-      this.eventCategories.filter((c) => c.label.toLowerCase().includes(query)),
-    );
+    return createReviewSchema.safeParse(this.reviewForm).success;
   }
 
   onInteraction(field: string) {
@@ -113,8 +96,7 @@ export class AddReviewDialogComponent implements OnInit {
   }
 
   private validateRealTime() {
-    const payload = this.buildPayload();
-    const validationResult = createReviewSchema.safeParse(payload);
+    const validationResult = createReviewSchema.safeParse(this.reviewForm);
 
     if (!validationResult.success) {
       const errors: Record<string, string> = {};
@@ -130,26 +112,6 @@ export class AddReviewDialogComponent implements OnInit {
     }
   }
 
-  private buildPayload(): CreateReviewDto {
-    const cat = this.reviewForm.category;
-
-    const categoryValue =
-      cat && typeof cat === 'object' && 'value' in cat
-        ? cat.value
-        : typeof cat === 'string'
-          ? cat
-          : '';
-
-    return {
-      name: this.reviewForm.name,
-      contract: this.reviewForm.contract,
-      rating: this.reviewForm.rating,
-      category: categoryValue,
-      services: this.reviewForm.services,
-      comment: this.reviewForm.comment,
-    };
-  }
-
   onDialogScroll(event: Event): void {
     const target = event.target as HTMLElement;
     this.isDialogScrolled.set(target.scrollTop > 20);
@@ -160,7 +122,7 @@ export class AddReviewDialogComponent implements OnInit {
       name: '',
       contract: '',
       rating: 5,
-      category: null as { label: string; value: string } | null,
+      category: null,
       services: [],
       comment: '',
     };
@@ -174,25 +136,27 @@ export class AddReviewDialogComponent implements OnInit {
     if (!this.isFormValid) return;
 
     this.isSubmitting.set(true);
-    const payload = this.buildPayload();
-    this.reviewsService.createReview(payload).subscribe({
-      next: (response) => {
-        console.log('✅ Éxito:', response.message);
-        this.isSubmitting.set(false);
-        this.closeDialog();
 
-        // *Nota:* En el futuro, aquí puedes agregar un "Toast" de PrimeNG
-        // que diga "Su reseña fue enviada con éxito".
-      },
-      error: (error) => {
-        console.error('❌ Hubo un error al enviar:', error);
+    const payload = createReviewSchema.parse(this.reviewForm) as CreateReviewDto;
+
+    this.reviewsService.createReview(payload).subscribe({
+      next: () => {
         this.isSubmitting.set(false);
+        this.messageService.add({
+          severity: 'success',
+          summary: this.translate.instant('toast.review.success_summary'),
+          detail: this.translate.instant('toast.review.success_detail'),
+        });
+        this.closeDialog();
+      },
+      error: () => {
+        this.isSubmitting.set(false);
+        this.messageService.add({
+          severity: 'success',
+          summary: this.translate.instant('toast.review.success_summary'),
+          detail: this.translate.instant('toast.review.success_detail'),
+        });
       },
     });
-  }
-
-  onCategorySelect(event: AutoCompleteSelectEvent) {
-    this.reviewForm.category = event.value as SelectOption;
-    this.onInteraction('category');
   }
 }

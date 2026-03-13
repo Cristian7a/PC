@@ -170,30 +170,48 @@
 
           <div class="w-full flex flex-col">
             <p-floatLabel class="w-full">
-              <p-autoComplete
+              <p-select
                 inputId="category"
                 appendTo="body"
-                optionLabel="label"
-                styleClass="w-full flex min-h-[58px] !bg-white/70 dark:!bg-neutral-900/60 !border focus-within:!border-[#c5a059] dark:focus-within:!border-[#e2c87d] !rounded-xl shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all hover:!bg-white dark:hover:!bg-neutral-900 [&>button]:!bg-transparent [&>button]:!border-none [&>button]:!text-gray-500 dark:[&>button]:!text-gray-400 [&>button]:!w-12 [&>button]:!p-0 hover:[&>button]:!bg-transparent focus:[&>button]:!ring-0"
-                inputStyleClass="flex-1 w-full !bg-transparent !border-none !outline-none !shadow-none !px-5 !pt-6 !pb-2 text-gray-800 dark:text-white"
-                panelStyleClass="!bg-white/95 dark:!bg-neutral-900/95 !backdrop-blur-xl !border !border-gray-200 dark:!border-neutral-800 !rounded-xl !shadow-xl [scrollbar-width:thin] [scrollbar-color:rgba(226,200,125,0.4)_transparent] [&_.p-autocomplete-items]:[scrollbar-width:thin] [&_.p-autocomplete-items]:[scrollbar-color:rgba(226,200,125,0.4)_transparent]"
+                optionLabel="name"
+                placeholder=" "
+                styleClass="w-full flex min-h-[58px] items-center !bg-white/70 dark:!bg-neutral-900/60 !border focus-within:!border-[#c5a059] dark:focus-within:!border-[#e2c87d] !rounded-xl shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all hover:!bg-white dark:hover:!bg-neutral-900 [&_.p-select-label]:!pt-6 [&_.p-select-label]:!pb-2 [&_.p-select-label]:!px-5"
+                panelStyleClass="!bg-white/95 dark:!bg-neutral-900/95 !backdrop-blur-xl !border !border-gray-200 dark:!border-neutral-800 !rounded-2xl !shadow-2xl [&_.p-select-list-container]:!max-h-[250px] [scrollbar-width:thin] [scrollbar-color:rgba(197,160,89,0.6)_transparent] dark:[scrollbar-color:rgba(226,200,125,0.6)_transparent] [&_.p-select-list-container]:[scrollbar-width:thin] [&_.p-select-list-container]:[scrollbar-color:rgba(197,160,89,0.6)_transparent] dark:[&_.p-select-list-container]:[scrollbar-color:rgba(226,200,125,0.6)_transparent] [&_.p-select-option]:!transition-all [&_.p-select-option]:!duration-300 [&_.p-select-option:hover]:!bg-[#c5a059]/10 dark:[&_.p-select-option:hover]:!bg-[#e2c87d]/10 [&_.p-select-option-selected]:!bg-[#c5a059]/20 dark:[&_.p-select-option-selected]:!bg-[#e2c87d]/20"
+                [options]="eventCategories()"
                 [ngClass]="
                   formErrors()['category']
                     ? '!border-red-400 dark:!border-red-500/50'
                     : '!border-gray-200 dark:!border-neutral-800'
                 "
-                [suggestions]="filteredCategories()"
-                [dropdown]="true"
-                [forceSelection]="true"
                 [(ngModel)]="reviewForm.category"
-                (completeMethod)="searchCategory($event)"
                 (ngModelChange)="onInteraction('category')"
                 (onBlur)="onInteraction('category')"
-                (onSelect)="onCategorySelect($event)"
-              />
+              >
+                <ng-template #dropdownicon>
+                  <i class="pi pi-chevron-down text-xs text-gray-400 mr-3"></i>
+                </ng-template>
+
+                <ng-template #selectedItem let-selectedOption>
+                  @if (selectedOption) {
+                    <div class="flex items-center gap-2">
+                      <i [class]="selectedOption.icon" class="text-gold-shine/90 text-sm"></i>
+                      <span class="text-sm text-gray-800 dark:text-white">{{
+                        selectedOption.name
+                      }}</span>
+                    </div>
+                  }
+                </ng-template>
+
+                <ng-template #item let-category>
+                  <div class="flex items-center gap-3 py-1">
+                    <i [class]="category.icon" class="text-gold-shine/70 text-sm"></i>
+                    <span class="text-sm font-light">{{ category.name }}</span>
+                  </div>
+                </ng-template>
+              </p-select>
               <label
                 for="category"
-                class="font-light text-gray-500 ml-3"
+                class="font-light text-gray-500 ml-3 pointer-events-none"
                 [ngClass]="{ '!text-red-500': formErrors()['category'] }"
                 >{{ 'reviews.form_category' | translate }}</label
               >
@@ -210,13 +228,13 @@
             <p-floatLabel class="w-full">
               <p-multiSelect
                 inputId="services"
-                optionLabel="label"
-                optionValue="value"
+                [options]="availableServices()"
+                optionLabel="name"
                 display="chip"
+                placeholder=" "
                 appendTo="body"
-                panelStyleClass="!bg-white/95 dark:!bg-neutral-900/95 !backdrop-blur-xl !border !border-gray-200 dark:!border-neutral-800 !rounded-xl !shadow-xl [scrollbar-width:thin] [scrollbar-color:rgba(226,200,125,0.4)_transparent] [&_.p-multiselect-items]:[scrollbar-width:thin] [&_.p-multiselect-items]:[scrollbar-color:rgba(226,200,125,0.4)_transparent]"
-                styleClass="w-full flex min-h-[58px] items-center !bg-white/70 dark:!bg-neutral-900/60 !border focus-within:!border-[#c5a059] dark:focus-within:!border-[#e2c87d] !rounded-xl !px-2 !pt-3 !pb-1 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all text-gray-800 dark:text-white hover:!bg-white dark:hover:!bg-neutral-900"
-                [options]="availableServices"
+                styleClass="w-full flex min-h-[58px] items-center !bg-white/70 dark:!bg-neutral-900/60 !border focus-within:!border-[#c5a059] !rounded-xl transition-all"
+                panelStyleClass="!bg-white/95 dark:!bg-neutral-900/95 !backdrop-blur-xl !border !border-gray-200 dark:!border-neutral-800 !rounded-2xl !shadow-2xl [&_.p-multiselect-list-container]:!max-h-[250px] [scrollbar-width:thin] [scrollbar-color:rgba(197,160,89,0.6)_transparent] dark:[scrollbar-color:rgba(226,200,125,0.6)_transparent] [&_.p-multiselect-list-container]:[scrollbar-width:thin] [&_.p-multiselect-list-container]:[scrollbar-color:rgba(197,160,89,0.6)_transparent] dark:[&_.p-multiselect-list-container]:[scrollbar-color:rgba(226,200,125,0.6)_transparent] [&_.p-multiselect-option]:!transition-all [&_.p-multiselect-option]:!duration-300 [&_.p-multiselect-option:hover]:!bg-[#c5a059]/10 dark:[&_.p-multiselect-option:hover]:!bg-[#e2c87d]/10 [&_.p-multiselect-option-selected]:!bg-[#c5a059]/20 dark:[&_.p-multiselect-option-selected]:!bg-[#e2c87d]/20"
                 [ngClass]="
                   formErrors()['services']
                     ? '!border-red-400 dark:!border-red-500/50'
@@ -225,22 +243,53 @@
                 [(ngModel)]="reviewForm.services"
                 (ngModelChange)="onInteraction('services')"
                 (onBlur)="onInteraction('services')"
-              />
+              >
+                <ng-template pTemplate="selectedItems" let-value>
+                  @if (value && value.length > 0) {
+                    <div class="flex flex-wrap items-center gap-2">
+                      @for (option of value; track option.id; let last = $last) {
+                        <div class="flex items-center gap-1.5">
+                          <i
+                            [class]="option.icon"
+                            class="text-[#c5a059] dark:text-[#e2c87d] text-[15px]"
+                          ></i>
+                          <span class="text-sm text-gray-800 dark:text-white"
+                            >{{ option.name }}{{ !last ? ',' : '' }}</span
+                          >
+                        </div>
+                      }
+                    </div>
+                  }
+                </ng-template>
+
+                <ng-template pTemplate="item" let-service>
+                  <div class="flex items-center gap-3 py-1">
+                    <i
+                      [class]="service.icon"
+                      class="text-[#c5a059]/70 dark:text-[#e2c87d]/70 text-sm"
+                    ></i>
+                    <span class="text-sm font-light">{{ service.name }}</span>
+                  </div>
+                </ng-template>
+              </p-multiSelect>
+
               <label
                 for="services"
-                class="font-light text-gray-500 ml-3"
-                [ngClass]="{ '!text-red-500': formErrors()['services'] }"
-                >{{ 'reviews.form_services' | translate }}</label
+                class="ml-3 pointer-events-none"
+                [ngClass]="formErrors()['services'] ? 'text-red-500' : 'text-gray-500'"
               >
+                {{ 'reviews.form_services' | translate }}
+              </label>
             </p-floatLabel>
+
             @if (formErrors()['services']) {
               <span
                 class="text-[10px] text-red-500 dark:text-red-400 ml-3 mt-1.5 animate-fade-in-up"
-                >{{ formErrors()['services'] | translate }}</span
               >
+                {{ formErrors()['services'] | translate }}
+              </span>
             }
           </div>
-
           <div class="md:col-span-2 w-full flex flex-col mt-2">
             <p-floatLabel class="w-full">
               <textarea
@@ -300,7 +349,7 @@
                 >
                 </i>
 
-                <span class="text-sm md:text-base font-bold">
+                <span class="text-sm md:text-base">
                   {{ isSubmitting() ? 'Enviando...' : ('reviews.form_submit' | translate) }}
                 </span>
               </div>

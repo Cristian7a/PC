@@ -14,7 +14,7 @@ export class ServicesCustomerService {
   getServices(): Observable<Service[]> {
     const services: Service[] = [
       {
-        id: '1',
+        id: '550e8400-e29b-41d4-a716-446655440000',
         name: 'Meseros',
         description:
           'Personal uniformado y capacitado para el servicio de alimentos y bebidas, garantizando una atención cordial y eficiente en todo tipo de celebraciones.',
@@ -31,7 +31,7 @@ export class ServicesCustomerService {
         ],
       },
       {
-        id: '2',
+        id: '550e8400-e29b-41d4-a716-446655440001',
         name: 'Lavaloza',
         description:
           'Personal dedicado a mantener la higiene y orden de la vajilla, cristalería y cocina durante el evento, permitiendo un flujo constante en el servicio.',
@@ -48,7 +48,7 @@ export class ServicesCustomerService {
         ],
       },
       {
-        id: '3',
+        id: '550e8400-e29b-41d4-a716-446655440002',
         name: 'Valet Parking',
         description:
           'Servicio de recepción y resguardo de vehículos por conductores profesionales, brindando comodidad y seguridad total a sus invitados desde su llegada.',
@@ -65,7 +65,7 @@ export class ServicesCustomerService {
         ],
       },
       {
-        id: '4',
+        id: '550e8400-e29b-41d4-a716-446655440003',
         name: 'Bartender',
         description:
           'Expertos en coctelería clásica y moderna que preparan bebidas con estilo, rapidez y el balance perfecto de sabores para su barra libre.',
@@ -82,7 +82,7 @@ export class ServicesCustomerService {
         ],
       },
       {
-        id: '5',
+        id: '550e8400-e29b-41d4-a716-446655440004',
         name: 'Mesa de Dulces',
         description:
           'Diseño y montaje de estaciones de confitería, postres y snacks personalizados según la temática de su evento, creando un festín visual y gustativo.',
@@ -99,7 +99,7 @@ export class ServicesCustomerService {
         ],
       },
       {
-        id: '6',
+        id: '550e8400-e29b-41d4-a716-446655440005',
         name: 'Decoración',
         description:
           'Alquiler de equipo de alta gama: platos, cubiertos, copas y mantelería fina. Todo lo necesario para un montaje elegante y profesional.',
