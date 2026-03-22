@@ -1,70 +1,97 @@
 <footer
-  class="w-full relative bg-[#faf9f8] dark:bg-[#080808] pt-24 pb-8 overflow-hidden"
+  class="relative w-full bg-[#fdfcfb] dark:bg-[#050505] border-t border-neutral-200/50 dark:border-neutral-900 overflow-hidden"
   aria-labelledby="footer-heading"
 >
-  <h2 id="footer-heading" class="sr-only">Pie de página Plato y Copa</h2>
+  <h2 id="footer-heading" class="sr-only">Footer Principal</h2>
 
-  <div
-    class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#c5a059]/30 dark:via-[#e2c87d]/20 to-transparent"
-  ></div>
-
-  <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-16 items-end">
-      <div class="lg:col-span-5 flex flex-col items-start">
-        <a
-          href="/"
-          class="inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a059] rounded-sm mb-6 transition-transform duration-500 hover:scale-[1.02]"
-        >
-          <img
-            src="assets/logo_dark.png"
-            alt="Plato y Copa"
-            class="h-14 w-auto object-contain hidden dark:block"
-          />
-          <img
-            src="assets/logo.png"
-            alt="Plato y Copa"
-            class="h-14 w-auto object-contain block dark:hidden"
-          />
-        </a>
-        <p
-          class="text-sm font-light text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-[320px]"
-        >
-          {{ 'footer.description' | translate }}
-        </p>
-      </div>
-
-      <div class="lg:col-span-7 flex flex-col sm:flex-row gap-8 sm:gap-16 lg:justify-end w-full">
-        @for (contact of contactChannels; track contact.id) {
-          @if (contact.id === 'phone' || contact.id === 'email') {
-            <div class="flex flex-col group">
-              <span
-                class="text-[10px] font-medium tracking-[0.25em] text-neutral-400 dark:text-neutral-500 uppercase mb-2 flex items-center gap-2"
-              >
-                <i [class]="contact.icon + ' text-[#c5a059] dark:text-[#e2c87d]'"></i>
-                {{ contact.labelKey | translate }}
-              </span>
-              <a
-                [href]="contact.action + contact.value"
-                class="text-lg md:text-xl font-light text-neutral-800 dark:text-neutral-200 hover:text-[#c5a059] dark:hover:text-[#e2c87d] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a059] rounded-sm"
-              >
-                {{ contact.value }}
-              </a>
-            </div>
-          }
-        }
-      </div>
-    </div>
-
+  <div class="absolute top-0 inset-x-0 flex justify-center overflow-hidden pointer-events-none">
     <div
-      class="grid grid-cols-1 md:grid-cols-3 border-t border-neutral-200/80 dark:border-neutral-800/80 py-12 gap-12 md:gap-0"
-    >
-      <nav class="flex flex-col md:pr-12" aria-label="Navegación del pie de página">
+      class="w-full max-w-screen-xl h-[1px] bg-gradient-to-r from-transparent via-[#c5a059]/40 dark:via-[#e2c87d]/30 to-transparent"
+    ></div>
+    <div
+      class="absolute top-0 w-3/4 h-[120px] bg-[#c5a059] opacity-[0.02] dark:opacity-[0.015] blur-3xl rounded-full"
+    ></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pt-24 pb-[75px] lg:pb-10 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-8 lg:gap-x-12">
+      <div
+        class="md:col-span-12 lg:col-span-4 flex flex-col md:flex-row lg:flex-col items-center md:items-start text-center md:text-left gap-8 md:gap-4 lg:gap-0"
+      >
+        <div
+          class="w-full md:w-1/2 lg:w-full flex flex-col items-center md:items-start lg:items-start"
+        >
+          <a
+            href="/"
+            class="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a059] rounded-lg p-2 -ml-2"
+          >
+            <div
+              class="flex flex-col md:flex-row xl:flex-row items-center sm:items-center lg:items-center gap-2"
+            >
+              <img
+                src="assets/logo_dark.png"
+                alt="Plato y Copa"
+                class="h-20 lg:h-24 w-auto object-contain hidden dark:block transition-transform duration-500 group-hover:scale-105 drop-shadow-2xl"
+              />
+              <img
+                src="assets/logo.png"
+                alt="Plato y Copa"
+                class="h-20 lg:h-24 w-auto object-contain block dark:hidden transition-transform duration-500 group-hover:scale-105 drop-shadow-2xl"
+              />
+              <div class="flex flex-col items-center mt-2 lg:mt-0">
+                <h4 class="text-2xl lg:text-3xl 2xl:text-5xl text-gold-shine">Plato y Copa</h4>
+                <span
+                  class="text-[0.55rem] lg:text-[0.65rem] text-black dark:text-white uppercase tracking-widest text-silver-shine"
+                >
+                  Servicio de meseros
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div
+          class="w-full md:w-1/2 lg:w-full flex flex-col items-center md:items-start lg:items-start lg:mt-8"
+        >
+          <p
+            class="text-sm md:text-base font-light text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-sm md:max-w-full"
+          >
+            {{ 'footer.description' | translate }}
+          </p>
+
+          <div class="mt-6 md:mt-8 flex items-center gap-4 justify-center w-full">
+            @for (social of socialLinks; track social.label) {
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group relative flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-500 dark:text-neutral-400 shadow-sm transition-all duration-300 ease-out hover:border-[#c5a059] dark:hover:border-[#e2c87d] hover:-translate-y-1.5 hover:shadow-lg hover:shadow-[#c5a059]/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a059]"
+                [href]="social.link"
+                [attr.aria-label]="social.label"
+              >
+                <i
+                  [class]="
+                    social.icon +
+                    ' text-lg transition-colors duration-300 group-hover:text-[#c5a059] dark:group-hover:text-[#e2c87d] relative z-10'
+                  "
+                ></i>
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden lg:block lg:col-span-1"></div>
+
+      <nav
+        class="md:col-span-5 lg:col-span-3 flex flex-col items-center md:items-start"
+        aria-label="Navegación del footer"
+      >
         <h3
-          class="text-[11px] font-semibold text-neutral-900 dark:text-white uppercase tracking-widest mb-6 opacity-90"
+          class="text-[10px] md:text-xs font-semibold text-neutral-900 dark:text-white uppercase tracking-[0.25em] mb-8 opacity-80"
         >
           {{ 'footer.links_title' | translate }}
         </h3>
-        <ul class="grid grid-cols-2 gap-y-4 gap-x-4">
+        <ul class="flex flex-col gap-4 w-full items-center md:items-start">
           @for (
             item of [
               { id: 'nosotros', label: 'footer.link_about' },
@@ -74,15 +101,15 @@
             ];
             track item.id
           ) {
-            <li>
+            <li class="w-full md:w-auto text-center md:text-left">
               <button
+                class="relative inline-flex items-center text-sm font-light text-neutral-600 dark:text-neutral-400 transition-colors duration-300 hover:text-[#c5a059] dark:hover:text-[#e2c87d] group py-2 md:py-1 px-4 md:px-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a059]"
                 (click)="scrollToSection(item.id)"
-                class="flex items-center gap-2 text-sm font-light text-neutral-500 dark:text-neutral-400 hover:text-[#c5a059] dark:hover:text-[#e2c87d] transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a059] rounded-sm py-1"
               >
+                <span class="relative z-10">{{ item.label | translate }}</span>
                 <span
-                  class="w-1.5 h-1.5 rounded-full bg-transparent border border-neutral-300 dark:border-neutral-700 group-hover:bg-[#c5a059] group-hover:border-[#c5a059] transition-all duration-300"
+                  class="absolute bottom-1 md:bottom-0 left-4 md:left-0 w-0 h-[1px] bg-[#c5a059] dark:bg-[#e2c87d] transition-all duration-300 ease-out group-hover:w-[calc(100%-2rem)] md:group-hover:w-full"
                 ></span>
-                {{ item.label | translate }}
               </button>
             </li>
           }
@@ -90,82 +117,87 @@
       </nav>
 
       <address
-        class="flex flex-col not-italic border-t md:border-t-0 md:border-l border-neutral-200/80 dark:border-neutral-800/80 pt-12 md:pt-0 md:px-12"
+        class="md:col-span-7 lg:col-span-4 not-italic flex flex-col items-center md:items-start w-full"
       >
         <h3
-          class="text-[11px] font-semibold text-neutral-900 dark:text-white uppercase tracking-widest mb-6 opacity-90"
+          class="text-[10px] md:text-xs font-semibold text-neutral-900 dark:text-white uppercase tracking-[0.25em] mb-8 opacity-80"
         >
           {{ 'footer.contact_title' | translate }}
         </h3>
-        <ul class="flex flex-col gap-5">
+
+        <ul class="flex flex-col gap-6 w-fit mx-auto md:w-full md:mx-0">
           <li
-            class="flex items-start gap-3 text-sm font-light text-neutral-500 dark:text-neutral-400 leading-relaxed"
+            class="group flex items-start gap-4 p-3 -m-3 rounded-2xl duration-300 hover:bg-white dark:hover:bg-neutral-900/40 hover:shadow-sm dark:hover:shadow-none border border-transparent hover:border-neutral-100 dark:hover:border-neutral-800/50"
           >
-            <i class="pi pi-map-marker mt-1 text-neutral-400"></i>
-            <span>{{ 'footer.contact_address' | translate }}</span>
+            <div
+              class="flex-shrink-0 mt-1 w-10 h-10 flex items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-900 text-[#c5a059] dark:text-[#e2c87d] transition-transform duration-300 ease-out group-hover:scale-110"
+            >
+              <i class="pi pi-map-marker text-lg"></i>
+            </div>
+            <div class="flex flex-col">
+              <span
+                class="text-xs font-medium text-neutral-900 dark:text-white mb-1 uppercase tracking-wider"
+                >{{ 'footer.contact_address' | translate }}</span
+              >
+              <span
+                class="text-sm font-light text-neutral-500 dark:text-neutral-400 leading-relaxed"
+                >{{ 'footer.contact_hours' | translate }}</span
+              >
+            </div>
           </li>
-          <li
-            class="flex items-start gap-3 text-sm font-light text-neutral-500 dark:text-neutral-400"
-          >
-            <i class="pi pi-clock mt-1 text-neutral-400"></i>
-            <span>{{ 'footer.contact_hours' | translate }}</span>
-          </li>
+
+          @for (contact of contactChannels; track contact.id) {
+            @if (contact.id !== 'quotation') {
+              <li
+                class="group flex items-start gap-4 p-3 -m-3 rounded-2xl duration-300 hover:bg-white dark:hover:bg-neutral-900/40 hover:shadow-sm dark:hover:shadow-none border border-transparent hover:border-neutral-100 dark:hover:border-neutral-800/50"
+              >
+                <div
+                  class="flex-shrink-0 mt-1 w-10 h-10 flex items-center justify-center rounded-full bg-neutral-100 dark:bg-neutral-900 text-[#c5a059] dark:text-[#e2c87d] transition-transform duration-300 ease-out group-hover:scale-110"
+                >
+                  <i [class]="contact.icon + ' text-lg'"></i>
+                </div>
+                <div class="flex flex-col justify-center">
+                  <span
+                    class="text-xs font-medium text-neutral-900 dark:text-white mb-1 uppercase tracking-wider"
+                    >{{ contact.labelKey | translate }}</span
+                  >
+                  <a
+                    class="text-sm font-light text-neutral-500 dark:text-neutral-400 hover:text-[#c5a059] dark:hover:text-[#e2c87d] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a059] rounded-sm -ml-1 p-1 w-fit"
+                    [href]="contact.action + contact.value"
+                  >
+                    {{ contact.value }}
+                  </a>
+                </div>
+              </li>
+            }
+          }
         </ul>
       </address>
-
-      <div
-        class="flex flex-col border-t md:border-t-0 md:border-l border-neutral-200/80 dark:border-neutral-800/80 pt-12 md:pt-0 md:pl-12"
-      >
-        <h3
-          class="text-[11px] font-semibold text-neutral-900 dark:text-white uppercase tracking-widest mb-6 opacity-90"
-        >
-          Social
-        </h3>
-        <div class="flex flex-wrap gap-3">
-          @for (social of socialLinks; track social.label) {
-            <a
-              [href]="social.link"
-              target="_blank"
-              rel="noopener noreferrer"
-              [attr.aria-label]="social.label"
-              class="group flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-[#c5a059] dark:hover:border-[#e2c87d] transition-all duration-300 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a059]"
-            >
-              <i
-                [class]="
-                  social.icon +
-                  ' text-[15px] text-neutral-400 group-hover:text-[#c5a059] dark:group-hover:text-[#e2c87d] transition-colors'
-                "
-              ></i>
-              <span
-                class="text-xs font-medium text-neutral-600 dark:text-neutral-300 group-hover:text-[#c5a059] dark:group-hover:text-[#e2c87d] transition-colors"
-                >{{ social.label }}</span
-              >
-            </a>
-          }
-        </div>
-      </div>
     </div>
 
     <div
-      class="border-t border-neutral-200/80 dark:border-neutral-800/80 pt-8 mt-4 flex flex-col md:flex-row items-center justify-between gap-6"
-    >
-      <p class="text-xs font-light text-neutral-400 dark:text-neutral-500">
+      class="mt-24 mb-8 h-px bg-gradient-to-r from-transparent via-neutral-200 dark:via-neutral-800 to-transparent"
+    ></div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <p
+        class="text-[11px] md:text-xs font-light text-neutral-400 dark:text-neutral-500 order-2 md:order-1 tracking-wide text-center"
+      >
         &copy; {{ currentYear }}
-        <span class="font-medium text-neutral-700 dark:text-neutral-300">Plato y Copa</span>.
+        <span class="font-medium text-neutral-600 dark:text-neutral-300">Plato y Copa</span>.
         {{ 'footer.rights' | translate }}
       </p>
 
-      <div class="flex items-center gap-6">
+      <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 order-1 md:order-2">
         <a
           href="#"
-          class="text-[11px] font-medium tracking-wider text-neutral-400 hover:text-[#c5a059] dark:hover:text-[#e2c87d] transition-colors uppercase py-1"
+          class="relative text-[11px] md:text-xs font-light tracking-widest text-neutral-500 hover:text-[#c5a059] dark:hover:text-[#e2c87d] transition-colors uppercase group py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a059] rounded-sm"
         >
           {{ 'footer.legal_privacy' | translate }}
         </a>
-        <span class="w-1 h-1 rounded-full bg-neutral-300 dark:bg-neutral-700"></span>
         <a
           href="#"
-          class="text-[11px] font-medium tracking-wider text-neutral-400 hover:text-[#c5a059] dark:hover:text-[#e2c87d] transition-colors uppercase py-1"
+          class="relative text-[11px] md:text-xs font-light tracking-widest text-neutral-500 hover:text-[#c5a059] dark:hover:text-[#e2c87d] transition-colors uppercase group py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a059] rounded-sm"
         >
           {{ 'footer.legal_terms' | translate }}
         </a>
