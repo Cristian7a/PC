@@ -14,57 +14,83 @@ export class GalleryCustomerService {
 
   // MOCK DATABASE
   private mockDatabase: GalleryImage[] = [
+    //5 mejores
     {
       id: '1',
-      url: '/assets/services/meseros.jpg',
+      url: '/assets/Images/Meseros/10.jpeg',
       title: 'Servicio de etiqueta',
       category: 'waiters',
       spanClass: 'col-span-2 row-span-2',
     },
     {
       id: '2',
-      url: '/assets/services/mesa-dulces.jpg',
+      url: '/assets/Images/Meseros/12.jpeg',
       title: 'Mesa de postres',
       category: 'setup',
       spanClass: 'col-span-1 row-span-2',
     },
     {
       id: '3',
-      url: '/assets/services/bartender.jpg',
+      url: '/assets/Images/Meseros/5.jpeg',
       title: 'Coctelería de autor',
       category: 'drinks',
       spanClass: 'col-span-1 row-span-1',
     },
     {
       id: '4',
-      url: '/assets/services/decoración.jpg',
+      url: '/assets/Images/Meseros/7.jpeg',
       title: 'Montaje de eventos',
       category: 'setup',
       spanClass: 'col-span-1 row-span-1',
     },
     {
       id: '5',
-      url: '/assets/services/renta-loza.jpg',
+      url: '/assets/Images/Meseros/4.jpeg',
       title: 'Cristalería fina',
       category: 'setup',
       spanClass: 'col-span-2 row-span-1',
     },
     {
       id: '6',
-      url: '/assets/services/lavaloza.jpg',
+      url: '/assets/Images/Meseros/11.jpeg',
       title: 'Servicio en cocina',
       category: 'waiters',
       spanClass: 'col-span-1 row-span-1',
     },
     {
       id: '7',
-      url: '/assets/services/default.png',
+      url: '/assets/Images/Meseros/13.jpeg',
       title: 'Detalle de servicio',
       category: 'corp',
       spanClass: 'col-span-1 row-span-1',
     },
-    { id: '8', url: '/assets/services/meseros.jpg', title: 'Atención boda', category: 'weddings' },
-    { id: '9', url: '/assets/services/bartender.jpg', title: 'Barra libre', category: 'drinks' },
+
+    // Meseros
+    { id: '8', url: '/assets/Images/Meseros/1.jpeg', title: 'Atención boda', category: 'weddings' },
+    { id: '9', url: '/assets/Images/Meseros/2.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '10', url: '/assets/Images/Meseros/3.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '11', url: '/assets/Images/Meseros/6.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '12', url: '/assets/Images/Meseros/8.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '13', url: '/assets/Images/Meseros/9.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '14', url: '/assets/Images/Meseros/14.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '15', url: '/assets/Images/Meseros/15.jpeg', title: 'Barra libre', category: 'drinks' },
+
+    // Decoración
+    { id: '16', url: '/assets/Images/Decoracion/1.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '17', url: '/assets/Images/Decoracion/2.jpeg', title: 'Barra libre', category: 'drinks' },
+
+    //Eventos
+    { id: '18', url: '/assets/Images/Eventos/1.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '19', url: '/assets/Images/Eventos/2.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '20', url: '/assets/Images/Eventos/3.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '21', url: '/assets/Images/Eventos/4.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '22', url: '/assets/Images/Eventos/5.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '23', url: '/assets/Images/Eventos/6.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '24', url: '/assets/Images/Eventos/7.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '25', url: '/assets/Images/Eventos/8.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '26', url: '/assets/Images/Eventos/9.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '27', url: '/assets/Images/Eventos/10.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '28', url: '/assets/Images/Eventos/11.jpeg', title: 'Barra libre', category: 'drinks' },
   ];
 
   // 1. Obtener destacadas para el Home Landing Page (Sin paginación, solo un array simple)
