@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, input, output, signal } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Dialog } from 'primeng/dialog';
 import { Button } from 'primeng/button';
@@ -10,7 +10,7 @@ import { ImageUrlService } from '../../../utils/imageUrl.utils';
 
 @Component({
   selector: 'app-service-dialog',
-  imports: [CommonModule, NgOptimizedImage, TranslatePipe, Dialog, Button, Avatar, Divider],
+  imports: [CommonModule, TranslatePipe, Dialog, Button, Avatar, Divider],
   templateUrl: './service-dialog.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -6,6 +6,7 @@
     class="opacity-0-init w-full max-w-5xl pointer-events-auto"
     pAnimateOnScroll
     enterClass="animate-luxury-island"
+    [once]="true"
     (animationstart)="animIsland.classList.remove('opacity-0-init')"
   >
     <div
@@ -21,6 +22,7 @@
             pAnimateOnScroll
             enterClass="animate-feature-unveil"
             [style.animation-delay]="i * 200 + 250 + 'ms'"
+            [once]="true"
             (animationstart)="animFeature.classList.remove('opacity-0-init')"
             (animationend)="animFeature.style.animationDelay = '0ms'"
           >

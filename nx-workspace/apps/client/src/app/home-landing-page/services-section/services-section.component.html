@@ -7,10 +7,12 @@
   ></div>
 
   <div
-    class="relative z-10 opacity-0 flex flex-col items-center mb-8 md:mb-12 2xl:mb-16"
+    #servicesHeader
+    class="relative z-10 opacity-0-init flex flex-col items-center mb-8 md:mb-12 2xl:mb-16"
     pAnimateOnScroll
     enterClass="animate-services-header"
-    leaveClass="opacity-0"
+    [once]="true"
+    (animationstart)="servicesHeader.classList.remove('opacity-0-init')"
   >
     <h2
       class="text-3xl font-light text-center tracking-tight text-gold-shine md:text-5xl 2xl:text-7xl"
@@ -35,10 +37,12 @@
   <div class="relative z-10 grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-3 2xl:gap-6">
     @for (sv of services(); track sv.id) {
       <div
-        class="opacity-0 h-full service-card-wrapper"
+        #serviceCard
+        class="opacity-0-init h-full service-card-wrapper"
         pAnimateOnScroll
         enterClass="animate-service-card"
-        leaveClass="opacity-0"
+        [once]="true"
+        (animationstart)="serviceCard.classList.remove('opacity-0-init')"
       >
         <p-card
           styleClass="group relative overflow-hidden !bg-transparent !border-none !shadow-none !p-0 cursor-pointer transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)]"

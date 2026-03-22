@@ -3,10 +3,12 @@
   class="scroll-mt-20 md:scroll-mt-28 relative flex flex-col items-center justify-center w-full px-6 py-2 md:py-4 2xl:py-8 mx-auto max-w-[2000px] sm:px-12 md:px-16 lg:px-24 z-10"
 >
   <div
-    class="relative z-10 flex flex-col items-center w-full max-w-3xl mx-auto mb-10 opacity-0 md:mb-12 2xl:mb-16"
+    #galleryHeader
+    class="relative z-10 flex flex-col items-center w-full max-w-3xl mx-auto mb-10 opacity-0-init md:mb-12 2xl:mb-16"
     pAnimateOnScroll
     enterClass="animate-services-header"
-    leaveClass="opacity-0"
+    [once]="true"
+    (animationstart)="galleryHeader.classList.remove('opacity-0-init')"
   >
     <h2
       class="text-3xl font-light text-center tracking-tight text-gold-shine md:text-5xl 2xl:text-7xl"
@@ -33,10 +35,12 @@
   >
     @for (img of galleryImages(); track img.id) {
       <div
-        class="relative w-full h-full opacity-0 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden group shadow-md hover:shadow-2xl transition-shadow duration-500 bg-gray-100 dark:bg-neutral-900 cursor-pointer focus:outline-none focus:ring-4 focus:ring-[var(--p-primary-500)]/50 gallery-grid-item"
+        #galleryImage
+        class="relative w-full h-full opacity-0-init rounded-[1.5rem] md:rounded-[2rem] overflow-hidden group shadow-md hover:shadow-2xl transition-shadow duration-500 bg-gray-100 dark:bg-neutral-900 cursor-pointer focus:outline-none focus:ring-4 focus:ring-[var(--p-primary-500)]/50 gallery-grid-item"
         pAnimateOnScroll
         enterClass="animate-gallery-image"
-        leaveClass="opacity-0"
+        [once]="true"
+        (animationstart)="galleryImage.classList.remove('opacity-0-init')"
         tabindex="0"
         [ngClass]="img.spanClass"
         (click)="openViewer($index)"
@@ -68,11 +72,13 @@
   </div>
 
   <div
-    class="mt-14 md:mt-16 2xl:mt-20 opacity-0"
+    #galleryBtn
+    class="mt-14 md:mt-16 2xl:mt-20 opacity-0-init"
     pAnimateOnScroll
     enterClass="animate-cta-reveal"
-    leaveClass="opacity-0"
     style="animation-delay: 500ms"
+    [once]="true"
+    (animationstart)="galleryBtn.classList.remove('opacity-0-init')"
   >
     <p-button
       variant="outlined"

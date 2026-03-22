@@ -1,6 +1,6 @@
 <section
   id="contact"
-  class="scroll-mt-20 md:scroll-mt-28 relative flex flex-col justify-center w-full px-6 pt-4 pb-16 mx-auto max-w-[2000px] sm:px-12 md:px-16 lg:px-24 md:pt-12 md:pb-24 z-10 overflow-hidden"
+  class="scroll-mt-20 md:scroll-mt-28 relative flex flex-col justify-center w-full px-6 pt-4 pb-16 mx-auto max-w-[2000px] sm:px-12 md:px-16 lg:px-24 md:pt-12 z-10 overflow-hidden"
 >
   <div
     class="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-black/[0.02] to-black/[0.05] dark:via-black/20 dark:to-black/40 pointer-events-none"
@@ -15,10 +15,12 @@
   >
     <div class="lg:col-span-5 flex flex-col items-start text-left">
       <div
-        class="opacity-0 flex flex-col items-start mb-8 2xl:mb-12 w-full"
+        #contactHeader
+        class="opacity-0-init flex flex-col items-start mb-8 2xl:mb-12 w-full"
         pAnimateOnScroll
         enterClass="animate-reveal-text-left"
-        leaveClass="opacity-0"
+        [once]="true"
+        (animationstart)="contactHeader.classList.remove('opacity-0-init')"
       >
         <div
           class="flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full border border-[var(--p-primary-500)]/30 bg-[var(--p-primary-50)]/50 dark:bg-[var(--p-primary-900)]/20 backdrop-blur-md"
@@ -50,11 +52,13 @@
       </div>
 
       <div
-        class="opacity-0 pl-5 mb-10 border-l-2 border-[#e2c87d]/40 dark:border-[#e2c87d]/30 2xl:pl-8"
+        #contactDesc
+        class="opacity-0-init pl-5 mb-10 border-l-2 border-[#e2c87d]/40 dark:border-[#e2c87d]/30 2xl:pl-8"
         pAnimateOnScroll
         enterClass="animate-reveal-text-left"
-        leaveClass="opacity-0"
         style="animation-delay: 150ms"
+        [once]="true"
+        (animationstart)="contactDesc.classList.remove('opacity-0-init')"
       >
         <p
           class="text-base font-light leading-relaxed text-gray-700 dark:text-gray-300 md:text-lg 2xl:text-2xl m-0"
@@ -64,11 +68,13 @@
       </div>
 
       <div
-        class="opacity-0 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full"
+        #contactInfoBoxes
+        class="opacity-0-init grid grid-cols-1 sm:grid-cols-2 gap-4 w-full"
         pAnimateOnScroll
         enterClass="animate-reveal-text-left"
-        leaveClass="opacity-0"
         style="animation-delay: 300ms"
+        [once]="true"
+        (animationstart)="contactInfoBoxes.classList.remove('opacity-0-init')"
       >
         <div
           class="relative w-full p-4 overflow-hidden rounded-2xl border border-white/40 dark:border-white/10 bg-gradient-to-br from-white/95 via-white/80 to-[var(--p-primary-50)]/60 dark:from-black/95 dark:via-neutral-950/95 dark:to-neutral-900/80 backdrop-blur-2xl shadow-sm group"
@@ -131,11 +137,13 @@
 
     <div class="lg:col-span-7 w-full mx-auto lg:ml-auto">
       <div
-        class="opacity-0 relative w-full p-6 md:p-8 2xl:p-12 rounded-[2rem] 2xl:rounded-[2.5rem] bg-gradient-to-br from-white/95 via-white/80 to-[var(--p-primary-50)]/60 dark:from-black/95 dark:via-neutral-950/95 dark:to-neutral-900/80 backdrop-blur-2xl border border-white/40 dark:border-white/10 animate-subtle-glow overflow-hidden"
+        #contactFormContainer
+        class="opacity-0-init relative w-full p-6 md:p-8 2xl:p-12 rounded-[2rem] 2xl:rounded-[2.5rem] bg-gradient-to-br from-white/95 via-white/80 to-[var(--p-primary-50)]/60 dark:from-black/95 dark:via-neutral-950/95 dark:to-neutral-900/80 backdrop-blur-2xl border border-white/40 dark:border-white/10 animate-subtle-glow overflow-hidden"
         pAnimateOnScroll
         enterClass="animate-premium-focus"
-        leaveClass="opacity-0"
         style="animation-delay: 200ms"
+        [once]="true"
+        (animationstart)="contactFormContainer.classList.remove('opacity-0-init')"
       >
         <div class="relative z-10 flex flex-col gap-6 md:gap-7">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-7">
@@ -365,18 +373,6 @@
                 </div>
               </p-button>
             </div>
-            <!-- TODO: Habilitar cuando el planner esté listo
-            <p-button
-              styleClass="w-full !rounded-xl !py-3.5 !bg-gradient-to-br !from-white !via-[var(--p-primary-50)]/20 !to-[var(--p-primary-100)]/70 !backdrop-blur-2xl !border !border-gray-200/80 !text-[var(--p-primary-700)] dark:!from-black/95 dark:!via-neutral-950/90 dark:!to-[var(--p-primary-900)]/10 dark:!border-neutral-800/80 dark:!text-gold-shine transition-all duration-700 ease-out hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(226,200,125,0.2)] dark:hover:shadow-[0_15px_40px_rgba(226,200,125,0.15)] hover:border-[#e2c87d]/40 dark:hover:border-[#e2c87d]/30 flex justify-center items-center"
-              [variant]="'outlined'"
-              (onClick)="goToDetailedPlanner()"
-            >
-              <div class="flex items-center gap-2">
-                <span class="text-sm tracking-wide font-medium">{{ 'contact.button.planner' | translate }}</span>
-                <i class="pi pi-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-              </div>
-            </p-button> 
-            -->
           </div>
         </div>
       </div>

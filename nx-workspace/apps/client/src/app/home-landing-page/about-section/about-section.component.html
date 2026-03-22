@@ -7,10 +7,12 @@
   >
     <div class="flex flex-col items-start">
       <div
-        class="opacity-0 flex flex-col items-start mb-10 2xl:mb-14"
+        #aboutTitle
+        class="opacity-0-init flex flex-col items-start mb-10 2xl:mb-14"
         pAnimateOnScroll
         enterClass="animate-reveal-text-left"
-        leaveClass="opacity-0"
+        [once]="true"
+        (animationstart)="aboutTitle.classList.remove('opacity-0-init')"
       >
         <h2 class="text-3xl font-light tracking-tight text-gold-shine md:text-5xl 2xl:text-6xl">
           {{ 'about.title' | translate }}
@@ -26,11 +28,13 @@
       </div>
 
       <div
-        class="opacity-0 pl-5 mb-10 border-l-2 border-[#e2c87d]/40 dark:border-[#e2c87d]/30 2xl:pl-8"
+        #aboutDesc
+        class="opacity-0-init pl-5 mb-10 border-l-2 border-[#e2c87d]/40 dark:border-[#e2c87d]/30 2xl:pl-8"
         pAnimateOnScroll
         enterClass="animate-reveal-text-left"
-        leaveClass="opacity-0"
         style="animation-delay: 150ms"
+        [once]="true"
+        (animationstart)="aboutDesc.classList.remove('opacity-0-init')"
       >
         <p
           class="mb-6 text-base font-light leading-relaxed text-gray-700 dark:text-gray-300 md:text-lg 2xl:text-2xl"
@@ -46,11 +50,13 @@
 
       <div class="flex flex-col w-full gap-5">
         <div
-          class="opacity-0 flex items-center gap-5 group"
+          #aboutPoint1
+          class="opacity-0-init flex items-center gap-5 group"
           pAnimateOnScroll
           enterClass="animate-reveal-text-left"
-          leaveClass="opacity-0"
           style="animation-delay: 300ms"
+          [once]="true"
+          (animationstart)="aboutPoint1.classList.remove('opacity-0-init')"
         >
           <div
             class="flex items-center justify-center shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-white via-[var(--p-primary-50)]/20 to-[var(--p-primary-100)]/70 dark:from-black/95 dark:via-neutral-950/90 dark:to-[var(--p-primary-900)]/10 backdrop-blur-md border border-gray-200/80 dark:border-neutral-800/80 shadow-[0_8px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-6"
@@ -65,11 +71,13 @@
         </div>
 
         <div
-          class="opacity-0 flex items-center gap-5 group"
+          #aboutPoint2
+          class="opacity-0-init flex items-center gap-5 group"
           pAnimateOnScroll
           enterClass="animate-reveal-text-left"
-          leaveClass="opacity-0"
           style="animation-delay: 450ms"
+          [once]="true"
+          (animationstart)="aboutPoint2.classList.remove('opacity-0-init')"
         >
           <div
             class="flex items-center justify-center shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-white via-[var(--p-primary-50)]/20 to-[var(--p-primary-100)]/70 dark:from-black/95 dark:via-neutral-950/90 dark:to-[var(--p-primary-900)]/10 backdrop-blur-md border border-gray-200/80 dark:border-neutral-800/80 shadow-[0_8px_20px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-6"
@@ -91,11 +99,13 @@
       ></div>
 
       <div
-        class="absolute inset-0 opacity-0 group"
+        #aboutImage
+        class="absolute inset-0 opacity-0-init group"
         pAnimateOnScroll
         enterClass="animate-image-unveil"
-        leaveClass="opacity-0"
         style="animation-delay: 200ms"
+        [once]="true"
+        (animationstart)="aboutImage.classList.remove('opacity-0-init')"
       >
         <div
           class="absolute inset-0 z-0 transition-transform duration-[1.5s] ease-out transform translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6 rounded-[2rem] md:rounded-[3rem] bg-gradient-to-br from-[#e2c87d]/30 to-transparent dark:from-[#c5a059]/30 border border-[#e2c87d]/20 group-hover:translate-x-2 group-hover:translate-y-2"
@@ -117,11 +127,13 @@
         </div>
 
         <div
-          class="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-6 z-30 p-3 sm:p-4 rounded-2xl bg-white/80 dark:bg-black/70 backdrop-blur-xl border border-white/60 dark:border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_15px_30px_rgba(0,0,0,0.5)] flex items-center gap-3 transition-transform duration-700 ease-out hover:-translate-y-2 group/badge opacity-0"
+          #aboutBadge
+          class="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-6 z-30 p-3 sm:p-4 rounded-2xl bg-white/80 dark:bg-black/70 backdrop-blur-xl border border-white/60 dark:border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_15px_30px_rgba(0,0,0,0.5)] flex items-center gap-3 transition-transform duration-700 ease-out hover:-translate-y-2 group/badge opacity-0-init"
           pAnimateOnScroll
           enterClass="animate-seal-reveal"
-          leaveClass="opacity-0"
           style="animation-delay: 700ms"
+          [once]="true"
+          (animationstart)="aboutBadge.classList.remove('opacity-0-init')"
         >
           <div
             class="flex items-center justify-center shrink-0 w-10 h-10 rounded-full shadow-inner sm:w-12 sm:h-12 bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 transition-colors duration-500 group-hover/badge:border-[#e2c87d]/50"

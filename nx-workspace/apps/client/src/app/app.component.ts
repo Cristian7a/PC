@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { DOCUMENT } from '@angular/common';
 import { ThemeService } from './services/theme.service';
 import { ToastModule } from 'primeng/toast';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   imports: [RouterModule, ToastModule],
@@ -17,10 +18,12 @@ export class AppComponent implements OnInit {
   private readonly translateService = inject(TranslateService);
   private readonly document = inject(DOCUMENT);
   private themeService = inject(ThemeService);
+  private viewportScroller = inject(ViewportScroller);
 
   constructor() {
     this.translateService.addLangs(['en', 'es']);
     this.translateService.setFallbackLang('es');
+    this.viewportScroller.setOffset([0, 100]);
   }
   ngOnInit(): void {
     console.log('AppComponent initialized');
