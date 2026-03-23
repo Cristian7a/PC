@@ -8,6 +8,7 @@
   [showHeader]="false"
   [visible]="visible()"
   (visibleChange)="!$event ? closeDialog() : null"
+  (onShow)="onDialogShow()"
 >
   @if (service(); as svc) {
     <div class="relative w-full flex flex-col bg-transparent overflow-hidden rounded-[inherit]">

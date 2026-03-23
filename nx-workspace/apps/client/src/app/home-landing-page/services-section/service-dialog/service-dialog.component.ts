@@ -33,16 +33,20 @@ export class ServiceDialogComponent {
     this.isDialogScrolled.set(target.scrollTop > 30);
   }
 
+  // FIX: Método para reiniciar el estado cuando el diálogo se muestra
+  onDialogShow(): void {
+    this.isDialogScrolled.set(false);
+  }
+
   closeDialog(): void {
+    // FIX: Limpiamos el estado también al cerrar por seguridad
+    this.isDialogScrolled.set(false);
     this.closed.emit();
   }
 
-  // Lógica actual: Cierra el modal y manda a cotizar
   consultAvailability(): void {
     this.closeDialog();
 
-    // Pequeño delay de 150ms para permitir que la animación de cierre del modal
-    // termine antes de hacer el scroll (Mejora la experiencia de usuario)
     setTimeout(() => {
       const element = document.getElementById('contacto');
       if (element) {
@@ -57,7 +61,6 @@ export class ServiceDialogComponent {
   /*
   addToQuotation(): void {
     this.closeDialog();
-    // Ejemplo: Mandar al cotizador preseleccionando este servicio
     this.router.navigate(['/cotizador'], { queryParams: { service: this.service()?.id } });
   }
   */
