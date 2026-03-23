@@ -74,23 +74,41 @@ export class GalleryCustomerService {
     { id: '13', url: '/assets/Images/Meseros/9.jpeg', title: 'Barra libre', category: 'drinks' },
     { id: '14', url: '/assets/Images/Meseros/14.jpeg', title: 'Barra libre', category: 'drinks' },
     { id: '15', url: '/assets/Images/Meseros/15.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '16', url: '/assets/Images/Meseros/16.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '17', url: '/assets/Images/Meseros/17.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '18', url: '/assets/Images/Meseros/18.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '19', url: '/assets/Images/Meseros/19.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '20', url: '/assets/Images/Meseros/20.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '21', url: '/assets/Images/Meseros/21.jpeg', title: 'Barra libre', category: 'drinks' },
 
     // Decoración
-    { id: '16', url: '/assets/Images/Decoracion/1.jpeg', title: 'Barra libre', category: 'drinks' },
-    { id: '17', url: '/assets/Images/Decoracion/2.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '22', url: '/assets/Images/Decoracion/1.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '23', url: '/assets/Images/Decoracion/2.jpeg', title: 'Barra libre', category: 'drinks' },
 
     //Eventos
-    { id: '18', url: '/assets/Images/Eventos/1.jpeg', title: 'Barra libre', category: 'drinks' },
-    { id: '19', url: '/assets/Images/Eventos/2.jpeg', title: 'Barra libre', category: 'drinks' },
-    { id: '20', url: '/assets/Images/Eventos/3.jpeg', title: 'Barra libre', category: 'drinks' },
-    { id: '21', url: '/assets/Images/Eventos/4.jpeg', title: 'Barra libre', category: 'drinks' },
-    { id: '22', url: '/assets/Images/Eventos/5.jpeg', title: 'Barra libre', category: 'drinks' },
-    { id: '23', url: '/assets/Images/Eventos/6.jpeg', title: 'Barra libre', category: 'drinks' },
-    { id: '24', url: '/assets/Images/Eventos/7.jpeg', title: 'Barra libre', category: 'drinks' },
-    { id: '25', url: '/assets/Images/Eventos/8.jpeg', title: 'Barra libre', category: 'drinks' },
-    { id: '26', url: '/assets/Images/Eventos/9.jpeg', title: 'Barra libre', category: 'drinks' },
-    { id: '27', url: '/assets/Images/Eventos/10.jpeg', title: 'Barra libre', category: 'drinks' },
-    { id: '28', url: '/assets/Images/Eventos/11.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '24', url: '/assets/Images/Eventos/1.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '25', url: '/assets/Images/Eventos/2.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '26', url: '/assets/Images/Eventos/3.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '27', url: '/assets/Images/Eventos/4.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '28', url: '/assets/Images/Eventos/5.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '29', url: '/assets/Images/Eventos/6.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '30', url: '/assets/Images/Eventos/7.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '31', url: '/assets/Images/Eventos/8.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '32', url: '/assets/Images/Eventos/9.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '33', url: '/assets/Images/Eventos/10.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '34', url: '/assets/Images/Eventos/11.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '35', url: '/assets/Images/Eventos/12.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '36', url: '/assets/Images/Eventos/13.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '37', url: '/assets/Images/Eventos/14.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '38', url: '/assets/Images/Eventos/15.jpeg', title: 'Barra libre', category: 'drinks' },
+
+    //Galopina
+    { id: '39', url: '/assets/Images/Galopina/1.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '40', url: '/assets/Images/Galopina/2.jpeg', title: 'Barra libre', category: 'drinks' },
+    { id: '41', url: '/assets/Images/Galopina/3.jpeg', title: 'Barra libre', category: 'drinks' },
+
+    //Lavaloza
+    { id: '42', url: '/assets/Images/Lavaloza/1.jpeg', title: 'Barra libre', category: 'drinks' },
   ];
 
   // 1. Obtener destacadas para el Home Landing Page (Sin paginación, solo un array simple)
