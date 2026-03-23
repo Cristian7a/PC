@@ -97,6 +97,7 @@
           styleClass="!w-full sm:!w-auto !text-lg md:!text-xl 2xl:!text-4xl !px-8 sm:!px-10 !py-4 2xl:!py-8 bg-gold-shine !border-none  transition-all duration-700 ease-out hover:brightness-110 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(226,200,125,0.3)] dark:hover:shadow-[0_15px_40px_rgba(226,200,125,0.2)]"
           [label]="'home.button.book' | translate"
           [rounded]="true"
+          (onClick)="scrollToSection('contacto')"
         >
           <ng-template #icon>
             <i class="pi pi-calendar-clock !text-sm md:!text-lg xl:!text-xl 2xl:!text-3xl"></i>
@@ -109,6 +110,7 @@
           variant="outlined"
           [label]="'home.button.contact' | translate"
           [rounded]="true"
+          (onClick)="scrollToSection('servicios')"
         >
           <ng-template #icon>
             <i class="pi pi-envelope !text-sm md:!text-lg xl:!text-xl 2xl:!text-3xl"></i>

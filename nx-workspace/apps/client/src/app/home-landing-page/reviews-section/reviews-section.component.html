@@ -166,6 +166,8 @@
     [once]="true"
     (animationstart)="reviewsBtn.classList.remove('opacity-0-init')"
   >
+    <!--
+  TODO: Descomentar cuando el backend esté listo
     <p-button
       variant="outlined"
       styleClass="!rounded-[1.5rem] !px-8 !py-3 md:!px-10 md:!py-4 !bg-gradient-to-br !from-white !via-[var(--p-primary-50)]/20 !to-[var(--p-primary-100)]/70 !backdrop-blur-2xl !border !border-gray-300/80 !text-[var(--p-primary-700)] dark:!from-black/95 dark:!via-neutral-950/90 dark:!to-[var(--p-primary-900)]/10 dark:!border-neutral-700/80 dark:!text-gold-shine transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(226,200,125,0.15)] font-bold text-sm md:text-base group/btn"
@@ -178,7 +180,7 @@
         ></i>
       </div>
     </p-button>
-  </div>
+  --></div>
 </div>
 
 <app-add-review-dialog [visible]="addReviewVisible()" (closed)="addReviewVisible.set(false)" />

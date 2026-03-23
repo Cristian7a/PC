@@ -141,4 +141,11 @@ export class ContactSectionComponent implements OnInit {
     // Aquí en el futuro navegarás a tu ruta del cotizador
     console.log('Navegando al Planificador Detallado...');
   }
+
+  directWhatsApp() {
+    const phoneNumber = '522223780903';
+    const message = this.translate.instant('contact.whatsapp.direct_intro');
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  }
 }

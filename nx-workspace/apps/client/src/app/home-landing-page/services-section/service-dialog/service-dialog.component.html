@@ -193,7 +193,9 @@
             class="flex flex-col gap-4 pt-6 mt-8 border-t border-gray-300/40 dark:border-gray-700/40 sm:flex-row animate-cta-reveal"
             style="animation-delay: 750ms"
           >
-            <p-button
+            <!-- 
+          TODO: Descomentar cuando este implementada la funcionalidad de cotizar
+           <p-button
               class="flex-1"
               icon="pi pi-calculator"
               variant="outlined"
@@ -205,6 +207,14 @@
               icon="pi pi-whatsapp"
               styleClass="w-full !rounded-[1rem] !py-4 bg-gold-shine !border-none hover:brightness-110 transition-all duration-300 hover:scale-[1.02] shadow-[0_10px_25px_rgba(226,200,125,0.25)] font-bold text-lg"
               [label]="'home.button.contact' | translate"
+            />
+            -->
+            <p-button
+              class="w-full"
+              icon="pi pi-calendar-clock"
+              styleClass="w-full !rounded-[1rem] !py-4 bg-gold-shine !border-none hover:brightness-110 transition-all duration-300 hover:scale-[1.02] shadow-[0_10px_25px_rgba(226,200,125,0.25)] font-bold text-lg"
+              [label]="'services.dialog.consult' | translate"
+              (onClick)="consultAvailability()"
             />
           </div>
         </div>

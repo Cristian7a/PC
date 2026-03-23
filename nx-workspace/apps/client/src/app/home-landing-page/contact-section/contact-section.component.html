@@ -373,6 +373,20 @@
                 </div>
               </p-button>
             </div>
+
+            <p-button
+              styleClass="w-full !rounded-xl !py-4 !bg-transparent !border !border-[#c5a059]/40 dark:!border-[#e2c87d]/40 !text-[#c5a059] dark:!text-[#e2c87d] hover:!bg-[#c5a059]/10 dark:hover:!bg-[#e2c87d]/10 transition-all duration-300 flex justify-center items-center group/wa"
+              (onClick)="directWhatsApp()"
+            >
+              <div class="flex items-center gap-2">
+                <i
+                  class="pi pi-whatsapp text-sm md:text-base transition-transform group-hover/wa:scale-110"
+                ></i>
+                <span class="text-[13px] md:text-sm tracking-wide font-medium">
+                  {{ 'contact.button.direct_whatsapp' | translate }}
+                </span>
+              </div>
+            </p-button>
           </div>
         </div>
       </div>

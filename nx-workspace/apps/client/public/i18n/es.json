@@ -29,8 +29,8 @@
   },
   "home":{
     "button": {
-      "book":"Reservar Fecha",
-      "contact":"Cotizar Evento"
+      "book":"Cotizar mi Evento",
+      "contact":"Explorar Servicios"
     },
     "description": "Maestría en etiqueta y discreción absoluta. Diseñamos el escenario perfecto para su tranquilidad."
   },
@@ -43,7 +43,8 @@
       "description": "Sobre esta experiencia",
       "includes": "La experiencia incluye",
       "packages": "Niveles de Servicio",
-      "close": "Volver"
+      "close": "Volver",
+      "consult": "Consultar Disponibilidad"
     }
   },
   "gallery": {
@@ -129,9 +130,10 @@
       "message": "Compártanos los detalles que harán único su evento..."
     },
     "button": {
-      "submit": "Iniciar Consultoría",
+      "submit": "Solicitar Cotización",
       "submitting": "Procesando...",
-      "planner": "Diseñar mi cotización"
+      "planner": "Diseñar mi cotización",
+      "direct_whatsapp": "Asesoría inmediata por WhatsApp"
     },
     "info": {
       "coverage": "Zona de Cobertura",
@@ -139,7 +141,8 @@
       "direct": "Atención Directa"
     },
     "whatsapp": {
-    "intro": "¡Hola equipo de *Plato y Copa*! 👋\nMe gustaría recibir información para un evento. Aquí dejo mis datos rápidos:",
+    "intro": "¡Hola equipo de *Plato y Copa*! 👋\nMe gustaría solicitar una cotización para un evento. Aquí dejo mis datos rápidos:",
+    "direct_intro": "¡Hola equipo de *Plato y Copa*! 👋 Me gustaría recibir asesoría rápida para un evento que estoy planeando.",
     "label_name": "👤 *Nombre:*",
     "label_date": "📅 *Fecha:*",
     "label_event": "🎉 *Evento:*",
@@ -160,7 +163,7 @@
     "legal_privacy": "Aviso de Privacidad",
     "legal_terms": "Términos y Condiciones",
     "rights": "Todos los derechos reservados."
-},
+  },
   "menu":{
     "sections":{
       "navigation":"Navegación",
@@ -207,13 +210,13 @@
     "comment_required": "El comentario es requerido."
   },
   "toast": {
-  "contact": {
-    "success_summary": "¡Preparando!",
-    "success_detail": "Redirigiendo a WhatsApp..."
-  },
-  "review": {
-    "success_summary": "¡Gracias!",
-    "success_detail": "Tu reseña ha sido enviada con éxito."
+    "contact": {
+      "success_summary": "¡Preparando!",
+      "success_detail": "Redirigiendo a WhatsApp..."
+    },
+    "review": {
+      "success_summary": "¡Gracias!",
+      "success_detail": "Tu reseña ha sido enviada con éxito."
+    }
   }
-}
 }
