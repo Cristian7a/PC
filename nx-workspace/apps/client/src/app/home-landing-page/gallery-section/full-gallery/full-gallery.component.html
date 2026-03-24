@@ -3,7 +3,7 @@
     class="pointer-events-auto flex items-center p-1.5 md:p-2 rounded-full overflow-x-auto w-max max-w-full bg-white bg-gradient-to-br from-white via-[var(--p-primary-50)]/50 to-[var(--p-primary-100)]/70 border border-gray-200/80 shadow-[0_15px_40px_rgba(0,0,0,0.1)] dark:bg-black dark:from-black dark:via-neutral-950 dark:to-[var(--p-primary-900)]/20 dark:border-neutral-800/80 dark:shadow-[0_15px_40px_rgba(0,0,0,0.5)]"
     style="scrollbar-width: none"
   >
-    @for (cat of categories; track cat.value) {
+    @for (cat of categories(); track cat.value) {
       <button
         class="shrink-0 whitespace-nowrap px-4 py-2 md:px-6 md:py-2.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all duration-300 ease-out"
         [ngClass]="

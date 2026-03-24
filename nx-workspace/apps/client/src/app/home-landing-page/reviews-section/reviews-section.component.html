@@ -65,18 +65,18 @@
       </ng-template>
 
       <ng-template let-review pTemplate="item">
-        <div class="p-3 md:p-5 2xl:p-6 h-full">
+        <div class="p-3 md:p-5 2xl:p-6 h-full flex items-start">
           <div
-            class="relative flex flex-col overflow-hidden w-full h-[260px] p-5 transition-transform duration-500 border rounded-[2rem] shadow-[0_10px_40px_rgba(var(--p-primary-500),0.08)] backdrop-blur-2xl group md:h-[300px] md:p-6 2xl:h-[420px] 2xl:p-10 bg-gradient-to-br from-white via-[var(--p-primary-50)]/20 to-[var(--p-primary-100)]/70 border-gray-200/80 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(var(--p-primary-500),0.18)] dark:border-neutral-800/80 dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] dark:from-black/95 dark:via-neutral-950/90 dark:to-[var(--p-primary-900)]/10 dark:hover:shadow-[0_20px_40px_rgba(var(--p-primary-500),0.06)]"
+            class="relative flex flex-col w-full min-h-[280px] h-auto p-5 transition-all duration-500 border rounded-[2rem] shadow-[0_10px_40px_rgba(var(--p-primary-500),0.08)] backdrop-blur-2xl group md:min-h-[320px] md:p-6 2xl:min-h-[380px] 2xl:p-8 bg-gradient-to-br from-white via-[var(--p-primary-50)]/20 to-[var(--p-primary-100)]/70 border-gray-200/80 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(var(--p-primary-500),0.18)] dark:border-neutral-800/80 dark:shadow-[0_8px_30px_rgb(0,0,0,0.4)] dark:from-black/95 dark:via-neutral-950/90 dark:to-[var(--p-primary-900)]/10 dark:hover:shadow-[0_20px_40px_rgba(var(--p-primary-500),0.06)]"
           >
             <div
               class="absolute top-0 left-0 w-full h-[2px] transition-opacity duration-700 opacity-0 bg-gradient-to-r from-transparent via-[var(--p-primary-500)] to-transparent group-hover:opacity-100 dark:via-[var(--p-primary-400)]/20"
             ></div>
 
-            <div class="relative z-10 flex items-center shrink-0 gap-3 mb-4 md:gap-4 2xl:mb-8">
+            <div class="relative z-10 flex items-center shrink-0 gap-3 mb-4 md:gap-4 2xl:mb-6">
               <p-avatar
                 shape="circle"
-                styleClass="!w-10 !h-10 font-bold border shadow-sm transition-transform duration-500 md:!w-12 md:!h-12 2xl:!w-16 2xl:!h-16 group-hover:scale-105 !bg-[var(--p-primary-100)] !text-[var(--p-primary-700)] border-[var(--p-primary-200)] dark:!bg-[var(--p-primary-900)]/40 dark:!text-[var(--p-primary-300)] dark:border-[var(--p-primary-800)]/50"
+                styleClass="!w-10 !h-10 font-bold border shadow-sm transition-transform duration-500 md:!w-12 md:!h-12 2xl:!w-14 2xl:!h-14 group-hover:scale-105 !bg-[var(--p-primary-100)] !text-[var(--p-primary-700)] border-[var(--p-primary-200)] dark:!bg-[var(--p-primary-900)]/40 dark:!text-[var(--p-primary-300)] dark:border-[var(--p-primary-800)]/50"
               >
                 {{ review.author.charAt(0) }}
               </p-avatar>
@@ -84,45 +84,79 @@
               <div class="flex flex-col">
                 <div class="flex items-center gap-1.5">
                   <h4
-                    class="text-sm font-bold leading-tight tracking-wide text-gray-900 md:text-base 2xl:text-xl dark:text-neutral-100"
+                    class="text-sm font-bold leading-tight tracking-wide text-gray-900 md:text-base 2xl:text-lg dark:text-neutral-100"
                   >
                     {{ review.author }}
                   </h4>
                   <i
-                    class="pi pi-verified text-[10px] drop-shadow-sm cursor-help md:text-xs 2xl:text-sm text-[var(--p-primary-600)] dark:text-[var(--p-primary-500)]"
+                    class="pi pi-verified text-[10px] drop-shadow-sm cursor-help md:text-xs text-[var(--p-primary-600)] dark:text-[var(--p-primary-500)]"
                     appendTo="body"
                     tooltipPosition="top"
                     [pTooltip]="'reviews.verified_tooltip' | translate"
                   ></i>
                 </div>
                 <p-rating
-                  styleClass="gap-0.5 mt-1 text-[10px] text-yellow-500 drop-shadow-sm md:text-xs 2xl:text-base"
+                  styleClass="gap-0.5 mt-1 text-[10px] text-yellow-500 drop-shadow-sm md:text-xs"
                   [ngModel]="review.rating"
                   [readonly]="true"
                 />
               </div>
             </div>
 
-            <div class="relative z-10 flex flex-col justify-start overflow-hidden grow">
+            <div class="relative z-10 flex flex-col justify-start grow w-full">
               <i
-                class="absolute -top-1 -left-1 text-xl transition-transform duration-700 pi pi-quote-left opacity-[0.15] md:-top-2 md:-left-2 md:text-3xl 2xl:text-5xl group-hover:scale-105 text-[var(--p-primary-500)] dark:opacity-[0.12]"
+                class="absolute -top-1 -left-1 text-xl transition-transform duration-700 pi pi-quote-left opacity-[0.15] md:-top-2 md:-left-2 md:text-3xl 2xl:text-4xl group-hover:scale-105 text-[var(--p-primary-500)] dark:opacity-[0.12]"
               ></i>
-              <p
-                class="relative z-10 pt-1 pl-5 text-xs font-medium italic leading-relaxed text-gray-700 line-clamp-5 md:pt-2 md:pl-8 md:text-sm md:line-clamp-6 2xl:pl-12 2xl:text-lg 2xl:line-clamp-8 dark:font-light dark:text-neutral-300"
+
+              <div
+                class="relative w-full overflow-hidden transition-all duration-500 ease-in-out"
+                [ngClass]="
+                  isReviewExpanded(review.id)
+                    ? 'max-h-[500px]'
+                    : 'max-h-[85px] md:max-h-[105px] 2xl:max-h-[135px]'
+                "
               >
-                "{{ review.comment }}"
-              </p>
+                <p
+                  class="pt-1 pl-5 text-xs font-medium italic leading-relaxed text-gray-700 md:pt-2 md:pl-8 md:text-sm 2xl:pl-10 2xl:text-base dark:font-light dark:text-neutral-300"
+                >
+                  "{{ review.comment }}"
+                </p>
+
+                @if (!isReviewExpanded(review.id) && review.comment.length > 120) {
+                  <div
+                    class="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-[#0a0a0a] dark:via-[#0a0a0a]/80"
+                  ></div>
+                }
+              </div>
+
+              @if (review.comment.length > 120) {
+                <button
+                  class="mt-2 text-[10px] md:text-xs font-bold uppercase tracking-wider text-[var(--p-primary-600)] dark:text-[var(--p-primary-400)] hover:text-gold-shine transition-colors self-start ml-5 md:ml-8 2xl:ml-10 flex items-center gap-1"
+                  (click)="toggleReviewExpansion(review.id)"
+                >
+                  <span>{{
+                    isReviewExpanded(review.id)
+                      ? ('reviews.read_less' | translate)
+                      : ('reviews.read_more' | translate)
+                  }}</span>
+                  <i
+                    class="pi text-[8px] md:text-[10px] transition-transform duration-300"
+                    [ngClass]="isReviewExpanded(review.id) ? 'pi-chevron-up' : 'pi-chevron-down'"
+                  ></i>
+                </button>
+              }
             </div>
 
-            @if (review.images?.length) {
-              <div
-                class="relative z-10 flex items-center justify-between w-full pt-4 mt-4 border-t border-gray-200 shrink-0 2xl:pt-6 2xl:mt-6 dark:border-neutral-800"
-              >
+            <div
+              class="relative z-10 flex items-center justify-between w-full pt-4 mt-auto border-t border-gray-200 shrink-0 2xl:pt-5 2xl:mt-6 dark:border-neutral-800"
+              [ngClass]="{ 'mt-4': !review.images?.length }"
+            >
+              @if (review.images?.length) {
                 <div class="flex -space-x-2 md:-space-x-3 2xl:-space-x-4">
                   @for (image of review.images; track $index) {
                     @if ($index < 3) {
                       <img
-                        class="object-cover w-8 h-8 border-2 border-white rounded-full shadow-md transition-transform md:w-10 md:h-10 2xl:w-14 2xl:h-14 dark:border-black group-hover:scale-105"
+                        class="object-cover w-8 h-8 border-2 border-white rounded-full shadow-md transition-transform md:w-10 md:h-10 2xl:w-12 2xl:h-12 dark:border-black group-hover:scale-105"
                         loading="lazy"
                         [alt]="'reviews.photo_alt' | translate"
                         [src]="image"
@@ -132,26 +166,32 @@
                   }
                   @if (review.images!.length > 3) {
                     <div
-                      class="relative z-0 flex items-center justify-center w-8 h-8 text-[10px] font-bold bg-white border-2 border-white rounded-full shadow-sm md:w-10 md:h-10 md:text-xs 2xl:w-14 2xl:h-14 2xl:text-sm text-[var(--p-primary-600)] dark:border-black dark:bg-neutral-900 dark:text-neutral-400"
+                      class="relative z-0 flex items-center justify-center w-8 h-8 text-[10px] font-bold bg-white border-2 border-white rounded-full shadow-sm md:w-10 md:h-10 md:text-xs 2xl:w-12 2xl:h-12 2xl:text-xs text-[var(--p-primary-600)] dark:border-black dark:bg-neutral-900 dark:text-neutral-400"
                     >
                       +{{ review.images!.length - 3 }}
                     </div>
                   }
                 </div>
                 <button
-                  class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-white transition-all rounded-full shadow-sm cursor-pointer group/btn md:text-sm md:px-5 md:py-2.5 2xl:text-base 2xl:px-5 2xl:py-2.5 bg-[var(--p-primary-600)] hover:bg-[var(--p-primary-700)] dark:text-[var(--p-primary-400)] dark:bg-[var(--p-primary-900)]/30 dark:hover:bg-[var(--p-primary-800)]/50"
+                  class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-white transition-all rounded-full shadow-sm cursor-pointer group/btn md:text-sm md:px-4 md:py-2 2xl:text-sm 2xl:px-5 2xl:py-2 bg-[var(--p-primary-600)] hover:bg-[var(--p-primary-700)] dark:text-[var(--p-primary-400)] dark:bg-[var(--p-primary-900)]/30 dark:hover:bg-[var(--p-primary-800)]/50"
                   appendTo="body"
                   tooltipPosition="bottom"
                   [pTooltip]="'reviews.see_photos_tooltip' | translate"
                   (click)="openGallery(review.images)"
                 >
                   <i
-                    class="pi pi-images text-[10px] transition-transform duration-300 md:text-xs 2xl:text-sm group-hover/btn:scale-110"
+                    class="pi pi-images text-[10px] transition-transform duration-300 md:text-xs group-hover/btn:scale-110"
                   ></i>
-                  <span>{{ 'reviews.see_photos' | translate }}</span>
+                  <span class="hidden sm:inline">{{ 'reviews.see_photos' | translate }}</span>
                 </button>
-              </div>
-            }
+              } @else {
+                <div class="w-full flex justify-end">
+                  <span class="text-[10px] md:text-xs italic text-gray-400 dark:text-neutral-600">
+                    {{ 'reviews.verified_customer' | translate }}
+                  </span>
+                </div>
+              }
+            </div>
           </div>
         </div>
       </ng-template>
@@ -160,7 +200,7 @@
 
   <div
     #reviewsBtn
-    class="mt-10 md:mt-14 2xl:mt-16 flex justify-center w-full opacity-0-init relative z-10"
+    class="mt-8 md:mt-10 2xl:mt-12 flex justify-center w-full opacity-0-init relative z-10"
     pAnimateOnScroll
     enterClass="animate-cta-reveal"
     [once]="true"
@@ -180,7 +220,8 @@
         ></i>
       </div>
     </p-button>
-  --></div>
+    -->
+  </div>
 </div>
 
 <app-add-review-dialog [visible]="addReviewVisible()" (closed)="addReviewVisible.set(false)" />

@@ -15,12 +15,12 @@ import { ButtonModule } from 'primeng/button';
 import { GalleriaModule } from 'primeng/galleria';
 import { SkeletonModule } from 'primeng/skeleton';
 import { GalleryCustomerService } from '../../../api/customer/gallery-customer.service';
+import { CategoriesCustomerService } from '../../../api/customer/categories-customer.service'; // <-- Importado
 import { GalleryImage } from '../../../api/models/gallery';
 import { LazyLoadingPagination } from '../../../api/models/pagination';
 
 @Component({
   selector: 'app-full-gallery',
-  standalone: true,
   imports: [
     CommonModule,
     TranslatePipe,
@@ -35,6 +35,7 @@ import { LazyLoadingPagination } from '../../../api/models/pagination';
 })
 export class FullGalleryComponent implements OnInit {
   private readonly galleryService = inject(GalleryCustomerService);
+  private readonly categoriesService = inject(CategoriesCustomerService); // <-- Inyectado
 
   readonly visible = input.required<boolean>();
   readonly closed = output<void>();
@@ -54,14 +55,10 @@ export class FullGalleryComponent implements OnInit {
     return this.currentPage() >= this.autoLoadLimit() && this.hasMoreData();
   });
 
-  readonly categories = [
+  // Convertimos las categorías a una señal para que sea reactiva
+  readonly categories = signal<{ label: string; value: string }[]>([
     { label: 'Todos', value: 'all' },
-    { label: 'Meseros', value: 'waiters' },
-    { label: 'Montajes', value: 'setup' },
-    { label: 'Coctelería', value: 'drinks' },
-    { label: 'Eventos Corporativos', value: 'corp' },
-    { label: 'Bodas', value: 'weddings' },
-  ];
+  ]);
 
   readonly selectedCategory = signal<string>('all');
 
@@ -69,7 +66,28 @@ export class FullGalleryComponent implements OnInit {
   readonly filteredImages = computed(() => this.images());
 
   ngOnInit(): void {
+    this.loadCategories();
     this.fetchImages(1, this.selectedCategory(), true);
+  }
+
+  // Nuevo método para cargar categorías desde el servicio
+  private loadCategories(): void {
+    this.categoriesService.getCategories().subscribe({
+      next: (data) => {
+        // Mapeamos las categorías que vienen del API para que coincidan con la estructura del menú
+        // Usamos el 'name' como value para que el filtro coincida con el mock de imágenes
+        const mappedCategories = data.map((cat) => ({
+          label: cat.name,
+          value: cat.name,
+        }));
+
+        // Agregamos 'Todos' al inicio
+        this.categories.set([{ label: 'Todos', value: 'all' }, ...mappedCategories]);
+      },
+      error: (error) => {
+        console.error('Error fetching categories:', error);
+      },
+    });
   }
 
   onScroll(event: Event): void {
@@ -122,7 +140,6 @@ export class FullGalleryComponent implements OnInit {
     this.isLoading.set(true);
 
     this.galleryService.getImages(page, 6, category).subscribe({
-      // TIPADO FUERTE: TypeScript ahora sabe que 'response' es LazyLoadingPagination<GalleryImage>
       next: (response: LazyLoadingPagination<GalleryImage>) => {
         if (isInitialLoad) {
           this.images.set(response.data);

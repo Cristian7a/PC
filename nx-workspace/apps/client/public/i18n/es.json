@@ -91,7 +91,10 @@
     "form_cancel": "Cancelar",
     "category_placeholder": "Seleccione una categoría",
     "services_placeholder": "Seleccione los servicios",
-    "form_submit_disabled_tooltip": "Complete todos los campos marcados correctamente para habilitar el envío."
+    "form_submit_disabled_tooltip": "Complete todos los campos marcados correctamente para habilitar el envío.",
+    "read_more": "Leer reseña completa",
+    "read_less": "Ocultar detalles",
+    "verified_customer": "Cliente distinguido"
   },
   "about": {
     "subtitle": "Sobre Nosotros",

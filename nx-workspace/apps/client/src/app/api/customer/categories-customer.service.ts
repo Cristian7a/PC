@@ -16,7 +16,7 @@ export class CategoriesCustomerService {
       },
       {
         id: '6ba7b810-9dad-11d1-80b4-00c04fd430c8',
-        name: 'Evento Corporativo',
+        name: 'Convivio',
         description: 'Congresos, fiestas de fin de año y reuniones empresariales.',
         icon: 'pi pi-briefcase',
       },
@@ -34,8 +34,8 @@ export class CategoriesCustomerService {
       },
       {
         id: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
-        name: 'Cena Privada',
-        description: 'Cenas exclusivas, aniversarios y veladas de alto nivel.',
+        name: 'Cumpleaños / Aniversario',
+        description: 'Fechas exclusivas, aniversarios y veladas de alto nivel.',
         icon: 'pi pi-moon',
       },
       {
